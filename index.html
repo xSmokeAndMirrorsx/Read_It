@@ -30,10 +30,10 @@
                     console.log(data[4]);
                     if(data != undefined && data != "Empty"){
                         if(data[0] != null){
-                            document.getElementById("uName").innerText = "Let's see if "+data[0]+" can do a words!" ;
+                            document.getElementById("uName").innerText = "Let's see if "+data[0]+" has got game!" ;
                         }
                         else{
-                            document.getElementById("uName").innerText = "Hello Mr. Anonymous!" ;
+                            document.getElementById("uName").innerText = "Let's see if Mr. Anonymous has got game!" ;
                         }
                         if(data[1] != null){
                             setRack(data[1]);
@@ -54,30 +54,43 @@
     </script>
     
     <div class="a" style="background-color:dimgrey">
-            <h1 id="multicolor" style="color:white;">Hangoggle!</h1>
+            <h1 id="multicolor" style="color:white;">TIME ATTACK</h1>
             <h2 id = "uName"></h2>
+    </div>
       
-    <div class="a">
+    <div>
+      <div class ="a" style="display: inline-block; *display: inline; width: 30%; background_color: slategrey;">
+        <div class ="a" style="background_color: grey;">
             <h2 >User Info</h2>
-            Give yourself a name: <input type = "text" id = "name" >
+        </div>
+            Name: <input type = "text" id = "name">
+            <p></p>
             <button onclick = "submitName()">Make it Official</button>
+            <p></p>
             Customize Word Color: <input type = "color" id = "wordColor">
             <p></p>
+      </div>
    
-    <div class="a">
-            <h2 class = "colorChange">Racks on Racks on Racks</h2>
-            <button onclick = "randomRackGenerator()">Get A new Rack</button>
+      <div class ="a" style = "display: inline-block; *display: inline; width: 40%; background_color: silver;">
+            <h2>Racks on Racks on Racks</h2>
+            <button onclick = "randomRackGenerator()">Get New Rack</button>
             <h2 id = "Rack">...</h2>
             <p></p>
+            Please Enter your guess: <input type="text" id="guess">
             <button onclick="checkRack()">Check</button>
-            Please Enter your guess: <input type="text" id="guess" class = "colorChange">
             <p></p>
-    <div class = "a">
+            <h3 id = "length"></h3>
+      </div>
+      
+      <div class ="a" style="display: inline-block; *display: inline; width: 30%; background_color: slategrey;">
+        <div class="a" style="background_color: grey;">
+          <h2 >User Stats</h2>
+        </div>
             <h3 id = "correct_count">Correct Guesses</h3>
             <h2 id = "correct"></h2>
-            <h3 id = "length"></h3>
             <!-- <ul id = "correct-answers"></ul> -->
-    </div class = "a">
+    </div>
+    </div>
 
     <script>
         var rackSize = 0;
@@ -187,7 +200,7 @@
         }
 
         var submitName = function (data){
-            document.getElementById("uName").innerText="Welcome "+document.getElementById("name").value+" !";
+            document.getElementById("uName").innerText="Let's see if "+document.getElementById("name").value+" can do a words!";
             $.ajax({
                 method: "POST",
                 url: "cheatsheet.php",
