@@ -8,6 +8,7 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="lib/easytimer/dist/easytimer.min.js"></script>
   </head>
   
   <body id="MainBod" style="background-color:black;">
@@ -91,6 +92,15 @@
             <!-- <ul id = "correct-answers"></ul> -->
     </div>
     </div>
+    
+    <div id="basicUsage">00:00:00</div>
+    <script>
+      var timer = new Timer();
+      timer.start();
+      timer.addEventListener('secondsUpdated', function (e) {
+        $('#basicUsage').html(timer.getTimeValues().toString());
+      });
+    </script>
 
     <script>
         var rackSize = 0;
@@ -103,6 +113,7 @@
         //var wordLength = new Array(7);
         var correctGuessList = new Array();
         var wordLengthCount =[0,0,0,0,0,0,0];
+      var timerInstance = new easytimer.Timer();
         
         var setRack = function (data){
             result = data;
