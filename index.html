@@ -53,6 +53,11 @@
             })
     </script>
     
+    <script src="lib/easytimer/dist/easytimer.min.js"></script>
+    <script>
+      var timerInstance = new easytimer.Timer();
+    </script>
+    
     <div class="a" style="background-color:dimgrey">
             <h1 id="multicolor" style="color:white;">TIME ATTACK</h1>
             <h2 id = "uName"></h2>
@@ -73,6 +78,7 @@
    
       <div class ="a" style = "display: inline-block; *display: inline; width: 38%; background-color: silver; vertical-align: top; height: 600px;">
             <h2>Racks on Racks on Racks</h2>
+            <div class="values" style="background-color: grey;">00:00:00</div>
             <button onclick = "randomRackGenerator()">Get New Rack</button>
             <h2 id = "Rack">...</h2>
             <p></p>
@@ -103,6 +109,18 @@
         //var wordLength = new Array(7);
         var correctGuessList = new Array();
         var wordLengthCount =[0,0,0,0,0,0,0];
+        var timer = new Timer();
+        var bestTime = "";
+      
+        timer.addEventListener('secondsUpdated', function (e) {
+          $('div.values').html(timer.getTimeValues().toString());
+        });
+        timer.addEventListener('started', function (e) {
+          $('div.values').html(timer.getTimeValues().toString());
+        });
+        timer.addEventListener('reset', function (e) {
+          $('div.values').html(timer.getTimeValues().toString());
+        });
         
         var setRack = function (data){
             result = data;
@@ -164,6 +182,8 @@
                     
                 }
             })
+          timer.reset();
+          timer.start();
         }
         
         // Used to delete duplicates in the array.
@@ -197,6 +217,8 @@
                     
                 }
             })
+          if(wordList.length <= correctGuessList.length){
+            timer.stop();
         }
 
         var submitName = function (data){
