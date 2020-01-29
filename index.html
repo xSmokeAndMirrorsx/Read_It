@@ -55,26 +55,28 @@
     
     <div class="a" style="background-color:dimgrey">
             <h1 style="color:white;">Hangoggle!</h1>
-            <h3 id = "uName"></h3>
-    <div class = "a">
-            <h2>User Info</h2>
-            Give yourself a name: <input type = "text" id = "name">
-            <button onclick = "submitName()">Make it Official</button>
-            Customize Word Color: <input type = "color" id = "wordColor">
+            <h2 class = "colorChange" id = "uName"></h2>
+    </div class = "a">
+    <div class = "b" style = "position: relative; width:50%; padding: 20px; background-color:dimgrey">
+            <h2 class = "colorChange">User Info</h2>
+            Give yourself a name: <input type = "text" id = "name" class = "colorChange">
+            <button class = "colorChange" onclick = "submitName()">Make it Official</button>
+            Customize Word Color: <input type = "color" class = "colorChange" id = "wordColor">
+            <p></p>
+    </div>
+    <div class = "b">
+            <h2 class = "colorChange">Racks on Racks on Racks</h2>
+            <button class = "colorChange" onclick = "randomRackGenerator()">Get A new Rack</button>
+            <h2 class = "colorChange" id = "Rack">...</h2>
+            <p></p>
+            <button class = "colorChange" onclick="checkRack()">Check</button>
+            Please Enter your guess: <input type="text" id="guess" class = "colorChange">
             <p></p>
     <div class = "a">
-            <h2>Racks on Racks on Racks</h2>
-            <button onclick = "randomRackGenerator()">Get A new Rack</button>
-            <h2 id = "Rack">...</h2>
-            <p></p>
-            <button onclick="checkRack()">Check</button>
-            Please Enter your guess: <input type="text" id="guess">
-            <p></p>
-    <div class = "a">
-            <h3 id = "correct_count">Correct Guesses</h3>
-            <h2 id = "correct"></h2>
-            <h3 id = "length"></h3>
-            <!-- <ul id = "correct-answers"></ul> -->
+            <h3 class = "colorChange" id = "correct_count">Correct Guesses</h3>
+            <h2 class = "colorChange" id = "correct"></h2>
+            <h3 class = "colorChange" id = "length"></h3>
+            <!-- <ul id = "correct-answers" class = "colorChange"></ul> -->
     </div class = "a">
 
     <script>
@@ -198,7 +200,7 @@
 
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-            document.getElementById("body1").style.backgroundColor = mycolor;
+            document.getElementByClassName("colorChange).style.color = mycolor;
         }
 
         document.querySelector("#favColor").addEventListener(
