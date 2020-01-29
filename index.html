@@ -54,7 +54,7 @@
     </script>
     
     <div class="a" style="background-color:dimgrey">
-            <h1 style="color:white;">Hangoggle!</h1>
+            <h1 class="multicolor" style="color:white;">Hangoggle!</h1>
             <h2 id = "uName"></h2>
       
     <div class="a">
@@ -200,7 +200,7 @@
 
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-            document.getElementById("MainBod").style.backgroundColor = mycolor;
+            document.getElementByClassName("multicolor").style.color = mycolor;
         }
 
         document.querySelector("#wordColor").addEventListener(
