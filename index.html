@@ -55,16 +55,16 @@
     
     <div class="a" style="background-color:dimgrey">
             <h1 style="color:white;">Hangoggle!</h1>
-            <h2 class = "colorChange" id = "uName"></h2>
+            <h2 id = "uName"></h2>
       
-    <div class = "b" style = "position: relative; width:45%; padding: 20px; background-color:grey">
+    <div class = "b" style = "position: relative; width:45%; background-color:grey; display: inline-block; *display: inline;">
             <h2 class = "colorChange">User Info</h2>
             Give yourself a name: <input type = "text" id = "name" class = "colorChange">
             <button class = "colorChange" onclick = "submitName()">Make it Official</button>
             Customize Word Color: <input type = "color" class = "colorChange" id = "wordColor">
             <p></p>
     </div>
-    <div class = "b" style = "position: relative; width:45%; padding: 20px; background-color:grey">
+    <div class = "b" style = "position: relative; width:45%; background-color:grey; display: inline-block; *display: inline;">
             <h2 class = "colorChange">Racks on Racks on Racks</h2>
             <button class = "colorChange" onclick = "randomRackGenerator()">Get A new Rack</button>
             <h2 class = "colorChange" id = "Rack">...</h2>
@@ -202,7 +202,7 @@
 
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-            document.getElementByClassName("colorChange).style.color = mycolor;
+            document.getElementsByClassName("colorChange").style.color = mycolor;
         }
 
         document.querySelector("#wordColor").addEventListener(
