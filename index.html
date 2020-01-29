@@ -19,7 +19,7 @@
     
     <script>
         $.ajax({
-                url: "cheetsheet.php",
+                url: "cheatsheet.php",
                 method: "GET",
                 success : function(data) {
                     console.log(data);
@@ -176,7 +176,7 @@
             }
             $.ajax({
                 method: "POST",
-                url: "cheetsheet.php",
+                url: "cheatsheet.php",
                 data: { "receiver_name": document.getElementById("name").value,"rack":result,"wordList":wordList,"correctGuesses":correctGuessList,"wordLengthCount":wordLengthCount},
                 success : function(data) {
                     
@@ -188,7 +188,7 @@
             document.getElementById("username").innerText="Welcome "+document.getElementById("name").value+" !";
             $.ajax({
                 method: "POST",
-                url: "cheetsheet.php",
+                url: "cheatsheet.php",
                 data: { "receiver_name": document.getElementById("name").value,"rack":result,"wordList":wordList,"correctGuesses":correctGuessList,"wordLengthCount":wordLengthCount},
                 success : function(data) {
                     
