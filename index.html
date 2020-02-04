@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
   </head>
   
+  <!-- Start of Main Body-->
   <body id="MainBod" style="background-color:black;">
     <style>
             div.a{
@@ -53,12 +54,16 @@
             })
     </script>
     
+    <!-- Title and Intro Div -->
     <div class="a" style="background-color:dimgrey">
             <h1 class="multicolor" style="color:white;">TIME ATTACK</h1>
             <h2 id = "uName"></h2>
+            <p></p>
     </div>
-      
+     
+    <!-- Div containing 3 vertical divs -->
     <div>
+      <!-- User Info Div -->
       <div class ="a" style="display: inline-block; *display: inline; width: 30%; background-color: slategrey; vertical-align: top; height: 400px;">
         <div class ="a" style="background-color: grey;">
             <h2 class ="multicolor">User Info</h2>
@@ -70,7 +75,8 @@
             Customize Word Color: <input type = "color" id = "wordColor">
             <p></p>
       </div>
-   
+      
+      <!-- Actual Gameplay div -->
       <div class ="a" style = "display: inline-block; *display: inline; width: 38%; background-color: silver; vertical-align: top; height: 400px;">
             <h2 class ="multicolor">Racks on Racks on Racks</h2>
             <button onclick = "randomRackGenerator()">Get New Rack</button>
@@ -82,6 +88,7 @@
             <h3 id = "length"></h3>
       </div>
       
+      <!-- Player and Game stats Div -->
       <div class ="a" style="display: inline-block; *display: inline; width: 30%; background-color: slategrey; vertical-align: top; height: 400px;">
         <div class="a" style="background-color: grey;">
           <h2 class ="multicolor">User Stats</h2>
@@ -89,15 +96,18 @@
             <h3 id = "correct_count">Correct Guesses</h3>
             <h2 id = "correct"></h2>
             <!-- <ul id = "correct-answers"></ul> -->
-    </div>
-    <div class ="a" style="background-color: black; margin: 0px; padding: 20px;">
-      <h2 class ="multicolor" style ="color:white">Just in case you need some guidance</h2>
-      <iframe align="center" width="420" height="315" src="https://www.youtube.com/embed/TSOjdaWNsWU">
-      </iframe>
-    </div>      
+      </div>
+      
+      <!-- Spelling video Div -->
+      <div class ="a" style="background-color: black; margin: 0px; padding: 20px;">
+        <h2 class ="multicolor" style ="color:white">Just in case you need some guidance</h2>
+        <iframe align="center" width="420" height="315" src="https://www.youtube.com/embed/TSOjdaWNsWU">
+        </iframe>
+      </div>      
     </div>
 
 
+    <!-- Script containing functions relavant to UI -->
     <script>
         var rackSize = 0;
         var count_of_Correct = 0;
@@ -106,20 +116,22 @@
         var result = new Array(7);
         var resultString = "";
         var wordList = new Array();
-        //var wordLength = new Array(7);
         var correctGuessList = new Array();
         var wordLengthCount =[0,0,0,0,0,0,0];
         
+        // Gets a rack of 7 letters and puts it on screen
         var setRack = function (data){
             result = data;
             document.getElementById("Rack").innerText = data;
         }
 
+        // sets the count of words left to guess by length
         var setWordLengthCount = function (data){
             wordLengthCount = data;
             document.getElementById("length").innerText = "One Letter:"+wordLengthCount[0]+"\nTwo Letters:"+wordLengthCount[1]+"\nThree Letters:"+wordLengthCount[2]+"\nFour Letters:"+wordLengthCount[3]+"\nFive Letters:"+wordLengthCount[4]+"\nSix Letters:"+wordLengthCount[5]+"\nSeven Letters:"+wordLengthCount[6]; 
         }
 
+        // sets the count of correct guesses and correct guess list
         var setGuesses = function (data){
             correctGuessList = data;
             document.getElementById("correct").innerText = correctGuessList;
@@ -127,8 +139,8 @@
             document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
         }
 
+        // function initializes values for variables and actually generates rack
         var randomRackGenerator = function (evt){
-            
             for ( var i = 0; i < 7; i++ ) {
                 result[i] = characters.charAt(Math.floor(Math.random() * charactersLength));
             }
@@ -151,6 +163,7 @@
             })  
         }
 
+        //function checks to make sure there are possible words and populates the list of count by length
         var handleData = function(data) {
             wordList = handleDuplicates(data);
             if(wordList == null || wordList == []){
@@ -183,11 +196,12 @@
             return newArray;
         }
         
+        //function used to check user guess against real words list
         var checkRack = function (evt){
             var fee = document.getElementById("guess").value;
             fee = fee.toUpperCase();
             if(wordList.includes(fee,0) && correctGuessList.includes(fee,0) == 0){
-              if(correctGuessList.length >= 1){
+              if(correctGuessList.length % 3 == 0 && correctGuessList.length != 0){
                 fee = "\n"+ fee;
               }
                 correctGuessList.push(fee);
@@ -207,6 +221,7 @@
             })
         }
 
+        //function used to change introduction based on user input name
         var submitName = function (data){
             document.getElementById("uName").innerText="Let's see if "+document.getElementById("name").value+" has got game!";
             $.ajax({
@@ -219,6 +234,7 @@
             })
         }
 
+        //function used to change the color of the headers based on user input
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
             var elements = document.getElementsByClassName("multicolor");
