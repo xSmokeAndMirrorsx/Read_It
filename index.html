@@ -204,6 +204,9 @@
               if(correctGuessList.length % 3 == 0 && correctGuessList.length != 0){
                 fee = "\n"+ fee;
               }
+              else if(correctGuessList.length != 0){
+                fee = " " +fee;
+              }
                 correctGuessList.push(fee);
                 document.getElementById("correct").innerText = correctGuessList;
                 count_of_Correct ++;
