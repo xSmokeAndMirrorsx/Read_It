@@ -219,7 +219,10 @@
 
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-            document.getElementsByClassName("multicolor").style.color = mycolor;
+            var elements = document.getElementsByClassName("multicolor");
+            for(var i=0; i<elements.length; i++){
+              elements[i].style.color = mycolor;
+            }
         }
 
         document.querySelector("#wordColor").addEventListener(
