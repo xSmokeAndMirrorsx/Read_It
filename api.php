@@ -1,19 +1,14 @@
 <?php
 
-    //this is the basic way of getting a database handler from PDO, PHP's built in quasi-ORM
     $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
     if (!$dbhandle) die ($error);
  
     $count = 1;
     $binaryVar = decbin($count);
-
     $receiver = $_GET['receiver'];
-
     $rack = $receiver;
     $sizeOfRack = strlen($rack);
-
     $finalRackArray= array();
-    $outerCount = 0;
 
     while(strlen(decbin($count)) < $sizeOfRack + 1){
         $binaryVar = decbin($count);
@@ -24,34 +19,26 @@
             if($binaryVar[$x] == "1" ){
                 $tempArray = $tempArray.$rack[$x];
             }
-           
         }
-        
         $query = "SELECT words FROM racks WHERE rack = \"$tempArray\"";
         $statement = $dbhandle->prepare($query);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         
         if($results == array()){
-            
         }
         else{
             $finalResults = array();
-            
             foreach ($results[0] as $values){
                 $finalResults = $values;
             }
-            
             $explodedArray = explode("@@", $finalResults);
-            
             for($i = 0; $i < count($explodedArray); $i++){
                 array_push($finalRackArray,$explodedArray[$i]);
             }
         }
     }
 
-   
-    
     $receiver = $_GET['receiver'];
     
     //this part is perhaps overkill but I wanted to set the HTTP headers and status code
