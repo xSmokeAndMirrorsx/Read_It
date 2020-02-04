@@ -187,8 +187,10 @@
             var fee = document.getElementById("guess").value;
             fee = fee.toUpperCase();
             if(wordList.includes(fee,0) && correctGuessList.includes(fee,0) == 0){
+              if(correctGuessList.length >= 1){
+                fee = "\n"+ fee;
+              }
                 correctGuessList.push(fee);
-               // document.getElementById(fee).style.visibility = "visible";
                 document.getElementById("correct").innerText = correctGuessList;
                 count_of_Correct ++;
                 document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
