@@ -54,14 +54,14 @@
     </script>
     
     <div class="a" style="background-color:dimgrey">
-            <h1 id="multicolor" style="color:white;">TIME ATTACK</h1>
+            <h1 class="multicolor" style="color:white;">TIME ATTACK</h1>
             <h2 id = "uName"></h2>
     </div>
       
     <div>
       <div class ="a" style="display: inline-block; *display: inline; width: 30%; background-color: slategrey; vertical-align: top; height: 400px;">
         <div class ="a" style="background-color: grey;">
-            <h2 >User Info</h2>
+            <h2 class ="multicolor">User Info</h2>
         </div>
             Name: <input type = "text" id = "name">
             <p></p>
@@ -72,7 +72,7 @@
       </div>
    
       <div class ="a" style = "display: inline-block; *display: inline; width: 38%; background-color: silver; vertical-align: top; height: 400px;">
-            <h2>Racks on Racks on Racks</h2>
+            <h2 class ="multicolor">Racks on Racks on Racks</h2>
             <button onclick = "randomRackGenerator()">Get New Rack</button>
             <h2 id = "Rack">...</h2>
             <p></p>
@@ -84,14 +84,14 @@
       
       <div class ="a" style="display: inline-block; *display: inline; width: 30%; background-color: slategrey; vertical-align: top; height: 400px;">
         <div class="a" style="background-color: grey;">
-          <h2 >User Stats</h2>
+          <h2 class ="multicolor">User Stats</h2>
         </div>
             <h3 id = "correct_count">Correct Guesses</h3>
             <h2 id = "correct"></h2>
             <!-- <ul id = "correct-answers"></ul> -->
     </div>
     <div class ="a" style="background-color: black; margin: 0px; padding: 20px;">
-      <h2 style ="color:white">Just in case you need some guidance</h2>
+      <h2 class ="multicolor" style ="color:white">Just in case you need some guidance</h2>
       <iframe align="center" width="420" height="315" src="https://www.youtube.com/embed/TSOjdaWNsWU">
       </iframe>
     </div>      
@@ -219,7 +219,7 @@
 
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-            document.getElementById("multicolor").style.color = mycolor;
+            document.getElementsByClassName("multicolor").style.color = mycolor;
         }
 
         document.querySelector("#wordColor").addEventListener(
