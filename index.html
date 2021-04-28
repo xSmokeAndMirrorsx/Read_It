@@ -175,20 +175,28 @@
                     console.log(data[3]);
                     console.log(data[4]);
 		    if(data != undefined && data != "Empty"){
-			var tbody = document.querySelector("tbody");
-    			var template = document.querySelector('#productrow');
+			if(data[0] != null){
+			    setName(data[0]);
+			    console.log("data 0");
+			}
+			if(data[1] != null){
+                            setPostNum(data[1]);
+			    console.log("data 1");
+                        }
+                        if(data[3] != null){
+                            setPostLikes(data[3]);
+			    console.log("data 3");
+                        }
+                        if(data[2] != null){
+                            setPostTime(data[2]);
+			    console.log("data 2");
+                        }
+                       
+                        if(data[4] != null){
+                            setData(data[4]);
+			    console.log("data 4");
+                        }
 
-    			// Clone the new row and insert it into the table
-    			var clone = template.content.cloneNode(true);
-    			var td = clone.querySelectorAll("td");
-    			td[0].textContent = data[0];
-			td[1].textContent = data[1];
-    			td[2].textContent = data[4];
-
-    			tbody.appendChild(clone);
-				
-			postCount = postCount + 1;
-			document.getElementById("post").value = "";  
 		    }
                     }
                  })
@@ -196,27 +204,28 @@
 		
 
 	}
-	    
+	 
+	var setName = function (data){
+	    usrName = data;
+	}
         // Gets a rack of 7 letters and puts it on screen
-        var setRack = function (data){
-            result = data;
-            document.getElementById("Rack").innerText = data;
+        var setPostNum = function (data){
+            postCount = data;
         }
 
         // sets the count of words left to guess by length
-        var setWordLengthCount = function (data){
-            wordLengthCount = data;
-            document.getElementById("length").innerText = "One Letter:"+wordLengthCount[0]+"\nTwo Letters:"+wordLengthCount[1]+"\nThree Letters:"+wordLengthCount[2]+"\nFour Letters:"+wordLengthCount[3]+"\nFive Letters:"+wordLengthCount[4]+"\nSix Letters:"+wordLengthCount[5]+"\nSeven Letters:"+wordLengthCount[6]; 
+        var setPostTime = function (data){
+            postTime = data;
         }
 
         // sets the count of correct guesses and correct guess list
-        var setGuesses = function (data){
-            correctGuessList = data;
-            document.getElementById("correct").innerText = correctGuessList;
-            count_of_Correct = correctGuessList.length;
-            document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
+        var setPostLikes = function (data){
+            postLikes = data;
         }
-
+	
+        var setData = function (data){
+            postData = data;
+        }
         // function initializes values for variables and actually generates rack
         var randomRackGenerator = function (evt){
             for ( var i = 0; i < 7; i++ ) {
@@ -337,9 +346,9 @@
     		// Clone the new row and insert it into the table
     		    var clone = template.content.cloneNode(true);
     		    var td = clone.querySelectorAll("td");
-    		    td[0].textContent = document.getElementById("name").value;
+    		    td[0].textContent = usrName
 		    td[1].textContent = postCount;
-    		    td[2].textContent = document.getElementById("post").value;
+    		    td[2].textContent = postData;
 
     		    tbody.appendChild(clone);
 			
