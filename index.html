@@ -162,41 +162,33 @@
                     }
                  })
 		console.log("After POST");
+		usrName = "error";
+	    	postData = "error;
+		postCount = 0;
+		postTime = 0;
+		postLikes = 0;
 		console.log("Before GET");
 		$.ajax({
                     method: "GET",
                     url: "postInfo.php",
                     data: { "usrName":usrName,"postNum":postCount,"pstTime":postTime,"pstLikes":postLikes,"pstData":postData},
                     success : function(data) {
-                    console.log(data);
-                    console.log(data[0]);
-                    console.log(data[1]);
-                    console.log(data[2]);
-                    console.log(data[3]);
-                    console.log(data[4]);
 		    if(data != undefined && data != "Empty"){
 			if(data[0] != null){
 			    setName(data[0]);
-			    console.log("data 0");
 			}
 			if(data[1] != null){
                             setPostNum(data[1]);
-			    console.log("data 1");
                         }
                         if(data[3] != null){
                             setPostLikes(data[3]);
-			    console.log("data 3");
                         }
                         if(data[2] != null){
                             setPostTime(data[2]);
-			    console.log("data 2");
                         }
-                       
                         if(data[4] != null){
                             setData(data[4]);
-			    console.log("data 4");
                         }
-
 		    }
                     }
                  })
@@ -207,24 +199,29 @@
 	 
 	var setName = function (data){
 	    usrName = data;
+	    console.log("data 0");
 	}
         // Gets a rack of 7 letters and puts it on screen
         var setPostNum = function (data){
             postCount = data;
+	    console.log("data 1");
         }
 
         // sets the count of words left to guess by length
         var setPostTime = function (data){
             postTime = data;
+	    console.log("data 2");
         }
 
         // sets the count of correct guesses and correct guess list
         var setPostLikes = function (data){
             postLikes = data;
+	    console.log("data 3");
         }
 	
         var setData = function (data){
             postData = data;
+	    console.log("data 4");
         }
         // function initializes values for variables and actually generates rack
         var randomRackGenerator = function (evt){
