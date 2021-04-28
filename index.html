@@ -291,11 +291,13 @@
 
     		    tbody.appendChild(clone);
 			
-    		    td[0].textContent = "";
-		    td[1].textContent = "";
-    		    td[2].textContent = "";
+    		    var clone2 = template.content.cloneNode(true);
+    		    var td2 = clone.querySelectorAll("td");
+    		    td2[0].textContent = "";
+		    td2[1].textContent = "";
+    		    td2[2].textContent = "";
 
-    		    tbody.appendChild(clone);
+    		    tbody.appendChild(clone2);
 			
 		    postCount = postCount + 1;
 		    document.getElementById("post").value = "";
