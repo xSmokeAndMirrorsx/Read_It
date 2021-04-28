@@ -57,14 +57,14 @@
     </script>
     
     <!-- Title and Intro Div -->
-    <div class="a" style="background-color:dimgrey min-height:100%">
+    <div class="a" style="background-color:dimgrey ">
             <h1 class="multicolor" style="color:white;">WROTiTT</h1>
-            <h2 id = "uName"></h2>
+            <h2 class="multicolor" id="uName"></h2>
             <p></p>
     </div>
      
     <!-- Div containing 3 vertical divs -->
-    <div>
+    <div style="background-color:dimgrey min-height:100%">
       <!-- Social Div -->
       <div class ="a" style="display: inline-block; *display: inline; width: 19%; background-color: slategrey; vertical-align: top; min-height: 100%;">
         <div class ="a" style="background-color: grey;">
@@ -82,7 +82,8 @@
 	    <p></p>
             Type what you want to post: <input type="text" id="post">
 	    <p></p>
-            <button onclick = "randomRackGenerator()">Post</button>
+	    <!--"randomRackGenerator()">Post</button>-->
+	    <button onclick = "printPost()">Post</button>
 	    <p></p>
 	    <table id="producttable">
   	      <thead>
@@ -285,7 +286,7 @@
     		    var td = clone.querySelectorAll("td");
     		    td[0].textContent = document.getElementById("uName").innerText;
 		    td[1].textContent = postCount;
-    		    td[2].textContent = data;
+    		    td[2].textContent = document.getElementById("post").value;
 
     		    tbody.appendChild(clone);
 			
