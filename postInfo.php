@@ -15,7 +15,7 @@ $verb = $_SERVER["REQUEST_METHOD"];
 
 if ($verb === "POST"){
 	console.log("Made it to POST");
-	$sql =<<<<EOF
+	$sql =<<<EOF
 		INSERT INTO Posts (User,PostNumber,Time,Likes,Data)
 		VALUES ($_SESSION["usrName"], $_SESSION["postCount"], $_SESSION["postTime"], $_SESSION["postLikes"], $_SESSION["postData"]);
 	EOF;
