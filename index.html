@@ -174,25 +174,12 @@
 	    
 	var newPost = function (evt){
 		
-		usrName = document.getElementById("name").value;
-	    	postData = document.getElementById("post").value;
-		postCount = postCount + 1;
-		postTime = postCount;
-		postLikes = 0;
-		console.log("Before POST");
-		$.ajax({
-                    method: "POST",
-                    url: "postInfo.php",
-                    data: { "receiver_name": document.getElementById("name").value,"postCount":postCount,"postTime":postTime,"postLikes":postLikes,"postData":postData},
-                    success : function(data) {
-                    
-                    }
-                 })
+
 		console.log("Before GET");
 		$.ajax({
                     method: "GET",
                     url: "postInfo.php",
-                    data: { "usrName":usrName,"postNum":postCount,"pstTime":postTime,"pstLikes":postLikes,"pstData":postData},
+                    data: { "User":usrName,"postNum":postCount,"pstTime":postTime,"pstLikes":postLikes,"pstData":postData},
                     success : function(data) {
 		    console.log(data);
                     console.log(data[0]);
@@ -202,19 +189,23 @@
                     console.log(data[4]);
 		    if(data != undefined && data != "Empty"){
 			if(data[0] != null){
-			    setName(data[0]);
+			    setName(data[0].User);
+			    setPostNum(data[0].PostNumber);
+			    setPostTime(data[0].PostTime);
+			    setPostLikes(data[0].Likes);
+			    setData(data[0].Data);
 			}
 			if(data[1] != null){
-                            setPostNum(data[1]);
+                            setPostNum(data[1].PostNumber);
                         }
                         if(data[3] != null){
-                            setPostLikes(data[3]);
+                            setPostLikes(data[3].Likes);
                         }
                         if(data[2] != null){
-                            setPostTime(data[2]);
+                            setPostTime(data[2].PostTime);
                         }
                         if(data[4] != null){
-                            setData(data[4]);
+                            setData(data[4].Data);
                         }
 		    }
                     }
