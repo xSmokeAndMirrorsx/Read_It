@@ -31,10 +31,12 @@
                     console.log(data[4]);
                     if(data != undefined && data != "Empty"){
                         if(data[0] != null){
-                            document.getElementById("uName").innerText = "Let's see if "+data[0]+" has got game!" ;
+                            document.getElementById("uName").innerText = "What's on your mind, "+data[0]+"? Read / Write about it?" ;
+							document.getElementById("profName").innerText = data[0] + "'s Preferences:";
                         }
                         else{
-                            document.getElementById("uName").innerText = "Let's see if Mr. Anonymous has got game!" ;
+                            document.getElementById("uName").innerText = "An open forum site for you to share your ideas on anything!" ;
+							document.getElementById("profName").innerText = "Your Preferences:";
                         }
                         if(data[1] != null){
                             setRack(data[1]);
@@ -56,7 +58,7 @@
     
     <!-- Title and Intro Div -->
     <div class="a" style="background-color:dimgrey">
-            <h1 class="multicolor" style="color:white;">A BOGGLE TYPE</h1>
+            <h1 class="multicolor" style="color:white;">WROTiTT</h1>
             <h2 id = "uName"></h2>
             <p></p>
     </div>
@@ -64,46 +66,41 @@
     <!-- Div containing 3 vertical divs -->
     <div>
       <!-- User Info Div -->
-      <div class ="a" style="display: inline-block; *display: inline; width: 30%; background-color: slategrey; vertical-align: top; height: 400px;">
+      <div class ="a" style="display: inline-block; *display: inline; width: 20%; background-color: slategrey; vertical-align: top; height: 400px;">
         <div class ="a" style="background-color: grey;">
-            <h2 class ="multicolor">User Info</h2>
+            <h2 class ="multicolor">Spcial: Friends & Events</h2>
         </div>
-            Name: <input type = "text" id = "name">
-            <p></p>
-            <button onclick = "submitName()">Make it Official</button>
-            <p></p>
-            Customize Word Color: <input type = "color" id = "wordColor">
-            <p></p>
+            <h3 id = "correct_count">Correct Guesses</h3>
+            <h2 id = "correct"></h2>
+            <!-- <ul id = "correct-answers"></ul> -->
+
       </div>
       
       <!-- Actual Gameplay div -->
-      <div class ="a" style = "display: inline-block; *display: inline; width: 38%; background-color: silver; vertical-align: top; height: 400px;">
-            <h2 class ="multicolor">Racks on Racks on Racks</h2>
+      <div class ="a" style = "display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height: 400px;">
+            <h2 class ="multicolor">Feed: Posts & Comments</h2>
+			<p></p>
+            Please Enter your guess: <input type="text" id="guess">
             <button onclick = "randomRackGenerator()">Get New Rack</button>
             <h2 id = "Rack">...</h2>
-            <p></p>
-            Please Enter your guess: <input type="text" id="guess">
             <button onclick="checkRack()">Check</button>
             <p></p>
             <h3 id = "length"></h3>
       </div>
       
       <!-- Player and Game stats Div -->
-      <div class ="a" style="display: inline-block; *display: inline; width: 30%; background-color: slategrey; vertical-align: top; height: 400px;">
+      <div class ="a" style="display: inline-block; *display: inline; width: 20%; background-color: slategrey; vertical-align: top; height: 400px;">
         <div class="a" style="background-color: grey;">
-          <h2 class ="multicolor">User Stats</h2>
+          <h2 class ="multicolor">User: Profile and Options</h2>
         </div>
-            <h3 id = "correct_count">Correct Guesses</h3>
-            <h2 id = "correct"></h2>
-            <!-- <ul id = "correct-answers"></ul> -->
+			<h3 id = "profName"></h3>
+            Name: <input type = "text" id = "name">
+            <button onclick = "submitName()">Change Name</button>
+            <p></p>
+            Customize Word Color: <input type = "color" id = "wordColor">
+            <p></p>
       </div>
-      
-      <!-- Spelling video Div -->
-      <div class ="a" style="background-color: black; margin: 0px; padding: 20px;">
-        <h2 class ="multicolor" style ="color:white">Just in case you need some guidance</h2>
-        <iframe align="center" width="420" height="315" src="https://www.youtube.com/embed/TSOjdaWNsWU">
-        </iframe>
-      </div>      
+          
     </div>
 
 
@@ -226,7 +223,8 @@
 
         //function used to change introduction based on user input name
         var submitName = function (data){
-            document.getElementById("uName").innerText="Let's see if "+document.getElementById("name").value+" has got game!";
+            document.getElementById("uName").innerText = "What's on your mind, "+data[0]+"? Read / Write about it?" ;
+			document.getElementById("profName").innerText = data[0] + "'s Preferences:";
             $.ajax({
                 method: "POST",
                 url: "cheatsheet.php",
