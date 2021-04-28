@@ -147,6 +147,7 @@
         
 	    
 	var newPost = function (evt){
+		
 		usrName = document.getElementById("name").value;
 	    	postData = document.getElementById("post").value;
 		postCount = postCount + 1;
@@ -167,6 +168,12 @@
                     url: "postInfo.php",
                     data: { "usrName":usrName,"postNum":postCount,"pstTime":postTime,"pstLikes":postLikes,"pstData":postData},
                     success : function(data) {
+		    console.log(data);
+                    console.log(data[0]);
+                    console.log(data[1]);
+                    console.log(data[2]);
+                    console.log(data[3]);
+                    console.log(data[4]);
 		    if(data != undefined && data != "Empty"){
 			if(data[0] != null){
 			    setName(data[0]);
@@ -191,35 +198,6 @@
 
 	}
 	 
-	var setName = function (data){
-	    usrName = data;
-	    console.log("data 0");
-	}
-        // Gets a rack of 7 letters and puts it on screen
-        var setPostNum = function (data){
-            postCount = data;
-	    console.log("data 1");
-        }
-
-        // sets the count of words left to guess by length
-        var setPostTime = function (data){
-            postTime = data;
-	    console.log("data 2");
-        }
-
-        // sets the count of correct guesses and correct guess list
-        var setPostLikes = function (data){
-            postLikes = data;
-	    console.log("data 3");
-        }
-	
-        var setData = function (data){
-            postData = data;
-	    console.log("data 4");
-        }
-	
-	
-	
 	var setRack = function (data){
             result = data;
             document.getElementById("Rack").innerText = data;
