@@ -60,7 +60,7 @@ else if ($verb === "GET"){
 	
 	header('HTTP/1.1 200 OK');
     header('Content-Type: application/json');
-    $dbSigning_array = array($usrName,$postNum,$pstTime,$pstLikes,$PstData);
+    $dbSigning_array = array($usrName,$postNum,$pstTime,$pstLikes,$pstData);
     echo json_encode($dbSigning_array);
 }
 ?>
