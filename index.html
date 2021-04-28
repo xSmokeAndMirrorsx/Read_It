@@ -223,8 +223,8 @@
 
         //function used to change introduction based on user input name
         var submitName = function (data){
-            document.getElementById("uName").innerText = "What's on your mind, "+data[0]+"? Read / Write about it?" ;
-			document.getElementById("profName").innerText = data[0] + "'s Preferences:";
+            document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name") + "? Read / Write about it?" ;
+	    document.getElementById("profName").innerText = document.getElementById("name") + "'s Preferences:";
             $.ajax({
                 method: "POST",
                 url: "cheatsheet.php",
