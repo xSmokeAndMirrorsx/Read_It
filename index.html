@@ -32,11 +32,11 @@
                     if(data != undefined && data != "Empty"){
                         if(data[0] != null){
                             document.getElementById("uName").innerText = "What's on your mind, "+data[0]+"? Read / Write about it?" ;
-							document.getElementById("profName").innerText = data[0] + "'s Preferences:";
+			    document.getElementById("profName").innerText = data[0] + "'s Preferences:";
                         }
                         else{
                             document.getElementById("uName").innerText = "An Open Forum Site For You to Share Your Ideas on Anything!" ;
-							document.getElementById("profName").innerText = "Your Preferences:";
+			    document.getElementById("profName").innerText = "Your Preferences:";
                         }
                         if(data[1] != null){
                             setRack(data[1]);
@@ -84,10 +84,26 @@
 	    <p></p>
             <button onclick = "randomRackGenerator()">Post</button>
 	    <p></p>
-            <h2 id = "Rack">...</h2>
-            <button onclick="checkRack()">Check</button>
-            <p></p>
-            <h3 id = "length"></h3>
+	    <table id="producttable">
+  	      <thead>
+    		<tr>
+     		  <td>UserName:</td>
+      		  <td>Time / Post Number</td>
+      		  <td>Post Text:</td>
+   		</tr>
+ 	      </thead>
+ 	      <tbody>
+   		 <!-- existing data could optionally be included here -->
+ 	      </tbody>
+	    </table>
+	      
+	    <template id="productrow">
+ 	      <tr>
+    		<td class="record"></td>
+    		<td></td>
+  	      </tr>
+	    </template>
+	      
       </div>
       
       <!-- Profile Options Div -->
@@ -255,6 +271,31 @@
               elements[i].style.color = mycolor;
             }
         }
+	
+	var printPost = function (data){
+	    	if ('content' in document.createElement('template')) {
+
+    		    // Instantiate the table with the existing HTML tbody
+   		    // and the row with the template
+    		    var tbody = document.querySelector("tbody");
+    		    var template = document.querySelector('#productrow');
+
+    		// Clone the new row and insert it into the table
+    		    var clone = template.content.cloneNode(true);
+    		    var td = clone.querySelectorAll("td");
+    		    td[0].textContent = document.getElementById("uName").innerText;
+		    td[1].textContent = postCount;
+    		    td[2].textContent = data;
+
+    		    tbody.appendChild(clone);
+			
+		    postCount = postCount + 1;
+
+    		} else {
+  		    // Find another way to add the rows to the table because
+  		    // the HTML template element is not supported.
+		}
+	}
 
         document.querySelector("#wordColor").addEventListener(
             "change",
