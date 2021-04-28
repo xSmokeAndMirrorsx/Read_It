@@ -274,7 +274,7 @@
             }
         }
 	
-	var printPost = function (data){
+	var printPost = function (evt){
 	    	if ('content' in document.createElement('template')) {
 
     		    // Instantiate the table with the existing HTML tbody
@@ -285,7 +285,7 @@
     		// Clone the new row and insert it into the table
     		    var clone = template.content.cloneNode(true);
     		    var td = clone.querySelectorAll("td");
-    		    td[0].textContent = data[0];
+    		    td[0].textContent = document.getElementById("name").value;
 		    td[1].textContent = postCount;
     		    td[2].textContent = document.getElementById("post").value;
 
