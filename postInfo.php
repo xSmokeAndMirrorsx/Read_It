@@ -25,6 +25,12 @@ if ($verb === "POST"){
        echo "Records created successfully\n";
    }
    $dbhandle->close();
+   $_SESSION["usrName"] = $_POST['receiver_name'];
+   $_SESSION["PostCount"] = $_POST['receiver_name'];
+   $_SESSION["postTime"] = $_POST['receiver_name'];
+   $_SESSION["postLikes"] = $_POST['receiver_name'];
+   $_SESSION["postData"] = $_POST['receiver_name'];
+   
 }
 else if ($verb === "GET"){
     $query = "SELECT User FROM Posts ORDER BY PostNumber DESC LIMIT 0, 1;"
