@@ -146,7 +146,7 @@
 	var postLikes = 0;
         
 	    
-	var newPost = function (data){
+	var newPost = function (evt){
 		usrName = document.getElementById("name").value;
 	    	postData = document.getElementById("post").value;
 		postCount = postCount + 1;
@@ -271,6 +271,7 @@
 
         //function used to change introduction based on user input name
         var submitName = function (data){
+	    console.log("Changing Name");
             document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?" ;
 	    document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
             $.ajax({
