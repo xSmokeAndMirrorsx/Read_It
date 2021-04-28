@@ -84,6 +84,7 @@
 	    <p></p>
 	    <!--"randomRackGenerator()">Post</button>-->
 	    <button onclick = "printPost()">Post</button>
+	    <button onpress = "newPost()">Load Post</button>
 	    <p></p>
 	    <table id="producttable">
   	      <thead>
@@ -138,13 +139,27 @@
         var wordLengthCount =[0,0,0,0,0,0,0];
 	    
 	var postCount = 0;
-	var time = 0;
+	var glblPostCount = 0;
+	var postTime = 0;
 	var postData = "";
+	var usrName = "";
+	var postLikes = 0;
         
 	    
-	var newPost = function (data){
-	    	postData = data;
+	var newPost = function (evt){
+		usrName = document.getElementById("name").value;
+	    	postData = document.getElementById("post").value;
+		postCount = postCount + 1;
 		time = postCount;
+		postLikes = 0;
+		$.ajax({
+                    method: "POST",
+                    url: "postInfo.php",
+                    data: { "receiver_name": document.getElementById("name").value,"postCount":postCount,"postTime":postTime,"postLikes":postLikes,"postData":postData},
+                    success : function(data) {
+                    
+                    }
+                 })
 	}
 	    
         // Gets a rack of 7 letters and puts it on screen
@@ -291,14 +306,6 @@
     		    td[2].textContent = document.getElementById("post").value;
 
     		    tbody.appendChild(clone);
-			
-    		    var clone2 = template.content.cloneNode(true);
-    		    td = clone2.querySelectorAll("td");
-    		    td[0].textContent = "";
-		    td[1].textContent = "";
-    		    td[2].textContent = "";
-
-    		    tbody.appendChild(clone2);
 			
 		    postCount = postCount + 1;
 		    document.getElementById("post").value = "";
