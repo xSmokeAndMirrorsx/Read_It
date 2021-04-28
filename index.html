@@ -57,7 +57,7 @@
     </script>
     
     <!-- Title and Intro Div -->
-    <div class="a" style="background-color:dimgrey">
+    <div class="a" style="background-color:dimgrey min-height:100%">
             <h1 class="multicolor" style="color:white;">WROTiTT</h1>
             <h2 id = "uName"></h2>
             <p></p>
@@ -117,7 +117,17 @@
         var wordList = new Array();
         var correctGuessList = new Array();
         var wordLengthCount =[0,0,0,0,0,0,0];
+	    
+	var postCount = 0;
+	var time = 0;
+	var postData = "";
         
+	    
+	var newPost = function (data){
+	    	postData = data;
+		time = postCount;
+	}
+	    
         // Gets a rack of 7 letters and puts it on screen
         var setRack = function (data){
             result = data;
