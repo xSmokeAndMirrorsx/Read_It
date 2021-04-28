@@ -24,7 +24,7 @@ if ($verb === "POST"){
     } else {
        echo"Records created successfully");
    }
-   $dbhandle->close();
+   #$dbhandle->close();
    $_SESSION["usrName"] = $_POST['receiver_name'];
    $_SESSION["PostCount"] = $_POST['receiver_name'];
    $_SESSION["postTime"] = $_POST['receiver_name'];
