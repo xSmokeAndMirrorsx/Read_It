@@ -223,6 +223,28 @@
             postData = data;
 	    console.log("data 4");
         }
+	
+	
+	
+	var setRack = function (data){
+            result = data;
+            document.getElementById("Rack").innerText = data;
+        }
+
+        // sets the count of words left to guess by length
+        var setWordLengthCount = function (data){
+            wordLengthCount = data;
+            document.getElementById("length").innerText = "One Letter:"+wordLengthCount[0]+"\nTwo Letters:"+wordLengthCount[1]+"\nThree Letters:"+wordLengthCount[2]+"\nFour Letters:"+wordLengthCount[3]+"\nFive Letters:"+wordLengthCount[4]+"\nSix Letters:"+wordLengthCount[5]+"\nSeven Letters:"+wordLengthCount[6]; 
+        }
+
+        // sets the count of correct guesses and correct guess list
+        var setGuesses = function (data){
+            correctGuessList = data;
+            document.getElementById("correct").innerText = correctGuessList;
+            count_of_Correct = correctGuessList.length;
+            document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
+        }
+
         // function initializes values for variables and actually generates rack
         var randomRackGenerator = function (evt){
             for ( var i = 0; i < 7; i++ ) {
