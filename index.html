@@ -152,6 +152,7 @@
 		postCount = postCount + 1;
 		time = postCount;
 		postLikes = 0;
+		console.log("Before POST");
 		$.ajax({
                     method: "POST",
                     url: "postInfo.php",
@@ -160,6 +161,7 @@
                     
                     }
                  })
+		console.log("After POST");
 	}
 	    
         // Gets a rack of 7 letters and puts it on screen
