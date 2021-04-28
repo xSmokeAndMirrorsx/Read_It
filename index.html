@@ -174,24 +174,27 @@
                     console.log(data[2]);
                     console.log(data[3]);
                     console.log(data[4]);
+		    if(data != undefined && data != "Empty"){
+			var tbody = document.querySelector("tbody");
+    			var template = document.querySelector('#productrow');
+
+    			// Clone the new row and insert it into the table
+    			var clone = template.content.cloneNode(true);
+    			var td = clone.querySelectorAll("td");
+    			td[0].textContent = data[0];
+			td[1].textContent = data[1];
+    			td[2].textContent = data[4];
+
+    			tbody.appendChild(clone);
+				
+			postCount = postCount + 1;
+			document.getElementById("post").value = "";  
+		    }
                     }
                  })
 		console.log("After GET");
 		
-		var tbody = document.querySelector("tbody");
-    		var template = document.querySelector('#productrow');
 
-    		// Clone the new row and insert it into the table
-    		var clone = template.content.cloneNode(true);
-    		var td = clone.querySelectorAll("td");
-    		td[0].textContent = usrName;
-		td[1].textContent = postCount;
-    		td[2].textContent = postData;
-
-    		tbody.appendChild(clone);
-			
-		postCount = postCount + 1;
-		document.getElementById("post").value = "";
 	}
 	    
         // Gets a rack of 7 letters and puts it on screen
