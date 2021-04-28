@@ -140,11 +140,37 @@
 	    
 	var postCount = 0;
 	var glblPostCount = 0;
-	var postTime = 0;
+	var postTime = 0.0;
 	var postData = "";
 	var usrName = "";
 	var postLikes = 0;
         
+	var setName = function (data){
+	    usrName = data;
+	    console.log("data 0");
+	}
+        // Gets a rack of 7 letters and puts it on screen
+        var setPostNum = function (data){
+            postCount = data;
+	    console.log("data 1");
+        }
+
+        // sets the count of words left to guess by length
+        var setPostTime = function (data){
+            postTime = data;
+	    console.log("data 2");
+        }
+
+        // sets the count of correct guesses and correct guess list
+        var setPostLikes = function (data){
+            postLikes = data;
+	    console.log("data 3");
+        }
+	
+        var setData = function (data){
+            postData = data;
+	    console.log("data 4");
+        }
 	    
 	var newPost = function (evt){
 		
