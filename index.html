@@ -80,6 +80,8 @@
       <div class ="a" style = "display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height:100%;">
             <h2 class ="multicolor">Feed: Posts & Comments</h2>
 	    <p></p>
+	    Welcome, <b id="UsrNme">--</b>
+	    <p></p>
             Type what you want to post: <input type="text" id="post">
 	    <p></p>
 	    <!--"randomRackGenerator()">Post</button>-->
@@ -324,6 +326,7 @@
 	    console.log("Changing Name");
             document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?" ;
 	    document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
+	    document.getElementById("UsrNme").innerText = document.getElementById("name").value;
             $.ajax({
                 method: "POST",
                 url: "cheatsheet.php",
@@ -345,6 +348,8 @@
 	
 	var printPost = function (evt){
 	    	if ('content' in document.createElement('template')) {
+		    usrName = document.getElementById("UsrNme").innerText;
+		    postData = document.getElementById("post").value;
 
     		    // Instantiate the table with the existing HTML tbody
    		    // and the row with the template
