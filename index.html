@@ -92,16 +92,6 @@
 
     <!-- Script containing functions relavant to UI -->
     <script>
-        var rackSize = 0;
-        var count_of_Correct = 0;
-        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var charactersLength = characters.length;
-        var result = new Array(7);
-        var resultString = "";
-        var wordList = new Array();
-        var correctGuessList = new Array();
-        var wordLengthCount =[0,0,0,0,0,0,0];
-	    
 	var postCount = 0;
 	var glblPostCount = 0;
 	var postTime = 0.0;
@@ -137,8 +127,6 @@
         }
 	    
 	var newPost = function (evt){
-		
-
 		console.log("Before GET");
 		$.ajax({
                     method: "GET",
@@ -178,110 +166,6 @@
 		
 
 	}
-	 
-	var setRack = function (data){
-            result = data;
-            document.getElementById("Rack").innerText = data;
-        }
-
-        // sets the count of words left to guess by length
-        var setWordLengthCount = function (data){
-            wordLengthCount = data;
-            document.getElementById("length").innerText = "One Letter:"+wordLengthCount[0]+"\nTwo Letters:"+wordLengthCount[1]+"\nThree Letters:"+wordLengthCount[2]+"\nFour Letters:"+wordLengthCount[3]+"\nFive Letters:"+wordLengthCount[4]+"\nSix Letters:"+wordLengthCount[5]+"\nSeven Letters:"+wordLengthCount[6]; 
-        }
-
-        // sets the count of correct guesses and correct guess list
-        var setGuesses = function (data){
-            correctGuessList = data;
-            document.getElementById("correct").innerText = correctGuessList;
-            count_of_Correct = correctGuessList.length;
-            document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
-        }
-
-        // function initializes values for variables and actually generates rack
-        var randomRackGenerator = function (evt){
-            for ( var i = 0; i < 7; i++ ) {
-                result[i] = characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            result.sort();
-            wordLengthCount =[0,0,0,0,0,0,0];
-            correctGuessList = [];
-            document.getElementById("correct").innerText = correctGuessList;
-            count_of_Correct = 0;
-            document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
-            resultString =result.join('');
-            document.getElementById("Rack").innerText = result;
-            
-            $.ajax({
-                method: "GET",
-                url: "api.php",
-                data: { "receiver": resultString},
-                success : function(data) {
-                    handleData(data);
-                }
-            })  
-        }
-
-        //function checks to make sure there are possible words and populates the list of count by length
-        var handleData = function(data) {
-            wordList = handleDuplicates(data);
-            if(wordList == null || wordList == []){
-                document.getElementById("length").innerText = "This rack has no possible words, please generate another rack";
-            }
-            console.log(wordList);
-            // Create list elements for each word
-            wordList.forEach( function(word) {
-                wordLengthCount[word.length-1] = wordLengthCount[word.length-1] +1;
-                document.getElementById("length").innerText = "One Letter:"+wordLengthCount[0]+"\nTwo Letters:"+wordLengthCount[1]+"\nThree Letters:"+wordLengthCount[2]+"\nFour Letters:"+wordLengthCount[3]+"\nFive Letters:"+wordLengthCount[4]+"\nSix Letters:"+wordLengthCount[5]+"\nSeven Letters:"+wordLengthCount[6];
-            });
-            $.ajax({
-                method: "POST",
-                url: "cheetsheet.php",
-                data: { "receiver_name": document.getElementById("name").value,"rack":result,"wordList":wordList,"correctGuesses":correctGuessList,"wordLengthCount":wordLengthCount},
-                success : function(data) {
-                    
-                }
-            })
-        }
-        
-        // Used to delete duplicates in the array.
-        var handleDuplicates = function(data) {
-            let newArray = [];
-            data.forEach( function(word){
-                if(!newArray.includes(word)){
-                    newArray.push(word)
-                }
-            })
-            return newArray;
-        }
-        
-        //function used to check user guess against real words list
-        var checkRack = function (evt){
-            var fee = document.getElementById("post").value;
-            fee = fee.toUpperCase();
-            if(wordList.includes(fee,0) && correctGuessList.includes(fee,0) == 0){
-              if(correctGuessList.length % 3 == 0 && correctGuessList.length != 0){
-                fee = "\n"+ fee;
-              }
-              else if(correctGuessList.length != 0){
-                fee = " " +fee;
-              }
-                correctGuessList.push(fee);
-                document.getElementById("correct").innerText = correctGuessList;
-                count_of_Correct ++;
-                document.getElementById("correct_count").innerText = "Correct Guesses: " + count_of_Correct;
-                wordLengthCount[fee.length-1] = wordLengthCount[fee.length-1] -1;
-                document.getElementById("length").innerText = "One Letter:"+wordLengthCount[0]+"\nTwo Letters:"+wordLengthCount[1]+"\nThree Letters:"+wordLengthCount[2]+"\nFour Letters:"+wordLengthCount[3]+"\nFive Letters:"+wordLengthCount[4]+"\nSix Letters:"+wordLengthCount[5]+"\nSeven Letters:"+wordLengthCount[6]; 
-            }
-            $.ajax({
-                method: "POST",
-                url: "cheatsheet.php",
-                data: { "receiver_name": document.getElementById("name").value,"rack":result,"wordList":wordList,"correctGuesses":correctGuessList,"wordLengthCount":wordLengthCount},
-                success : function(data) {
-                    
-                }
-            })
-        }
 
         //function used to change introduction based on user input name
         var submitName = function (data){
@@ -292,7 +176,7 @@
             $.ajax({
                 method: "POST",
                 url: "cheatsheet.php",
-                data: { "receiver_name": document.getElementById("name").value,"rack":result,"wordList":wordList,"correctGuesses":correctGuessList,"wordLengthCount":wordLengthCount},
+                data: { "receiver_name": document.getElementById("name").value},
                 success : function(data) {
                     
                 }
