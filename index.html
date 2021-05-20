@@ -101,29 +101,29 @@
         
 	var setName = function (data){
 	    usrName = data;
-	    console.log("data 0");
+	    console.log("Set Post User Name");
 	}
         // Gets a rack of 7 letters and puts it on screen
         var setPostNum = function (data){
             postCount = data;
-	    console.log("data 1");
+	    console.log("Set Post Number");
         }
 
         // sets the count of words left to guess by length
         var setPostTime = function (data){
             postTime = data;
-	    console.log("data 2");
+	    console.log("Set Post Time");
         }
 
         // sets the count of correct guesses and correct guess list
         var setPostLikes = function (data){
             postLikes = data;
-	    console.log("data 3");
+	    console.log("Set Post Likes");
         }
 	
         var setData = function (data){
             postData = data;
-	    console.log("data 4");
+	    console.log("Set Post Data");
         }
 	    
 	var getPost = function (evt){
@@ -139,14 +139,34 @@
 		    setPostNum(data[0]);
 		    setName(data[1]);
 		    setData(data[2]);
-		    
+		    outPost();
 		}
 	    })
 	    console.log("After GET");
 	}
 
 	var outPost = function() {
-	    
+	    if ('content' in document.createElement('template')) {
+    	        // Instantiate the table with the existing HTML tbody
+   	        // and the row with the template
+    	        var tbody = document.querySelector("tbody");
+    	        var template = document.querySelector('#productrow');
+    		// Clone the new row and insert it into the table
+    	        var clone = template.content.cloneNode(true);
+    	        var td = clone.querySelectorAll("td");
+    	        td[0].textContent = usrName
+	        td[1].textContent = postCount;
+    	        td[2].textContent = postData;
+
+    	        tbody.appendChild(clone);
+			
+	        postCount = postCount + 1;
+	        document.getElementById("post").value = "";
+
+    	    } else {
+  	        // Find another way to add the rows to the table because
+  	        // the HTML template element is not supported.
+	    }
 	}
 		    
         //function used to change introduction based on user input name
