@@ -17,45 +17,7 @@
                 text-align: center;
             }
     </style>
-    
-    <script>
-        $.ajax({
-                url: "cheatsheet.php",
-                method: "GET",
-                success : function(data) {
-                    console.log(data);
-                    console.log(data[0]);
-                    console.log(data[1]);
-                    console.log(data[2]);
-                    console.log(data[3]);
-                    console.log(data[4]);
-                    if(data != undefined && data != "Empty"){
-                        if(data[0] != null){
-                            document.getElementById("uName").innerText = "What's on your mind, "+data[0]+"? Read / Write about it?" ;
-			    document.getElementById("profName").innerText = data[0] + "'s Preferences:";
-                        }
-                        else{
-                            document.getElementById("uName").innerText = "An Open Forum Site For You to Share Your Ideas on Anything!" ;
-			    document.getElementById("profName").innerText = "Your Preferences:";
-                        }
-                        if(data[1] != null){
-                            setRack(data[1]);
-                        }
-                        if(data[3] != null){
-                            setGuesses(data[3]);
-                        }
-                        if(data[2] != null){
-                            handleData(data[2]);
-                        }
-                       
-                        if(data[4] != null){
-                            setWordLengthCount(data[4]);
-                        }
-                    }             
-                }
-            })
-    </script>
-    
+	  
     <!-- Title and Intro Div -->
     <div class="a" style="background-color:dimgrey ">
             <h1 class="multicolor" style="color:white;">WROTiTT</h1>
