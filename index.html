@@ -48,7 +48,7 @@
 	    <p></p>
 	    <!--"randomRackGenerator()">Post</button>-->
 	    <button onclick = "printPost()">Post</button>
-	    <button onclick = "newPost()">Load Post</button>
+	    <button onclick = "getPost()">Load Post</button>
 	    <p></p>
 	    <table id="producttable">
   	      <thead>
@@ -126,47 +126,29 @@
 	    console.log("data 4");
         }
 	    
-	var newPost = function (evt){
-		console.log("Before GET");
-		$.ajax({
-                    method: "GET",
-                    url: "postInfo.php",
-                    data: { "User":usrName,"postNum":postCount,"pstTime":postTime,"pstLikes":postLikes,"pstData":postData},
-                    success : function(data) {
+	var getPost = function (evt){
+	    console.log("Before GET");
+	    $.ajax({
+                method: "GET",
+                url: "postHandle.php",
+                success : function(data) {
 		    console.log(data);
                     console.log(data[0]);
                     console.log(data[1]);
                     console.log(data[2]);
-                    console.log(data[3]);
-                    console.log(data[4]);
-		    if(data != undefined && data != "Empty"){
-			if(data[0] != null){
-			    setName(data[0].User);
-			    setPostNum(data[0].PostNumber);
-			    setPostTime(data[0].PostTime);
-			    setPostLikes(data[0].Likes);
-			    setData(data[0].Data);
-			}
-			if(data[1] != null){
-                            setPostNum(data[1].PostNumber);
-                        }
-                        if(data[3] != null){
-                            setPostLikes(data[3].Likes);
-                        }
-                        if(data[2] != null){
-                            setPostTime(data[2].PostTime);
-                        }
-                        if(data[4] != null){
-                            setData(data[4].Data);
-                        }
-		    }
-                    }
-                 })
-		console.log("After GET");
-		
-
+		    setPostNum(data[0]);
+		    setName(data[1]);
+		    setData(data[2]);
+		    
+		}
+	    })
+	    console.log("After GET");
 	}
 
+	var outPost = function() {
+	    
+	}
+		    
         //function used to change introduction based on user input name
         var submitName = function (data){
 	    console.log("Changing Name");
@@ -192,32 +174,32 @@
             }
         }
 	
-	var printPost = function (evt){
-	    	if ('content' in document.createElement('template')) {
-		    usrName = document.getElementById("UsrNme").innerText;
-		    postData = document.getElementById("post").value;
+	var printPost = function (){
+	    if ('content' in document.createElement('template')) {
+		usrName = document.getElementById("UsrNme").innerText;
+		postData = document.getElementById("post").value;
 
-    		    // Instantiate the table with the existing HTML tbody
-   		    // and the row with the template
-    		    var tbody = document.querySelector("tbody");
-    		    var template = document.querySelector('#productrow');
+    	        // Instantiate the table with the existing HTML tbody
+   	        // and the row with the template
+    	        var tbody = document.querySelector("tbody");
+    	        var template = document.querySelector('#productrow');
 
     		// Clone the new row and insert it into the table
-    		    var clone = template.content.cloneNode(true);
-    		    var td = clone.querySelectorAll("td");
-    		    td[0].textContent = usrName
-		    td[1].textContent = postCount;
-    		    td[2].textContent = postData;
+    	        var clone = template.content.cloneNode(true);
+    	        var td = clone.querySelectorAll("td");
+    	        td[0].textContent = usrName
+	        td[1].textContent = postCount;
+    	        td[2].textContent = postData;
 
-    		    tbody.appendChild(clone);
+    	        tbody.appendChild(clone);
 			
-		    postCount = postCount + 1;
-		    document.getElementById("post").value = "";
+	        postCount = postCount + 1;
+	        document.getElementById("post").value = "";
 
-    		} else {
-  		    // Find another way to add the rows to the table because
-  		    // the HTML template element is not supported.
-		}
+    	    } else {
+  	        // Find another way to add the rows to the table because
+  	        // the HTML template element is not supported.
+	    }
 	}
 
         document.querySelector("#wordColor").addEventListener(
