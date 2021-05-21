@@ -179,9 +179,9 @@
 		    if(postCommNum != 0){
 			getComment(postCount);
 			//var commentInfo = new Array;
-			//commentInfo = commentArr;
-			//console.log(commentInfo);
-			//console.log(commentInfo[0]);
+			var commentInfo = commentArr.filter(data => data!="");;
+			console.log(commentInfo);
+			console.log(commentInfo[0]);
 		    	for(let i=0; i < postCommNum; i++){
 			    index = (i * 3);
 			    console.log(commentArr);
@@ -195,10 +195,10 @@
 			    console.log(commentArr[0]);
 			    commLikes[0].textContent = commentArr[index+1];
 			    console.log(index+1);
-			    console.log(commentArr[index+1].toString());
+			    console.log(commentArr[index+1]);
 			    commData[0].textContent = commentArr[index+2];
 			    console.log(index+2);
-			    console.log(commentArr[index+2].toString());
+			    console.log(commentArr[index+2]);
 			    div[1].appendChild(commclone);
 			}
 		    }
