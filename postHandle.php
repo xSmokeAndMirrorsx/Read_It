@@ -11,7 +11,11 @@ if ($verb === "POST"){
 }
 else if ($verb === "GET"){
     $postResults=array();
-    $stmt = $dbhandle->query("SELECT * FROM posts LIMIT 0, 1")->fetch();
+    $postNumber=$_SESSION["postNum"];
+    $prepper = $dbhandle->prepare("SELECT * FROM posts LIMIT ?, 1");
+    $prepper->execute([$postNumber]);
+    $stmt = $prepper->fetch();
+    //$stmt = $dbhandle->query("SELECT * FROM posts LIMIT 0, 1")->fetch();
     if($stmt == array()){}
     else{
 	array_push($postResults,$stmt['number']);
