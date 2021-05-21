@@ -105,29 +105,29 @@
         
 	var setName = function (data){
 	    usrName = data;
-	    console.log("Set Post User Name");
+	    //console.log("Set Post User Name");
 	}
         // Gets a rack of 7 letters and puts it on screen
         var setPostNum = function (data){
             postCount = parseInt(data);
-	    console.log("Set Post Number");
+	    //console.log("Set Post Number");
         }
 
         // sets the count of words left to guess by length
         var setPostTime = function (data){
             postTime = data;
-	    console.log("Set Post Time");
+	    //console.log("Set Post Time");
         }
 
         // sets the count of correct guesses and correct guess list
         var setPostLikes = function (data){
             postLikes = data;
-	    console.log("Set Post Likes");
+	    //console.log("Set Post Likes");
         }
 	
         var setData = function (data){
             postData = data;
-	    console.log("Set Post Data");
+	    //console.log("Set Post Data");
         }
 	    
 	var getPost = function (evt){
@@ -139,14 +139,14 @@
 		    data: {"postNum" : postNum},
                     success : function(data) {
 		        console.log(data);
-                        console.log(data[0]);
-                        console.log(data[1]);
-                        console.log(data[2]);
+                        //console.log(data[0]);
+                        //console.log(data[1]);
+                        //console.log(data[2]);
 		        setPostNum(data[0]);
 		        setName(data[1]);
 		        setData(data[2]);
 		        outPost();
-			console.log("limit is"+toString(postNum));
+			console.log(postNum);
 			console.log("After GET");
 		    }
 	        })
