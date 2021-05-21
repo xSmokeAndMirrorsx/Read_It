@@ -152,7 +152,8 @@
 	    for(postNum=0; postNum<20;postNum+=4){
 		setName(data[postNum+1]);
 		setPostNum(data[postNum]);
-		setData(data[postNum+2]);
+		setPostLikes(data[postNum+2]);
+		setData(data[postNum+3]);
 	    	if ('content' in document.createElement('template')) {
     	            // Instantiate the table with the existing HTML tbody
    	            // and the row with the template
