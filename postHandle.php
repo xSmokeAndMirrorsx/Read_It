@@ -13,7 +13,11 @@ if ($verb === "POST"){
     $postNum = ($stmt['number'] + 1);
 	
     $qry = $dbhandle->prepare("INSERT INTO posts (user, number, data) VALUES (?, ?, ?)");
-    $qry->execute(array(strval($postName), intval($postNum), strval($postText)));
+    $qry->bindParam(1, $postName);
+    $qry->bindParam(2, $postNum);
+    $qry->bindParam(3, $postText);
+    $qry->execute();
+    //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
 }
 else if ($verb === "GET"){
     $postResults=array();
