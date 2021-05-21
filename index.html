@@ -180,7 +180,20 @@
     	            var td = clone.querySelectorAll("td");
 		    var butt = clone.querySelectorAll("button");
 		    butt[0].textContent = ("Likes!!");
-		    butt[0].onclick = add_like(data[postNum]);
+		    //butt[0].onclick = add_like(postCount);
+		    butt[0].onclick = function(){
+			console.log(postCount);
+	    		$.ajax({
+                	    method: "PUT",
+                	    url: "postHandle.php",
+			    data: {"postId" : postCount},
+                	    success : function(data) {
+		                //console.log(data);
+		                //outPost(data);
+		            }
+	                })
+	    		console.log("After PUT");    
+		    }
     	            td[0].textContent = usrName;
 	            td[0].nextSibling.nextSibling.textContent = postCount;
 		    td[2].textContent = postLikes;
