@@ -54,8 +54,9 @@
 	    <table id="producttable">
   	      <thead>
     		<tr>
-     		  <td style="background-color:grey; width: 20%;">UserName:</td>
-      		  <td style="background-color:dimgrey; width: 10%;">Time / Post Number</td>
+     		  <td style="background-color:grey; width: 15%;">UserName:</td>
+      		  <td style="background-color:dimgrey; width: 8%;">Post Number</td>
+		  <td style="background-color:darkgrey; width: 7%;">Likes</td>
       		  <td style="background-color:slategrey; width: 70%;">Post Text:</td>
    		</tr>
  	      </thead>
@@ -66,8 +67,9 @@
 	      
 	    <template id="productrow">
  	      <tr>
-    		<td class="record" style="background-color:grey; width: 20%;"></td>
-    		<td style="background-color:dimgrey; width: 10%;"></td>
+    		<td class="record" style="background-color:grey; width: 15%;"></td>
+    		<td style="background-color:dimgrey; width: 8%;"></td>
+		<td style="background-color:darkgrey; width: 7%;"></td>
 		<td style="background-color:slategrey; width: 70%;"></td>
 		<p></p>
   	      </tr>
@@ -147,7 +149,7 @@
 	}
 
 	var outPost = function(data) {
-	    for(postNum=0; postNum<15;postNum+=3){
+	    for(postNum=0; postNum<20;postNum+=4){
 		setName(data[postNum+1]);
 		setPostNum(data[postNum]);
 		setData(data[postNum+2]);
@@ -161,7 +163,8 @@
     	            var td = clone.querySelectorAll("td");
     	            td[0].textContent = usrName
 	            td[1].textContent = postCount;
-    	            td[2].textContent = postData;
+		    td[2].textContent = postLikes;
+    	            td[3].textContent = postData;
 
     	            tbody.appendChild(clone);
     	        } else {
