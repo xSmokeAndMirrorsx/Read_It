@@ -121,7 +121,15 @@
 	    })
 	    console.log("After PUT");
 	}
-	    
+	
+	function sleep(milliseconds) {
+  	    const date = Date.now();
+  	    let currentDate = null;
+  	    do {
+    	        currentDate = Date.now();
+  	    } while (currentDate - date < milliseconds);
+	}
+	
 	function getComment(tmpVar){
 	    console.log(tmpVar);
 	    $.ajax({
@@ -184,6 +192,7 @@
 			
 		    if(postCommNum != 0){
 			getComment(postCount);
+			sleep(300);
 			//var commentInfo = new Array;
 			//var commentInfo = commentArr.filter(word => word.length > 0);
 			//console.log(commentInfo);
@@ -283,7 +292,8 @@
                 }
             })
 	    document.getElementById("post").value = "";
-	    //getPost();
+	    sleep(200);
+	    getPost();
 	}
 
         document.querySelector("#wordColor").addEventListener(
