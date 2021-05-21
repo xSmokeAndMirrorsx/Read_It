@@ -96,6 +96,7 @@
 	var postLikes = 0;
 	var postCommNum = 0;
 	var commentArr = [];
+	var index = 0;
 	//var postNumArr = [5,4,3,2,1];
 	    
 	var postNum = 0;
@@ -178,21 +179,22 @@
 		    if(postCommNum != 0){
 			getComment(postCount);
 		    	for(let i=0; i < postCommNum; i++){
-			    var Index = (i*3);
+			    index = (i * 3);
+			    console.log(commentArr);
 			    var templateC = document.querySelector('#productComment');
 			    var commclone = templateC.content.cloneNode(true);
 			    var commName = commclone.querySelectorAll("h4");
 			    var commLikes = commclone.querySelectorAll("h5");
 			    var commData = commclone.querySelectorAll("p");
-			    commName[0].textContent = commentArr[Index];
-			    console.log(Index);
-			    console.log(String(commentArr[Index]));
-			    commLikes[0].textContent = commentArr[Index+1];
-			    console.log(Index+1);
-			    console.log(String(commentArr[Index+1]));
-			    commData[0].textContent = commentArr[Index+2];
-			    console.log(Index+2);
-			    console.log(String(commentArr[Index+2]));
+			    commName[0].textContent = commentArr[index];
+			    console.log(index);
+			    console.log(commentArr[index].toString());
+			    commLikes[0].textContent = commentArr[index+1];
+			    console.log(index+1);
+			    console.log(commentArr[index+1].toString());
+			    commData[0].textContent = commentArr[index+2];
+			    console.log(index+2);
+			    console.log(commentArr[index+2].toString());
 			    div[1].appendChild(commclone);
 			}
 		    }
