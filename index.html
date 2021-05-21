@@ -124,7 +124,7 @@
 	    $.ajax({
                 method: "PUT",
                 url: "postHandle.php",
-		data: JSON.stringify{"postId" : data},
+		data: {"postId" : data},
                 success : function(data) {
 		    //console.log(data);
 		    //outPost(data);
