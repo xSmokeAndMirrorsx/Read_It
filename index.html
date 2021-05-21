@@ -52,7 +52,7 @@
 	    </div>
 	      
 	    <template id="productrow">
- 	      <div>
+ 	      <div style="background-color: white">
     		<h3 style="text-align: left; padding-bottom: 5px"></h3>
 		<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 		<h5 style="text-align: right; padding-top: 5px"></h5>
@@ -92,12 +92,14 @@
     <!-- Script containing functions relavant to UI -->
     <script>
 	var postCount = 0;
-	var glblPostCount = 0;
-	var postTime = 0.0;
+	//var glblPostCount = 0;
+	//var postTime = 0.0;
 	var postData = "";
 	var usrName = "";
 	var postLikes = 0;
-	var postNumArr = [5,4,3,2,1];
+	var postCommNum = 0;
+	var commentArr = [];
+	//var postNumArr = [5,4,3,2,1];
 	    
 	var postNum = 0;
 	var loadNum = 5;
@@ -122,6 +124,22 @@
 	    console.log("After PUT");
 	}
 	    
+	var getComment = function(tmpVar){
+	    $.ajax({
+                method: "GET",
+                url: "postHandle.php",
+		data: {"commentedPost" : tmpVar},
+                success : function(data) {
+		    commentArr = data;
+		    //outComment(data);
+		}
+	    })
+	}
+	
+	var outComment = function(data){
+	    
+	}
+	    
 	function getPost(){
 	    var tbody = document.querySelector('#producttable');
 	    tbody.innerHTML = '';
@@ -139,7 +157,7 @@
 	}
 
 	var outPost = function(data) {
-	    for(postNum=0; postNum<20;postNum+=4){
+	    for(postNum=0; postNum<25;postNum+=5){
 		//setName(data[postNum+1]);
 		usrName = data[postNum+1];
 		//setPostNum(data[postNum]);
@@ -148,31 +166,37 @@
 		postLikes = data[postNum+2];
 		//setData(data[postNum+3]);
 		postData = data[postNum+3];
+		postCommNum = data[postNum+4];
 	    	if ('content' in document.createElement('template')) {
-    	            // Instantiate the table with the existing HTML tbody
-   	            // and the row with the template
     	            var tbody = document.querySelector('#producttable');
     	            var templateP = document.querySelector('#productrow');
-    		    // Clone the new row and insert it into the table
+
     	            var clone = templateP.content.cloneNode(true);
+		    var div = clone.querySelectorAll("div");
+		    var commentDiv = div[0].querySelectorAll("div");
     	            var postDispName = clone.querySelectorAll("h3");
 		    var postDispData = clone.querySelectorAll("p");
 		    var postDispLikes = clone.querySelectorAll("h5");
 		    var butt = clone.querySelectorAll("button");
-		    //const parsed = parseInt(postCount);
-		    if((postNum/4)==0){
+			
+		    if(postCommNum != 0){
+			getComment(postCount);
+		    	console.log(commentArr);
+		    }
+
+		    if((postNum/5)==0){
 			likedPostNum = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum);}
-		    }else if((postNum/4)==1){
+		    }else if((postNum/5)==1){
 			likedPostNum1 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum1);}
-		    }else if((postNum/4)==2){
+		    }else if((postNum/5)==2){
 			likedPostNum2 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum2);}
-		    }else if((postNum/4)==3){
+		    }else if((postNum/5)==3){
 			likedPostNum3 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum3);}
-		    }else if((postNum/4)==4){
+		    }else if((postNum/5)==4){
 			likedPostNum4 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum4);}
 		    }
@@ -181,7 +205,7 @@
     	            postDispName[0].textContent = "User: " + usrName;
 		    postDispLikes[0].textContent = "Likes: " + postLikes;
     	            postDispData[0].textContent = postData;
-		    //butt[0].onclick = add_like(butt[0].previousSibling.previousSibling.previousSibling.previousSibling.textContent);
+
     	            tbody.appendChild(clone);
     	        } else {
   	            // Find another way to add the rows to the table because
