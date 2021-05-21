@@ -56,7 +56,7 @@
     		<h3 style="text-align: left; padding-bottom: 5px"></h3>
 		<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 		<h5 style="text-align: right; padding-top: 5px"></h5>
-		<div id="commentSection" style="background-color: lightgrey"></div>
+		<div id="commentSection" style="background-color: lightgrey"><b style="text-align: left">Comments:</b></div>
 	      </div>
 	      <div style="width:100%">
 	        <button> Like </button> or <b>Comment:</b><input style = "display: inline-block; *display: inline" type="text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
@@ -64,9 +64,9 @@
 	    </template>
 	      
 	    <template class="commentPost" id="productComment">
-	      <h4 style="text-align: left; padding-left: 20%; padding-bottom: 3px"></h4>
-	      <p style="text-align: center; padding-left: 20%; padding-bottom: 3px; padding-top: 3px"></p>
-	      <h5 style="text-align: right; padding-left: 20%; padding-top: 3px"></h5>
+	      <h4 style="text-align: left; padding-left: 20%; padding-bottom: 1px"></h4>
+	      <p style="text-align: center; padding-bottom: 1px; padding-top: 1px"></p>
+	      <h5 style="text-align: right; padding-left: 20%; padding-top: 1px"></h5>
 	    </template>
       </div>
       
@@ -192,7 +192,7 @@
 			
 		    if(postCommNum != 0){
 			getComment(postCount);
-			sleep(300);
+			sleep(600);
 			//var commentInfo = new Array;
 			//var commentInfo = commentArr.filter(word => word.length > 0);
 			//console.log(commentInfo);
