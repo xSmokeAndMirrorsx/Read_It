@@ -122,28 +122,8 @@
 	    console.log("After PUT");
 	}
 	    
-	var setName = function (data){
-	    usrName = data;
-	    //console.log("Set Post User Name");
-	}
-        // Gets a rack of 7 letters and puts it on screen
-        var setPostNum = function (data){
-            postCount = parseInt(data);
-	    //console.log("Set Post Number");
-        }
-        // sets the count of correct guesses and correct guess list
-        var setPostLikes = function (data){
-            postLikes = data;
-	    //console.log("Set Post Likes");
-        }
-	
-        var setData = function (data){
-            postData = data;
-	    //console.log("Set Post Data");
-        }
-	    
 	function getPost(){
-	    var tbody = document.querySelector("tbody");
+	    var tbody = document.querySelector('#producttable');
 	    tbody.innerHTML = '';
 	    console.log("Before GET");
 	    $.ajax({
