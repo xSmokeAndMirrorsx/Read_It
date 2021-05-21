@@ -40,8 +40,8 @@ else if ($verb === "GET"){
 	echo json_encode($postResults);
     }else{
         $postResults=array();
-        //$postNumber=$_GET["postNum"];
-         $postNum = json_decode(file_get_contents('php://input'), true);
+        $postNumber=$_GET["postNum"];
+         //$postNum = json_decode(file_get_contents('php://input'), true);
         //$prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
         //$prepper->execute([intval($postNumber)]);
         //$stmt = $prepper->fetchAll();
