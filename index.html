@@ -204,7 +204,7 @@
 	var printPost = function (){
 	    $.ajax({
                 method: "POST",
-                url: "cheatsheet.php",
+                url: "postHandle.php",
                 data: { "postName": document.getElementById("UsrNme").innerText, "postText": document.getElementById("post").value},
                 success : function(data) {
                     
