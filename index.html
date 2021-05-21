@@ -127,22 +127,27 @@
         }
 	    
 	var getPost = function (evt){
-	    console.log("Before GET");
-	    $.ajax({
-                method: "GET",
-                url: "postHandle.php",
-                success : function(data) {
-		    console.log(data);
-                    console.log(data[0]);
-                    console.log(data[1]);
-                    console.log(data[2]);
-		    setPostNum(data[0]);
-		    setName(data[1]);
-		    setData(data[2]);
-		    outPost();
-		}
-	    })
-	    console.log("After GET");
+	    var loadNum = 5;
+	    var postNum = 0;
+	    for(postNum = 0; postNum < loadNum; postNum++){
+	        console.log("Before GET");
+	        $.ajax({
+                    method: "GET",
+                    url: "postHandle.php",
+		    data: {"postNum" : postNum},
+                    success : function(data) {
+		        console.log(data);
+                        console.log(data[0]);
+                        console.log(data[1]);
+                        console.log(data[2]);
+		        setPostNum(data[0]);
+		        setName(data[1]);
+		        setData(data[2]);
+		        outPost();
+		    }
+	        })
+	        console.log("After GET");
+	    }
 	}
 
 	var outPost = function() {
