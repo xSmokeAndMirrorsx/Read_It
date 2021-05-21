@@ -124,7 +124,7 @@
 	    console.log("After PUT");
 	}
 	    
-	/*var getComment = function(tmpVar){
+	var getComment = function(tmpVar){
 	    $.ajax({
                 method: "GET",
                 url: "postHandle.php",
@@ -134,7 +134,7 @@
 		    //outComment(data);
 		}
 	    })
-	}*/
+	}
 	    
 	function getPost(){
 	    var tbody = document.querySelector('#producttable');
@@ -176,8 +176,8 @@
 		    var butt = clone.querySelectorAll("button");
 			
 		    if(postCommNum != 0){
-			//getComment(postCount);
-		    	//console.log(commentArr);
+			getComment(postCount);
+		    	console.log(commentArr);
 		    }
 
 		    if((postNum/5)==0){
