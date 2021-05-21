@@ -166,7 +166,8 @@
     	            var td = clone.querySelectorAll("td");
 		    var butt = clone.querySelectorAll("button");
 		    butt[0].textContent = ("Likes!!");
-    	            td[0].textContent = usrName
+		    butt[0].onclick = add_like(data[postNum]);
+    	            td[0].textContent = usrName;
 	            td[0].nextSibling.nextSibling.textContent = postCount;
 		    td[2].textContent = postLikes;
     	            td[3].textContent = postData;
@@ -181,6 +182,21 @@
 	    }
 	}
 		    
+	var add_like = function(postId){
+	    console.log(postId);
+	    $.ajax({
+                method: "PUT",
+                url: "postHandle.php",
+		data: {"postNum" : postId},
+                success : function(data) {
+		    //console.log(data);
+		    //outPost(data);
+		}
+	    })
+	    console.log("After PUT");
+	}
+		
+	
         //function used to change introduction based on user input name
         var submitName = function (){
 	    console.log("Changing Name");
