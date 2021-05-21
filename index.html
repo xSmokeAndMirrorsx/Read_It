@@ -130,7 +130,7 @@
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
 		    for(let i=0; i<data.length;i++){
-		        commentArr[i] = data[i];
+		        commentArr.push(data[i]);
 		    }
 		    console.log(commentArr);
 		}
@@ -179,7 +179,7 @@
 		    if(postCommNum != 0){
 			getComment(postCount);
 			//var commentInfo = new Array;
-			var commentInfo = commentArr.filter(data => data!="");;
+			var commentInfo = commentArr.filter(word => word.length > 0);
 			console.log(commentInfo);
 			console.log(commentInfo[0]);
 		    	for(let i=0; i < postCommNum; i++){
