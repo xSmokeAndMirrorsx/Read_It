@@ -24,6 +24,21 @@ if ($verb === "POST"){
     //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
 }
 else if ($verb === "GET"){
+    if(($_GET["commentedPost"]!=NULL) || ($_GET["commentedPost"]!=array())){
+	$postResults=array();
+	$postNumber=$_GET["commentedPost"];
+	$prepper = $dbhandle->prepare("SELECT * FROM comments WHERE postnum = ?");
+	$prepper->execute([$postNumber]);
+	$stmt = $prepper->fetchAll();
+	foreach($stmt as $row){
+	    array_push($postResults,$row['username']);
+	    array_push($postResults,$row['comlikes']);
+	    array_push($postResults,$row['comtext']);
+	}
+	header('HTTP/1.1 200 OK');
+    	header('Content-Type: application/json');
+	echo json_encode($postResults);
+    }else{
         $postResults=array();
         //$postNumber=$_GET["postNum"];
         //$postNum = json_decode(file_get_contents('php://input'), true);
@@ -43,7 +58,7 @@ else if ($verb === "GET"){
 	    header('HTTP/1.1 200 OK');
     	    header('Content-Type: application/json');
 	    echo json_encode($postResults);
-	//}
+	}
     }
 }
 else if ($verb === "PUT"){
