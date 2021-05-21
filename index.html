@@ -41,46 +41,34 @@
       <!-- Posting and Feed div -->
       <div class ="a" style = "display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height:100%;">
             <h2 class ="multicolor">Feed: Posts & Comments</h2>
-	    <p></p>
 	    Welcome, <b id="UsrNme">--</b>
 	    <p></p>
             Type what you want to post: <input type="text" id="post">
 	    <button onclick = "printPost()">Post</button>
 	    <p></p>
-	    <!--"randomRackGenerator()">Post</button>-->
-	    <button onclick = "clearPosts()">Clear</button>
 	    <button onclick = "getPost()">Refresh Posts</button>
 	    <p></p>
-	    <table id="producttable">
-  	      <thead>
-    		<tr>
-     		  <td style="background-color:grey; width: 15%;">UserName:</td>
-      		  <td style="background-color:dimgrey; width: 8%;">Post Number</td>
-		  <td style="background-color:darkgrey; width: 7%;">Likes</td>
-      		  <td style="background-color:slategrey; width: 70%;">Post Text:</td>
-   		</tr>
- 	      </thead>
- 	      <tbody>
-   		 <!-- existing data could optionally be included here -->
- 	      </tbody>
-	    </table>
+	    <div id="producttable">
+	    </div>
 	      
 	    <template id="productrow">
- 	      <tr>
-    		<td style="background-color:grey; width: 15%;"></td>
-    		<td style="background-color:dimgrey; width: 8%;"></td>
-		<td style="background-color:darkgrey; width: 7%;"></td>
-		<td style="background-color:slategrey; width: 70%;"></td>
-	      </tr>
+ 	      <div>
+    		<h3 style="text-align: left"></h3>
+		<p style="text-align: center"></p>
+		<h5 style="text-align: right"></h5>
+		<div></div>
+	      </div>
 	      <div style="width:100%">
 	      <button> Like </button> or <b>Comment:</b><input style = "display: inline-block; *display: inline;" type:"text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
 	      </div>
 	    </template>
+	      
 	    <template class="commentPost" id="productComment">
 	      <div style = "display: inline-block; *display: inline; background-color: silver; width:20%;"></div>
 	      <div style = "display: inline-block; *display: inline; background-color: silver; width:80%;">
-		<h4></h4>
-		<p></p>
+		<h4 style="text-align: left"></h4>
+		<p style="text-align: center"></p>
+		<h5 style="text-align: right"></h5>
 	      </div>
 	    </template>
       </div>
@@ -183,11 +171,13 @@
 	    	if ('content' in document.createElement('template')) {
     	            // Instantiate the table with the existing HTML tbody
    	            // and the row with the template
-    	            var tbody = document.querySelector("tbody");
-    	            var template = document.querySelector('#productrow');
+    	            var tbody = document.querySelector('#producttable');
+    	            var templateP = document.querySelector('#productrow');
     		    // Clone the new row and insert it into the table
     	            var clone = template.content.cloneNode(true);
-    	            var td = clone.querySelectorAll("td");
+    	            var postDispName = clone.querySelectorAll("h3");
+		    var postDispData = clone.querySelectorAll("p");
+		    var postDispLikes = clone.querySelectorAll("h5");
 		    var butt = clone.querySelectorAll("button");
 		    //const parsed = parseInt(postCount);
 		    if((postNum/4)==0){
@@ -206,15 +196,12 @@
 			likedPostNum4 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum4);}
 		    }
-		    butt[0].textContent = ("Likes!!");
-    	            td[0].textContent = usrName;
-	            td[0].nextSibling.nextSibling.textContent = postCount;
-		    td[2].textContent = postLikes;
-    	            td[3].textContent = postData;
+		    butt[0].textContent = ("Like!!");
+		    butt[0].textContent = ("Comment!");
+    	            postDispName[0].textContent = usrName;
+		    postDispLikes[0].textContent = postLikes;
+    	            postDispData[0].textContent = postData;
 		    //butt[0].onclick = add_like(butt[0].previousSibling.previousSibling.previousSibling.previousSibling.textContent);
-			
-		    postNumArr[(postNum/4)]=postCount;
-
     	            tbody.appendChild(clone);
     	        } else {
   	            // Find another way to add the rows to the table because
