@@ -131,45 +131,38 @@
         }
 	    
 	var getPost = function (evt){
-	    for(postNum = 0; postNum < loadNum; postNum++){
-	        console.log("Before GET");
-		console.log(postNum);
-	        $.ajax({
-                    method: "GET",
-                    url: "postHandle.php",
-		    data: {"postNum" : postNum},
-                    success : function(data) {
-		        console.log(data);
-                        //console.log(data[0]);
-                        //console.log(data[1]);
-                        //console.log(data[2]);
-		        setPostNum(data[0]);
-		        setName(data[1]);
-		        setData(data[2]);
-		        outPost();
-			console.log("After GET");
-		    }
-	        })
-	    }
+	    console.log("Before GET");
+	    $.ajax({
+                method: "GET",
+                url: "postHandle.php",
+		data: {"postNum" : postNum},
+                success : function(data) {
+		    console.log(data);
+		    outPost(data);
+		}
+	    })
+	    console.log("After GET");
 	}
 
-	var outPost = function() {
-	    if ('content' in document.createElement('template')) {
-    	        // Instantiate the table with the existing HTML tbody
-   	        // and the row with the template
-    	        var tbody = document.querySelector("tbody");
-    	        var template = document.querySelector('#productrow');
-    		// Clone the new row and insert it into the table
-    	        var clone = template.content.cloneNode(true);
-    	        var td = clone.querySelectorAll("td");
-    	        td[0].textContent = usrName
-	        td[1].textContent = postCount;
-    	        td[2].textContent = postData;
+	var outPost = function(data) {
+	    for(postNum=0, postNum<15,postNum+=3){
+	    	if ('content' in document.createElement('template')) {
+    	            // Instantiate the table with the existing HTML tbody
+   	            // and the row with the template
+    	            var tbody = document.querySelector("tbody");
+    	            var template = document.querySelector('#productrow');
+    		    // Clone the new row and insert it into the table
+    	            var clone = template.content.cloneNode(true);
+    	            var td = clone.querySelectorAll("td");
+    	            td[0].textContent = usrName
+	            td[1].textContent = postCount;
+    	            td[2].textContent = postData;
 
-    	        tbody.appendChild(clone);
-    	    } else {
-  	        // Find another way to add the rows to the table because
-  	        // the HTML template element is not supported.
+    	            tbody.appendChild(clone);
+    	        } else {
+  	            // Find another way to add the rows to the table because
+  	            // the HTML template element is not supported.
+	        }
 	    }
 	}
 		    
