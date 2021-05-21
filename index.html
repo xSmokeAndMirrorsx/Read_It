@@ -179,25 +179,13 @@
     	            var clone = template.content.cloneNode(true);
     	            var td = clone.querySelectorAll("td");
 		    var butt = clone.querySelectorAll("button");
+		    //const parsed = parseInt(postCount);
 		    butt[0].textContent = ("Likes!!");
-		    //butt[0].onclick = add_like(postCount);
-		    butt[0].onclick = function(){
-			console.log(postCount);
-	    		$.ajax({
-                	    method: "PUT",
-                	    url: "postHandle.php",
-			    data: {"postId" : postCount},
-                	    success : function(data) {
-		                //console.log(data);
-		                //outPost(data);
-		            }
-	                })
-	    		console.log("After PUT");    
-		    }
     	            td[0].textContent = usrName;
 	            td[0].nextSibling.nextSibling.textContent = postCount;
 		    td[2].textContent = postLikes;
     	            td[3].textContent = postData;
+		    butt[0].onclick = add_like(parseInt(butt[0].previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling..previousSibling.previousSibling.textContent));
 			
 		    postNumArr[(postNum/4)]=postCount;
 
