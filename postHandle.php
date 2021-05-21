@@ -8,15 +8,19 @@ $verb = $_SERVER["REQUEST_METHOD"];
 
 if ($verb === "POST"){
     $postName = $_POST["postName"];
+    console.log($postName);
     $postText = $_POST["postText"];
+    console.log($postText);
     $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 1")->fetch();
     $postNum = ($stmt['number'] + 1);
+    console.log($postNum);
 	
     $qry = $dbhandle->prepare("INSERT INTO posts (user, number, data) VALUES (?, ?, ?)");
     $qry->bindParam(1, $postName);
     $qry->bindParam(2, $postNum);
     $qry->bindParam(3, $postText);
     $qry->execute();
+    console.log("Insert Attempted");
     //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
 }
 else if ($verb === "GET"){
