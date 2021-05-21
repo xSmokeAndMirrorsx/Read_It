@@ -24,7 +24,7 @@ if ($verb === "POST"){
     //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
 }
 else if ($verb === "GET"){
-    if(($_GET["commentedPost"]==NULL) || ($_GET["commentedPost"]==array())){
+    if(($_GET["commentedPost"]!=NULL) || ($_GET["commentedPost"]!=array())){
 	$postResults=array();
 	$postNumber=$_GET["commentedPost"];
 	$prepper = $dbhandle->prepare("SELECT * FROM comments WHERE postnum = ?");
