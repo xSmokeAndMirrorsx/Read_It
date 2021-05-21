@@ -7,21 +7,36 @@ if (!$dbhandle) die ($error);
 $verb = $_SERVER["REQUEST_METHOD"];
 
 if ($verb === "POST"){
-    $postName = $_POST["postName"];
-    console.log($postName);
-    $postText = $_POST["postText"];
-    console.log($postText);
-    $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 1")->fetch();
-    $postNum = ($stmt['number'] + 1);
-    console.log($postNum);
+    if(($_POST['postName'] != NULL) || ($_POST['postName'] != array())){
+        $postName = $_POST["postName"];
+        console.log($postName);
+        $postText = $_POST["postText"];
+        console.log($postText);
+        $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 1")->fetch();
+        $postNum = ($stmt['number'] + 1);
+        console.log($postNum);
 	
-    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data, commentnum) VALUES (?, ?, 0, ?, 0)");
-    $qry->bindParam(1, $postName);
-    $qry->bindParam(2, $postNum);
-    $qry->bindParam(3, $postText);
-    $qry->execute();
-    console.log("Insert Attempted");
-    //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
+        $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data, commentnum) VALUES (?, ?, 0, ?, 0)");
+        $qry->bindParam(1, $postName);
+        $qry->bindParam(2, $postNum);
+        $qry->bindParam(3, $postText);
+        $qry->execute();
+        console.log("Insert Attempted");
+        //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
+    }else{
+        $postNum = $_POST["postId"];
+        $prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?");
+        //$prepper->bindParam(1, $postNum);
+        $prepper->execute([$postNum]);
+        $stmt = $prepper->fetch();
+        $likeCount = ($stmt['likes'] + 1);
+    	
+        $qry = $dbhandle->prepare("UPDATE posts SET likes = ? WHERE number = ?");
+        $qry->bindParam(1, $likeCount);
+        $qry->bindParam(2, $postNum);
+        $qry->execute();
+        console.log("Insert Attempted");
+    }
 }
 else if ($verb === "GET"){
     if(($_GET["commentedPost"]!=NULL) || ($_GET["commentedPost"]!=array())){
