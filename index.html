@@ -107,6 +107,20 @@
 	var postNum = 0;
 	var loadNum = 5;
         
+	var add_like = function(data){
+	    console.log(postId);
+	    $.ajax({
+                method: "PUT",
+                url: "postHandle.php",
+		data: {"postId" : data},
+                success : function(data) {
+		    //console.log(data);
+		    //outPost(data);
+		}
+	    })
+	    console.log("After PUT");
+	}
+	    
 	var setName = function (data){
 	    usrName = data;
 	    //console.log("Set Post User Name");
@@ -180,20 +194,6 @@
   	            // the HTML template element is not supported.
 	        }
 	    }
-	}
-		    
-	var add_like = function(postId){
-	    console.log(postId);
-	    $.ajax({
-                method: "PUT",
-                url: "postHandle.php",
-		data: {"postNum" : postId},
-                success : function(data) {
-		    //console.log(data);
-		    //outPost(data);
-		}
-	    })
-	    console.log("After PUT");
 	}
 		
 	
