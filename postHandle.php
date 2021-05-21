@@ -44,10 +44,10 @@ else if ($verb === "GET"){
     }
 }
 else if ($verb === "PUT"){
-    $postNum = $_PUT["postNum"];
+    $postNum = $_PUT["postId"];
     $prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?")
-    $prepper->bindParam(1, $postNum)->execute();
-    //$prepper->execute();
+    $prepper->bindParam(1, $postNum);
+    $prepper->execute();
     $stmt = $prepper->fetch();
     $likeCount = $stmt['likes'];
     $likeCount++;
