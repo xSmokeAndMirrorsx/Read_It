@@ -98,7 +98,7 @@
 	var usrName = "";
 	var postLikes = 0;
 	var postCommNum = 0;
-	var commentArr = [];
+	//var commentArr = [];
 	//var postNumArr = [5,4,3,2,1];
 	    
 	var postNum = 0;
@@ -124,7 +124,7 @@
 	    console.log("After PUT");
 	}
 	    
-	var getComment = function(tmpVar){
+	/*var getComment = function(tmpVar){
 	    $.ajax({
                 method: "GET",
                 url: "postHandle.php",
@@ -134,11 +134,7 @@
 		    //outComment(data);
 		}
 	    })
-	}
-	
-	var outComment = function(data){
-	    
-	}
+	}*/
 	    
 	function getPost(){
 	    var tbody = document.querySelector('#producttable');
@@ -180,8 +176,8 @@
 		    var butt = clone.querySelectorAll("button");
 			
 		    if(postCommNum != 0){
-			getComment(postCount);
-		    	console.log(commentArr);
+			//getComment(postCount);
+		    	//console.log(commentArr);
 		    }
 
 		    if((postNum/5)==0){
