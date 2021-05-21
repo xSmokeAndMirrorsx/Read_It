@@ -45,10 +45,11 @@
 	    Welcome, <b id="UsrNme">--</b>
 	    <p></p>
             Type what you want to post: <input type="text" id="post">
+	    <button onclick = "printPost()">Post</button>
 	    <p></p>
 	    <!--"randomRackGenerator()">Post</button>-->
-	    <button onclick = "printPost()">Post</button>
-	    <button onclick = "getPost()">Load Post</button>
+	    <button onclick = "clearPosts()">Clear</button>
+	    <button onclick = "getPost()">Refresh Posts</button>
 	    <p></p>
 	    <table id="producttable">
   	      <thead>
@@ -194,6 +195,11 @@
               elements[i].style.color = mycolor;
             }
         }
+	
+	var clearPosts = function(){
+	    var tbody = document.querySelector("tbody");
+	    tbody.innerHTML = '';
+	}
 	
 	var printPost = function (){
 	    if ('content' in document.createElement('template')) {
