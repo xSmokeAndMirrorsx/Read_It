@@ -11,7 +11,7 @@ if ($verb === "POST"){
 }
 else if ($verb === "GET"){
     $postResults=array();
-    $postNumber=$_SESSION["postNum"];
+    $postNumber=$_POST["postNum"];
     $prepper = $dbhandle->prepare("SELECT * FROM posts LIMIT ?, 1");
     $prepper->execute([$postNumber]);
     $stmt = $prepper->fetch();
