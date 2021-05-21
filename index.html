@@ -72,7 +72,7 @@
 		<td style="background-color:darkgrey; width: 7%;"></td>
 		<td style="background-color:slategrey; width: 70%;"></td>
 		<p></p>
-		<button> Like </button> or <b>Comment:><input type:"text"><button>Submit Comment</button>
+		      <button> Like </button> or <b>Comment:</b><input style = "display: inline-block; *display: inline;" type:"text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
   	      </tr>
 	    </template>
 	    <template class="commentPost" id="productComment">
@@ -142,13 +142,6 @@
             postCount = parseInt(data);
 	    //console.log("Set Post Number");
         }
-
-        // sets the count of words left to guess by length
-        var setPostTime = function (data){
-            postTime = data;
-	    //console.log("Set Post Time");
-        }
-
         // sets the count of correct guesses and correct guess list
         var setPostLikes = function (data){
             postLikes = data;
@@ -178,10 +171,14 @@
 
 	var outPost = function(data) {
 	    for(postNum=0; postNum<20;postNum+=4){
-		setName(data[postNum+1]);
-		setPostNum(data[postNum]);
-		setPostLikes(data[postNum+2]);
-		setData(data[postNum+3]);
+		//setName(data[postNum+1]);
+		usrName = data[postNum+1];
+		//setPostNum(data[postNum]);
+		postCount = data[postNum];
+		//setPostLikes(data[postNum+2]);
+		postLikes = data[postNum+2];
+		//setData(data[postNum+3]);
+		postData = data[postNum+3];
 	    	if ('content' in document.createElement('template')) {
     	            // Instantiate the table with the existing HTML tbody
    	            // and the row with the template
