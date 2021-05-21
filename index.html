@@ -66,9 +66,9 @@
 	    <template class="commentPost" id="productComment">
 	      <div style = "display: inline-block; *display: inline; background-color: silver; width:20%;"></div>
 	      <div style = "display: inline-block; *display: inline; background-color: silver; width:80%;">
-		<h4 style="text-align: left"></h4>
-		<p style="text-align: center"></p>
-		<h5 style="text-align: right"></h5>
+		<h4 style="text-align: left; padding-bottom: 3px"></h4>
+		<p style="text-align: center; padding-bottom: 3px; padding-top: 3px"></p>
+		<h5 style="text-align: right; padding-top: 3px"></h5>
 	      </div>
 	    </template>
       </div>
@@ -180,7 +180,18 @@
 			
 		    if(postCommNum != 0){
 			getComment(postCount);
-		    	console.log(commentArr);
+		    	for(let i=0; i < postCommNum; i++){
+			    var Index = (i*3);
+			    var templateC = document.querySelector('#productComment');
+			    var commclone = templateC.content.cloneNode(true);
+			    var commName = commclone.querySelectorAll("h4");
+			    var commLikes = commclone.querySelectorAll("h5");
+			    var commData = commclone.querySelectorAll("p");
+			    commName[0].textContent = commentArr[Index];
+			    commLikes[0].textContent = commentArr[Index+1];
+			    commData[0].textContent = commentArr[Index+2];
+			    commentDiv.appendChild(commclone);
+			}
 		    }
 
 		    if((postNum/5)==0){
