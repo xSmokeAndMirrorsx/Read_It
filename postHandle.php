@@ -12,10 +12,10 @@ if ($verb === "POST"){
 else if ($verb === "GET"){
     $postResults=array();
     $postNumber=$_GET["postNum"];
-    $prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
+    //$prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
     //$prepper->execute([intval($postNumber)]);
-    $stmt = $prepper->fetchAll();
-    //$stmt = $dbhandle->query("SELECT * FROM posts LIMIT 0, 1")->fetch();
+    //$stmt = $prepper->fetchAll();
+    $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5")->fetchAll();
     if($stmt == array()){}
     else{
 	foreach ($stmt as $row){
