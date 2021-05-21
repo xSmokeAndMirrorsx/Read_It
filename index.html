@@ -95,7 +95,7 @@
 	var usrName = "";
 	var postLikes = 0;
 	var postCommNum = 0;
-	var commentArr;
+	var commentArr = [];
 	var index = 0;
 	//var postNumArr = [5,4,3,2,1];
 	    
@@ -129,7 +129,7 @@
                 url: "postHandle.php",
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
-		    var commentArr = new Array(data.length)
+		    commentArr = Array(data.length);
 		    for(let i=0; i<data.length;i++){
 		        commentArr[i]=(data[i]);
 		    }
