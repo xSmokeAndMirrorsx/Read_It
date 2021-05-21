@@ -13,7 +13,7 @@ else if ($verb === "GET"){
     $postResults=array();
     $postNumber=$_GET["postNum"];
     $prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT ?, 1");
-    $prepper->execute([$postNumber]);
+    $prepper->execute([strval($postNumber)]);
     $stmt = $prepper->fetch();
     //$stmt = $dbhandle->query("SELECT * FROM posts LIMIT 0, 1")->fetch();
     if($stmt == array()){}
