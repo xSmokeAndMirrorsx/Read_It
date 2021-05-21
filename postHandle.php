@@ -15,7 +15,7 @@ if ($verb === "POST"){
     $postNum = ($stmt['number'] + 1);
     console.log($postNum);
 	
-    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, data) VALUES (?, ?, ?)");
+    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data) VALUES (?, ?, 0, ?)");
     $qry->bindParam(1, $postName);
     $qry->bindParam(2, $postNum);
     $qry->bindParam(3, $postText);
@@ -35,6 +35,7 @@ else if ($verb === "GET"){
 	foreach ($stmt as $row){
 	    array_push($postResults,$row['number']);
 	    array_push($postResults,$row['user']);
+	    array_push($postResults,$row['likes']);
 	    array_push($postResults,$row['data']);
 	}
 	header('HTTP/1.1 200 OK');
