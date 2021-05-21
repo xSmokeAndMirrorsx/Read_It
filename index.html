@@ -185,8 +185,11 @@
 			    var commLikes = commclone.querySelectorAll("h5");
 			    var commData = commclone.querySelectorAll("p");
 			    commName[0].textContent = commentArr[Index];
+			    console.log(commentArr[Index]);
 			    commLikes[0].textContent = commentArr[Index+1];
+			    console.log(commentArr[Index+1]);
 			    commData[0].textContent = commentArr[Index+2];
+			    console.log(commentArr[Index+2]);
 			    div[1].appendChild(commclone);
 			}
 		    }
