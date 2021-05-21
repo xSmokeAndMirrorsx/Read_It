@@ -154,7 +154,7 @@
     	            var tbody = document.querySelector('#producttable');
     	            var templateP = document.querySelector('#productrow');
     		    // Clone the new row and insert it into the table
-    	            var clone = template.content.cloneNode(true);
+    	            var clone = templateP.content.cloneNode(true);
     	            var postDispName = clone.querySelectorAll("h3");
 		    var postDispData = clone.querySelectorAll("p");
 		    var postDispLikes = clone.querySelectorAll("h5");
