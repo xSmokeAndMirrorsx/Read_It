@@ -56,7 +56,7 @@
     		<h3 style="text-align: left; padding-bottom: 5px"></h3>
 		<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 		<h5 style="text-align: right; padding-top: 5px"></h5>
-		<div id="commentSection" style="background-color: lightgrey"><b style="text-align: left">Comments:</b></div>
+		<div id="commentSection" style="background-color: lightgrey"><b style = "text-align: left; padding-left: 2px">Comments:</b></div>
 	      </div>
 	      <div style="width:100%">
 	        <button> Like </button> or <b>Comment:</b><input style = "display: inline-block; *display: inline" type="text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
@@ -119,7 +119,9 @@
 		    //outPost(data);
 		}
 	    })
-	    console.log("After PUT");
+	    sleep(200);
+	    getPost();
+	    //console.log("After PUT");
 	}
 	
 	function sleep(milliseconds) {
@@ -141,14 +143,13 @@
 		    for(let i=0; i<data.length;i++){
 		        commentArr.push(data[i]);
 		    }
+		    sleep(300);
 		    //console.log(commentArr);
 		}
 	    })
 	}
 	    
 	function getPost(){
-	    var tbody = document.querySelector('#producttable');
-	    tbody.innerHTML = '';
 	    console.log("Before GET");
 	    $.ajax({
                 method: "GET",
@@ -162,11 +163,10 @@
 	    console.log("After GET");
 	}
 
-	//var handleComments = function(){
-	    //commentArr.
-	//}
 	    
 	var outPost = function(data) {
+	    var tbody = document.querySelector('#producttable');
+	    tbody.innerHTML = '';
 	    for(postNum=0; postNum<25;postNum+=5){
 		//setName(data[postNum+1]);
 		usrName = data[postNum+1];
@@ -192,7 +192,7 @@
 			
 		    if(postCommNum != 0){
 			getComment(postCount);
-			sleep(600);
+			sleep(700);
 			//var commentInfo = new Array;
 			//var commentInfo = commentArr.filter(word => word.length > 0);
 			//console.log(commentInfo);
