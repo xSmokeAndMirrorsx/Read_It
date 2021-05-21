@@ -12,15 +12,17 @@ if ($verb === "POST"){
 else if ($verb === "GET"){
     $postResults=array();
     $postNumber=$_GET["postNum"];
-    $prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT ?, 1");
-    $prepper->execute([intval($postNumber)]);
-    $stmt = $prepper->fetch();
+    $prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
+    //$prepper->execute([intval($postNumber)]);
+    $stmt = $prepper->fetchAll();
     //$stmt = $dbhandle->query("SELECT * FROM posts LIMIT 0, 1")->fetch();
     if($stmt == array()){}
     else{
-	array_push($postResults,$stmt['number']);
-	array_push($postResults,$stmt['user']);
-	array_push($postResults,$stmt['data']);
+	foreach ($stmt as $row){
+	    array_push($postResults,$row['number']);
+	    array_push($postResults,$row['user']);
+	    array_push($postResults,$row['data']);
+	}
 	header('HTTP/1.1 200 OK');
     	header('Content-Type: application/json');
 	echo json_encode($postResults);
