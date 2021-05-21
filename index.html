@@ -111,7 +111,7 @@
 	var add_like = function(data){
 	    console.log(data);
 	    $.ajax({
-                method: "PUT",
+                method: "POST",
                 url: "postHandle.php",
 		data: {"postId" : data},
                 success : function(data) {
@@ -191,6 +191,8 @@
 		    	for(let i=0; i < postCommNum; i++){
 			    index = (i * 3);
 			    console.log(commentArr);
+			    var found = commentArr.find((element, index) => index >= 0);
+			    console.log(found);
 			    var templateC = document.querySelector('#productComment');
 			    var commclone = templateC.content.cloneNode(true);
 			    var commName = commclone.querySelectorAll("h4");
@@ -239,6 +241,7 @@
 	    }
 	}
 		
+	setInterval (getpost,2000);
 	
         //function used to change introduction based on user input name
         var submitName = function (){
