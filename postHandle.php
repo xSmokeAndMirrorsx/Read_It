@@ -46,8 +46,8 @@ else if ($verb === "GET"){
 else if ($verb === "PUT"){
     $postNum = $_PUT["postId"];
     $prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?");
-    $prepper->bindParam(1, $postNum);
-    $prepper->execute();
+    //$prepper->bindParam(1, $postNum);
+    $prepper->execute([$postNum]);
     $stmt = $prepper->fetch();
     $likeCount = ($stmt['likes'] + 1);
     	
@@ -55,5 +55,6 @@ else if ($verb === "PUT"){
     $qry->bindParam(1, $likeCount);
     $qry->bindParam(2, $postNum);
     $qry->execute();
+    console.log("Insert Attempted");
 }
 ?>
