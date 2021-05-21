@@ -45,7 +45,7 @@ else if ($verb === "GET"){
 }
 else if ($verb === "PUT"){
     $postNum = $_PUT["postId"];
-    $prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?")
+    $prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?");
     $prepper->bindParam(1, $postNum);
     $prepper->execute();
     $stmt = $prepper->fetch();
