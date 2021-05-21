@@ -7,7 +7,13 @@ if (!$dbhandle) die ($error);
 $verb = $_SERVER["REQUEST_METHOD"];
 
 if ($verb === "POST"){
-
+    $postName = $_POST["postName"];
+    $postText = $_POST["postText"];
+    $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 1")->fetch();
+    $postNum = (intval($stmt['number'])+1);
+	
+    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, data) VALUES (?, ?, ?)");
+    $qry->execute(array($postName, $postNum, $postText));
 }
 else if ($verb === "GET"){
     $postResults=array();
