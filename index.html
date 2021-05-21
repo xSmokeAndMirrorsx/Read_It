@@ -72,10 +72,16 @@
 		<td style="background-color:darkgrey; width: 7%;"></td>
 		<td style="background-color:slategrey; width: 70%;"></td>
 		<p></p>
-		<button> Like </button>
+		<button> Like </button> or <b>Comment:><input type:"text"><button>Submit Comment</button>
   	      </tr>
 	    </template>
-	      
+	    <template class="commentPost" id="productComment">
+	      <div style = "display: inline-block; *display: inline; background-color: silver; width:20%;"></div>
+	      <div style = "display: inline-block; *display: inline; background-color: silver; width:80%;">
+		<h4></h4>
+		<p></p>
+	      </div>
+	    </template>
       </div>
       
       <!-- Profile Options Div -->
@@ -118,7 +124,7 @@
 	    $.ajax({
                 method: "PUT",
                 url: "postHandle.php",
-		data: {"postId" : data},
+		data: JSON.stringify{"postId" : data},
                 success : function(data) {
 		    //console.log(data);
 		    //outPost(data);
