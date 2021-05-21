@@ -49,12 +49,11 @@ else if ($verb === "PUT"){
     $prepper->bindParam(1, $postNum);
     $prepper->execute();
     $stmt = $prepper->fetch();
-    $likeCount = $stmt['likes'];
-    $likeCount++;
-	
+    $likeCount = ($stmt['likes'] + 1);
+    	
     $qry = $dbhandle->prepare("UPDATE posts SET likes = ? WHERE number = ?");
-    $qry->bindParam(1, $postNum);
-    $qry->bindParam(2, $likeCount);
+    $qry->bindParam(1, $likeCount);
+    $qry->bindParam(2, $postNum);
     $qry->execute();
 }
 ?>
