@@ -99,6 +99,9 @@
 	var postData = "";
 	var usrName = "";
 	var postLikes = 0;
+	    
+	var postNum = 0;
+	var loadNum = 5;
         
 	var setName = function (data){
 	    usrName = data;
@@ -128,8 +131,6 @@
         }
 	    
 	var getPost = function (evt){
-	    var loadNum = 5;
-	    var postNum = 0;
 	    for(postNum = 0; postNum < loadNum; postNum++){
 	        console.log("Before GET");
 	        $.ajax({
@@ -145,9 +146,10 @@
 		        setName(data[1]);
 		        setData(data[2]);
 		        outPost();
+			console.log("limit is"+toString(postNum));
+			console.log("After GET");
 		    }
 	        })
-	        console.log("After GET");
 	    }
 	}
 
