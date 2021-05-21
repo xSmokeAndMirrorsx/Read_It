@@ -15,7 +15,7 @@ if ($verb === "POST"){
     $postNum = ($stmt['number'] + 1);
     console.log($postNum);
 	
-    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data) VALUES (?, ?, 0, ?)");
+    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data, commentnum) VALUES (?, ?, 0, ?, 0)");
     $qry->bindParam(1, $postName);
     $qry->bindParam(2, $postNum);
     $qry->bindParam(3, $postText);
@@ -24,23 +24,41 @@ if ($verb === "POST"){
     //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
 }
 else if ($verb === "GET"){
-    $postResults=array();
-    $postNumber=$_GET["postNum"];
-    //$prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
-    //$prepper->execute([intval($postNumber)]);
-    //$stmt = $prepper->fetchAll();
-    $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5")->fetchAll();
-    if($stmt == array()){}
-    else{
-	foreach ($stmt as $row){
-	    array_push($postResults,$row['number']);
-	    array_push($postResults,$row['user']);
-	    array_push($postResults,$row['likes']);
-	    array_push($postResults,$row['data']);
+    if(($_GET["commentedPost"]==NULL) || ($_GET["commentedPost"]==array())){
+	$postResults=array();
+	$postNumber=$_GET["commentedPost"];
+	$prepper = $dbhandle->prepare("SELECT * FROM comments WHERE postnum = ?");
+	$prepper->execute([$postNumber]);
+	$stmt = $prepper->fetchAll();
+	foreach($stmt as $row){
+	    array_push($postResults,$row['username']);
+	    array_push($postResults,$row['comlikes']);
+	    array_push($postResults,$row['comtext']);
 	}
 	header('HTTP/1.1 200 OK');
     	header('Content-Type: application/json');
 	echo json_encode($postResults);
+    }else{
+        $postResults=array();
+        //$postNumber=$_GET["postNum"];
+         $postNum = json_decode(file_get_contents('php://input'), true);
+        //$prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
+        //$prepper->execute([intval($postNumber)]);
+        //$stmt = $prepper->fetchAll();
+        $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5")->fetchAll();
+        if($stmt == array()){}
+        else{
+	    foreach ($stmt as $row){
+	        array_push($postResults,$row['number']);
+	        array_push($postResults,$row['user']);
+	        array_push($postResults,$row['likes']);
+	        array_push($postResults,$row['data']);
+	        array_push($postResults,$row['commentnum'];
+	    }
+	    header('HTTP/1.1 200 OK');
+    	    header('Content-Type: application/json');
+	    echo json_encode($postResults);
+	}
     }
 }
 else if ($verb === "PUT"){
