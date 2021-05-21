@@ -95,7 +95,7 @@
 	var usrName = "";
 	var postLikes = 0;
 	var postCommNum = 0;
-	var commentArr = [];
+	var commentArr;
 	var index = 0;
 	//var postNumArr = [5,4,3,2,1];
 	    
@@ -129,10 +129,11 @@
                 url: "postHandle.php",
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
+		    var commentArr = new Array(data.length)
 		    for(let i=0; i<data.length;i++){
-		        commentArr.push(data[i]);
+		        commentArr[i]=(data[i]);
 		    }
-		    console.log(commentArr);
+		    //console.log(commentArr);
 		}
 	    })
 	}
@@ -153,6 +154,10 @@
 	    console.log("After GET");
 	}
 
+	var handleComments = function(){
+	    commentArr.
+	}
+	    
 	var outPost = function(data) {
 	    for(postNum=0; postNum<25;postNum+=5){
 		//setName(data[postNum+1]);
@@ -164,6 +169,7 @@
 		//setData(data[postNum+3]);
 		postData = data[postNum+3];
 		postCommNum = data[postNum+4];
+		    
 	    	if ('content' in document.createElement('template')) {
     	            var tbody = document.querySelector('#producttable');
     	            var templateP = document.querySelector('#productrow');
@@ -179,9 +185,9 @@
 		    if(postCommNum != 0){
 			getComment(postCount);
 			//var commentInfo = new Array;
-			var commentInfo = commentArr.filter(word => word.length > 0);
-			console.log(commentInfo);
-			console.log(commentInfo[0]);
+			//var commentInfo = commentArr.filter(word => word.length > 0);
+			//console.log(commentInfo);
+			//console.log(commentInfo[0]);
 		    	for(let i=0; i < postCommNum; i++){
 			    index = (i * 3);
 			    console.log(commentArr);
