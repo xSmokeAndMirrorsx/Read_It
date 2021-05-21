@@ -106,6 +106,12 @@
 	    
 	var postNum = 0;
 	var loadNum = 5;
+	    
+	var likedPostNum;
+	var likedPostNum1;
+	var likedPostNum2;
+	var likedPostNum3;
+	var likedPostNum4;
         
 	var add_like = function(data){
 	    console.log(data);
@@ -181,20 +187,20 @@
 		    var butt = clone.querySelectorAll("button");
 		    //const parsed = parseInt(postCount);
 		    if((postNum/4)==0){
-			let likedPostNum = postCount;   
-			butt[0].onclick = add_like(likedPostNum);
+			likedPostNum = postCount;   
+			butt[0].onclick = function(){add_like(likedPostNum);}
 		    }else if((postNum/4)==1){
-			let likedPostNum1 = postCount;   
-			butt[0].onclick = add_like(likedPostNum1);
+			likedPostNum1 = postCount;   
+			butt[0].onclick = function(){add_like(likedPostNum1);}
 		    }else if((postNum/4)==2){
-			let likedPostNum2 = postCount;   
-			butt[0].onclick = add_like(likedPostNum2);
+			likedPostNum2 = postCount;   
+			butt[0].onclick = function(){add_like(likedPostNum2);}
 		    }else if((postNum/4)==3){
-			let likedPostNum3 = postCount;   
-			butt[0].onclick = add_like(likedPostNum3);
+			likedPostNum3 = postCount;   
+			butt[0].onclick = function(){add_like(likedPostNum3);}
 		    }else if((postNum/4)==4){
-			let likedPostNum4 = postCount;   
-			butt[0].onclick = add_like(likedPostNum4);
+			likedPostNum4 = postCount;   
+			butt[0].onclick = function(){add_like(likedPostNum4);}
 		    }
 		    butt[0].textContent = ("Likes!!");
     	            td[0].textContent = usrName;
