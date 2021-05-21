@@ -44,16 +44,17 @@ else if ($verb === "GET"){
     }
 }
 else if ($verb === "PUT"){
-    $postNum = $_PUT['postNum'];
-    $prepper = dbhandle->prepare("SELECT * FROM posts WHERE number = ?")
+    $postNum = $_PUT["postNum"];
+    $prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?")
     $prepper->bindParam(1, $postNum)->execute();
+    //$prepper->execute();
     $stmt = $prepper->fetch();
     $likeCount = $stmt['likes'];
     $likeCount++;
 	
-    $qry = dbhandle->prepare("UPDATE posts SET likes = ? WHERE number = ?");
-    $qry->bundParam(1, $postNum);
-    $qry->bundParam(2, $likeCount);
+    $qry = $dbhandle->prepare("UPDATE posts SET likes = ? WHERE number = ?");
+    $qry->bindParam(1, $postNum);
+    $qry->bindParam(2, $likeCount);
     $qry->execute();
 }
 ?>
