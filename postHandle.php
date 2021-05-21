@@ -24,7 +24,7 @@ if ($verb === "POST"){
     //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
 }
 else if ($verb === "GET"){
-    if(($_GET["commentedPost"]!=NULL) || ($_GET["commentedPost"]!=array())){
+    /*if(($_GET["commentedPost"]!=NULL) || ($_GET["commentedPost"]!=array())){
 	$postResults=array();
 	$postNumber=$_GET["commentedPost"];
 	$prepper = $dbhandle->prepare("SELECT * FROM comments WHERE postnum = ?");
@@ -38,7 +38,7 @@ else if ($verb === "GET"){
 	header('HTTP/1.1 200 OK');
     	header('Content-Type: application/json');
 	echo json_encode($postResults);
-    }else{
+    }else{*/
         $postResults=array();
         $postNumber=$_GET["postNum"];
          //$postNum = json_decode(file_get_contents('php://input'), true);
@@ -58,7 +58,7 @@ else if ($verb === "GET"){
 	    header('HTTP/1.1 200 OK');
     	    header('Content-Type: application/json');
 	    echo json_encode($postResults);
-	}
+	//}
     }
 }
 else if ($verb === "PUT"){
