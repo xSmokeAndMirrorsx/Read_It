@@ -131,6 +131,8 @@
         }
 	    
 	var getPost = function (evt){
+	    var tbody = document.querySelector("tbody");
+	    tbody.innerHTML = '';
 	    console.log("Before GET");
 	    $.ajax({
                 method: "GET",
@@ -200,31 +202,14 @@
 	}
 	
 	var printPost = function (){
-	    if ('content' in document.createElement('template')) {
-		usrName = document.getElementById("UsrNme").innerText;
-		postData = document.getElementById("post").value;
-
-    	        // Instantiate the table with the existing HTML tbody
-   	        // and the row with the template
-    	        var tbody = document.querySelector("tbody");
-    	        var template = document.querySelector('#productrow');
-
-    		// Clone the new row and insert it into the table
-    	        var clone = template.content.cloneNode(true);
-    	        var td = clone.querySelectorAll("td");
-    	        td[0].textContent = usrName
-	        td[1].textContent = postCount;
-    	        td[2].textContent = postData;
-
-    	        tbody.appendChild(clone);
-			
-	        postCount = postCount + 1;
-	        document.getElementById("post").value = "";
-
-    	    } else {
-  	        // Find another way to add the rows to the table because
-  	        // the HTML template element is not supported.
-	    }
+	    $.ajax({
+                method: "POST",
+                url: "cheatsheet.php",
+                data: { "postName": document.getElementById("UsrNme").value, "postText": document.getElementById("post").value},
+                success : function(data) {
+                    
+                }
+            })
 	}
 
         document.querySelector("#wordColor").addEventListener(
