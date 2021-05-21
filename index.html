@@ -124,14 +124,17 @@
 	    console.log("After PUT");
 	}
 	    
-	var getComment = function(tmpVar){
+	function getComment(tmpVar){
+	    console.log(tmpVar);
 	    $.ajax({
                 method: "GET",
                 url: "postHandle.php",
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
-		    commentArr = data;
-		    //outComment(data);
+		    for(let i=0; i<data.length;i++){
+		        commentArr[i] = data[i];
+		    }
+		    console.log(commentArr);
 		}
 	    })
 	}
