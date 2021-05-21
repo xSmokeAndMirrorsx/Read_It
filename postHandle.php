@@ -15,11 +15,10 @@ if ($verb === "POST"){
     $postNum = ($stmt['number'] + 1);
     console.log($postNum);
 	
-    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data) VALUES (?, ?, ?, ?)");
+    $qry = $dbhandle->prepare("INSERT INTO posts (user, number, likes, data) VALUES (?, ?, 0, ?)");
     $qry->bindParam(1, $postName);
     $qry->bindParam(2, $postNum);
-    $qry->bindParam(3, 0);
-    $qry->bindParam(4, $postText);
+    $qry->bindParam(3, $postText);
     $qry->execute();
     console.log("Insert Attempted");
     //$qry->execute(array(strval($postName), intval($postNum), strval($postText)));
