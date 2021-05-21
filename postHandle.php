@@ -43,4 +43,17 @@ else if ($verb === "GET"){
 	echo json_encode($postResults);
     }
 }
+else if ($verb === "PUT"){
+    $postNum = $_PUT['postNum'];
+    $prepper = dbhandle->prepare("SELECT * FROM posts WHERE number = ?")
+    $prepper->bindParam(1, $postNum)->execute();
+    $stmt = $prepper->fetch();
+    $likeCount = $stmt['likes'];
+    $likeCount++;
+	
+    $qry = dbhandle->prepare("UPDATE posts SET likes = ? WHERE number = ?");
+    $qry->bundParam(1, $postNum);
+    $qry->bundParam(2, $likeCount);
+    $qry->execute();
+}
 ?>
