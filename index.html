@@ -172,7 +172,7 @@
 	}
 		    
         //function used to change introduction based on user input name
-        var submitName = function (data){
+        var submitName = function (){
 	    console.log("Changing Name");
             document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?" ;
 	    document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
@@ -210,6 +210,7 @@
                     
                 }
             })
+	    document.getElementById("post").value = "";
 	}
 
         document.querySelector("#wordColor").addEventListener(
