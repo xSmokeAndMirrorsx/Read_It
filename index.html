@@ -109,6 +109,8 @@
 	var likedPostNum4;
 	    
 	getPost();
+	sleep(50);//
+	getPost();//for some reason doesnt load comments in on first call, but does on second call
         
 	var add_like = function(data){
 	    console.log(data);
