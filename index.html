@@ -191,8 +191,8 @@
 
     	            var clone = templateP.content.cloneNode(true);
 		    var div = clone.querySelectorAll("div");
-		    var divvy = div[0].querySelectorAll("div");
-		    var commentDiv = divvy[0].querySelectorAll("div");
+		    var commentDiv = clone.getElementsByClassName("commentbox");
+		    //var commentDiv = divvy[0].querySelectorAll("div");
     	            var postDispName = clone.querySelectorAll("h3");
 		    var postDispData = clone.querySelectorAll("p");
 		    var postDispLikes = clone.querySelectorAll("h5");
@@ -224,7 +224,8 @@
 			    commData[0].textContent = commentArr[index+2];
 			    console.log(index+2);
 			    console.log(commentArr[index+2]);
-			    div[1].appendChild(commclone);
+			    //div[1].appendChild(commclone);
+			    commentDiv.appendChild(commclone);
 			}
 		    }
 
