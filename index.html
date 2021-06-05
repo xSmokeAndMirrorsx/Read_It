@@ -307,7 +307,7 @@
         //function used to change the color of the headers based on user input
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-	    let wordColor = toColor((Nuber(mycolor) - 0x777777) % 0xffffff)
+	    let wordColor = toColor((Number(mycolor) - 0x777777) % 0xffffff)
             var FeedBackgnd = document.getElementsByClassName("PostnFeedDiv");
 	    FeedBackgnd[0].style.background = mycolor;
 	    var elements = document.getElementsByClassName("multicolor");
