@@ -1,9 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-  .postbox {
+.postbox {
     text-align: left;
     margin: 0 auto;
     margin-bottom: 25px;
