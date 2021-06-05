@@ -282,7 +282,7 @@
 	    }
 	}
 		
-	setInterval (getPost,2500);
+	setInterval (getPost,25000);
 	
         //function used to change introduction based on user input name
         var submitName = function (){
@@ -308,7 +308,7 @@
         //function used to change the color of the headers based on user input
         var changeColorHandler = function (evt){
             let mycolor = evt.currentTarget.value
-	    let wordColor = toColor((Number(mycolor) - 0x777777) % 0xffffff);
+	    let wordColor = toColor((Number(mycolor) + 0x777777) % 0xffffff);
 	    console.log(wordColor);
             var FeedBackgnd = document.getElementsByClassName("PostnFeedDiv");
 	    FeedBackgnd[0].style.background = mycolor;
