@@ -16,7 +16,9 @@
     <style>
             div.a{
                 text-align: center;
-            }
+            }div.PostnFeedDiv{
+	    	text-align: center;
+	    }
     </style>
 	  
     <!-- Title and Intro Div -->
@@ -111,7 +113,7 @@
 	var likedPostNum4;
 	    
 	getPost();
-	sleep(200);//
+	sleep(1500);//
 	getPost();//for some reason doesnt load comments in on first call, but does on second call
         
 	var add_like = function(data){
@@ -129,7 +131,34 @@
 	    getPost();
 	    //console.log("After PUT");
 	}
-	
+	var add_comment = function(parentPost){
+	    var newCommTexts = document.querySelectorAll('.commText');
+	    if(parentPost%5==0){
+	    var commData = newCommTexts[0].value;
+	    }else if(parentPost%5==1){
+	    var commData = newCommTexts[1].value;
+	    }else if(parentPost%5==2){
+	    var commData = newCommTexts[2].value;
+	    }else if(parentPost%5==3){
+	    var commData = newCommTexts[3].value;
+	    }else if(parentPost%5==4){
+	    var commData = newCommTexts[4].value;
+	    }
+	    console.log(parentPost);
+	    console.log(commData);
+	    $.ajax({
+                method: "POST",
+                url: "postHandle.php",
+		data: {"parentPostId" : parentPost, "commentData": commData, "usrName": document.querySelector('#UsrNme')},
+                success : function(data) {
+		    //console.log(data);
+		    //outPost(data);
+		}
+	    })
+	    sleep(200);
+	    getPost();
+	    //console.log("After PUT");
+	}
 	function sleep(milliseconds) {
   	    const date = Date.now();
   	    let currentDate = null;
@@ -138,6 +167,7 @@
   	    } while (currentDate - date < milliseconds);
 	}
 	
+	    
 	function getComment(tmpVar){
 	    console.log(tmpVar);
 	    $.ajax({
@@ -149,7 +179,7 @@
 		    for(let i=0; i<data.length;i++){
 		        commentArr.push(data[i]);
 		    }
-		    //sleep(300);
+		    sleep(1500);
 		    //console.log(commentArr);
 		}
 	    })
@@ -242,6 +272,7 @@
 			if((cText_1 != null) || (cText_1 != undefined)){
 			    cmts[0].value = cText_1.value;   
 			}else{cmts[0].value = "";}
+			butt[0].onClick = function(){add_comment(likedPostNum,
 		    }else if((postNum/5)==1){
 			likedPostNum1 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum1);}
@@ -282,7 +313,7 @@
 	    }
 	}
 		
-	setInterval (getPost,25000);
+	//setInterval (getPost,25000);
 	
         //function used to change introduction based on user input name
         var submitName = function (){
