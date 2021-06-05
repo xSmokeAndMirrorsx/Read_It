@@ -173,11 +173,11 @@
 	var outPost = function(data) {
 	    var tbody = document.querySelector('#producttable');
 	    var cTexts = tbody.querySelectorAll('.commText');
-	    var cText_1 = cTexts[0];
-	    var cText_2 = cTexts[1];
-	    var cText_3 = cTexts[2];
-	    var cText_4 = cTexts[3];
-	    var cText_5 = cTexts[4];
+	    var cText_1 = cTexts[0].value;
+	    var cText_2 = cTexts[1].value;
+	    var cText_3 = cTexts[2].value;
+	    var cText_4 = cTexts[3].value;
+	    var cText_5 = cTexts[4].value;
 	    tbody.innerHTML = '';
 	    for(postNum=0; postNum<25;postNum+=5){
 		//setName(data[postNum+1]);
