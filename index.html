@@ -149,7 +149,7 @@
 	    $.ajax({
                 method: "POST",
                 url: "postHandle.php",
-		data: {"parentPostId" : parentPost, "commentData": commData, "usrName": document.querySelector('#UsrNme')},
+		data: {"parentPostId" : parentPost, "commentData": commData, "usrName": document.getElementById("UsrNme").innerText},
                 success : function(data) {
 		    //console.log(data);
 		    //outPost(data);
@@ -272,31 +272,35 @@
 			if((cText_1 != null) || (cText_1 != undefined)){
 			    cmts[0].value = cText_1.value;   
 			}else{cmts[0].value = "";}
-			butt[0].onClick = function(){add_comment(likedPostNum,
+			butt[1].onClick = function(){add_comment(likedPostNum);}
 		    }else if((postNum/5)==1){
 			likedPostNum1 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum1);}
 			if((cText_2 != null) || (cText_2 != undefined)){
 			    cmts[0].value = cText_2.value;   
 			}else{cmts[0].value = "";}
+			butt[1].onClick = function(){add_comment(likedPostNum1);}
 		    }else if((postNum/5)==2){
 			likedPostNum2 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum2);}
 			if((cText_3 != null) || (cText_3 != undefined)){
 			    cmts[0].value = cText_3.value;   
 			}else{cmts[0].value = "";}
+			butt[1].onClick = function(){add_comment(likedPostNum2);}
 		    }else if((postNum/5)==3){
 			likedPostNum3 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum3);}
 			if((cText_4 != null) || (cText_4 != undefined)){
 			    cmts[0].value = cText_4.value;   
 			}else{cmts[0].value = "";}
+			butt[1].onClick = function(){add_comment(likedPostNum3);}
 		    }else if((postNum/5)==4){
 			likedPostNum4 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum4);}
 			if((cText_5 != null) || (cText_5 != undefined)){
 			    cmts[0].value = cText_5.value;   
 			}else{cmts[0].value = "";}
+			butt[1].onClick = function(){add_comment(likedPostNum4);}
 		    }
 		    butt[0].textContent = ("Like!!");
 		    butt[1].textContent = ("Comment!");
