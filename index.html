@@ -243,7 +243,7 @@
 		    var cmts = clone.querySelectorAll('.commText');
 			
 		    if(postCommNum != 0){
-			commentArr = [(postCommNum * 3)];
+			commentArr = [];
 			getComment(postCount);
 			//sleep(2000);
 			//var commentInfo = new Array;
@@ -262,13 +262,13 @@
 			    var commData = commclone.querySelectorAll("p");
 			    commName[0].textContent = commentArr[index];
 			    //console.log(index);
-			    //console.log(commentArr[0]);
+			    console.log(commentArr[0]);
 			    commLikes[0].textContent = commentArr[index+1];
 			    //console.log(index+1);
-			    //console.log(commentArr[index+1]);
+			    console.log(commentArr[index+1]);
 			    commData[0].textContent = commentArr[index+2];
 			    //console.log(index+2);
-			    //console.log(commentArr[index+2]);
+			    console.log(commentArr[index+2]);
 			    div[2].appendChild(commclone);
 			    
 			}
