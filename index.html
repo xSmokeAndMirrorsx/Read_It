@@ -191,7 +191,8 @@
 
     	            var clone = templateP.content.cloneNode(true);
 		    var div = clone.querySelectorAll("div");
-		    var commentDiv = div[1].querySelectorAll("div");
+		    var divvy = div[0].querySelectorAll("div");
+		    var commentDiv = divvy[0].querySelectorAll("div");
     	            var postDispName = clone.querySelectorAll("h3");
 		    var postDispData = clone.querySelectorAll("p");
 		    var postDispLikes = clone.querySelectorAll("h5");
