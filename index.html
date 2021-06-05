@@ -52,15 +52,17 @@
 	    <div id="producttable">
 	    </div>
 	      
-	    <template class="postbox" id="productrow">
+	    <template id="productrow">
+	      <div class = "postbox">
  	      <div style="background-color: white">
     		<h3 style="text-align: left; padding-bottom: 5px"></h3>
 		<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 		<h5 style="text-align: right; padding-top: 5px"></h5>
-		<div id="commentSection" style="background-color: lightgrey"><b style = "text-align: left; padding-left: 2px">Comments:</b></div>
+		<div class = "commentbox" id="commentSection" style="background-color: lightgrey"><b style = "text-align: left; padding-left: 2px">Comments:</b></div>
 	      </div>
 	      <div style="width:100%">
 	        <button> Like </button> or <b>Comment:</b><input style = "display: inline-block; *display: inline" type="text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
+	      </div>
 	      </div>
 	    </template>
 	      
@@ -189,7 +191,7 @@
 
     	            var clone = templateP.content.cloneNode(true);
 		    var div = clone.querySelectorAll("div");
-		    var commentDiv = div[0].querySelectorAll("div");
+		    var commentDiv = div[1].querySelectorAll("div");
     	            var postDispName = clone.querySelectorAll("h3");
 		    var postDispData = clone.querySelectorAll("p");
 		    var postDispLikes = clone.querySelectorAll("h5");
