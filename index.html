@@ -160,7 +160,7 @@
 		    //outPost(data);
 		}
 	    })
-	    sleep(200);
+	    sleep(500);
 	    getPost();
 	    //console.log("After PUT");
 	}
@@ -188,7 +188,7 @@
 		    //console.log(commentArr);
 		}
 	    })
-	    sleep(1500);
+	    sleep(2000);
 	}
 	    
 	function getPost(){
@@ -253,6 +253,7 @@
 		    	for(let i=0; i < postCommNum; i++){
 			    index = (i * 3);
 			    console.log(commentArr);
+			    console.log(postCommNum);
 			    var found = commentArr.find((element, index) => index >= 0);
 			    console.log(found);
 			    var templateC = document.querySelector('#productComment');
