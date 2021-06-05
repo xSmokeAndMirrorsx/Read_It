@@ -207,6 +207,7 @@
 
 	    
 	var outPost = function(data) {
+	    sleep(400);
 	    var tbody = document.querySelector('#producttable');
 	    var cTexts = tbody.querySelectorAll('.commText');
 	    console.log(cTexts);
@@ -242,6 +243,7 @@
 		    var cmts = clone.querySelectorAll('.commText');
 			
 		    if(postCommNum != 0){
+			commentArr = [];
 			getComment(postCount);
 			//sleep(2000);
 			//var commentInfo = new Array;
