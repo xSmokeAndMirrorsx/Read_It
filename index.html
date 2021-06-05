@@ -60,7 +60,7 @@
 		<div class = "commentbox" id="commentSection" style="background-color: lightgrey"><h4 style = "text-align: left; padding-left: 2px">Comments:</h4></div>
 	      </div>
 	      <div style="width:100%">
-	        <button> Like </button> or <b>Comment:</b><input style = "display: inline-block; *display: inline" type="text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
+	        <button> Like </button> or <b>Comment:</b><input class = "commText" style = "display: inline-block; *display: inline" type="text"><button style = "display: inline-block; *display: inline;">Submit Comment</button>
 	      </div>
 	      </div>
 	    </template>
@@ -172,6 +172,12 @@
 	    
 	var outPost = function(data) {
 	    var tbody = document.querySelector('#producttable');
+	    var cTexts = tbody.querySelectorAll('.commText');
+	    var cText_1 = cTexts[0];
+	    var cText_2 = cTexts[1];
+	    var cText_3 = cTexts[2];
+	    var cText_4 = cTexts[3];
+	    var cText_5 = cTexts[4];
 	    tbody.innerHTML = '';
 	    for(postNum=0; postNum<25;postNum+=5){
 		//setName(data[postNum+1]);
@@ -196,6 +202,7 @@
 		    var postDispData = clone.querySelectorAll("p");
 		    var postDispLikes = clone.querySelectorAll("h5");
 		    var butt = clone.querySelectorAll("button");
+		    var cmts = clone.querySelectorAll('.commText');
 			
 		    if(postCommNum != 0){
 			getComment(postCount);
@@ -231,18 +238,33 @@
 		    if((postNum/5)==0){
 			likedPostNum = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum);}
+			if((cText_1 != NULL) || (cText_1 != ""){
+			    cmts[0].value = cText_1;   
+			}
 		    }else if((postNum/5)==1){
 			likedPostNum1 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum1);}
+			if((cText_2 != NULL) || (cText_2 != ""){
+			    cmts[0].value = cText_2;   
+			}
 		    }else if((postNum/5)==2){
 			likedPostNum2 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum2);}
+			if((cText_3 != NULL) || (cText_3 != ""){
+			    cmts[0].value = cText_3;   
+			}
 		    }else if((postNum/5)==3){
 			likedPostNum3 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum3);}
+			if((cText_4 != NULL) || (cText_4 != ""){
+			    cmts[0].value = cText_4;   
+			}
 		    }else if((postNum/5)==4){
 			likedPostNum4 = postCount;   
 			butt[0].onclick = function(){add_like(likedPostNum4);}
+			if((cText_5 != NULL) || (cText_5 != ""){
+			    cmts[0].value = cText_5;   
+			}
 		    }
 		    butt[0].textContent = ("Like!!");
 		    butt[1].textContent = ("Comment!");
