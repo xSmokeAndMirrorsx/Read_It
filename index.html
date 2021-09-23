@@ -181,6 +181,7 @@
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
 		    //commentArr = Array(data.length);
+		    commentArr.splice(0,commentArr.length);
 		    for(let i=0; i<data.length;i++){
 		        commentArr.push(data[i]);
 		    }
@@ -207,7 +208,7 @@
 
 	    
 	var outPost = function(data) {
-	    sleep(400);
+	    //sleep(400);
 	    var tbody = document.querySelector('#producttable');
 	    var cTexts = tbody.querySelectorAll('.commText');
 	    console.log(cTexts);
