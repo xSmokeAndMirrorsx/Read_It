@@ -181,15 +181,16 @@
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
 		    //commentArr = Array(data.length);
-		    commentArr.splice(0,commentArr.length);
+		    //commentArr.splice(0,commentArr.length);
+		    commentArr=[];
 		    for(let i=0; i<data.length;i++){
 		        commentArr.push(data[i]);
 		    }
 		    sleep(1500);
-		    //console.log(commentArr);
+		    console.log(commentArr);
 		}
 	    })
-	    sleep(2000);
+	    sleep(10000);
 	}
 	    
 	function getPost(){
