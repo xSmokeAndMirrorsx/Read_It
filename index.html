@@ -184,7 +184,7 @@
 		    for(let i=0; i<data.length;i++){
 		        commentArr.push(data[i]);
 		    }
-		    //sleep(1500);
+		    sleep(1500);
 		    //console.log(commentArr);
 		}
 	    })
@@ -245,12 +245,12 @@
 		    if(postCommNum != 0){
 			commentArr = [];
 			getComment(postCount);
-			//sleep(2000);
-			//var commentInfo = new Array;
-			//var commentInfo = commentArr.filter(word => word.length > 0);
-			//console.log(commentInfo);
-			//console.log(commentInfo[0]);
-		    	for(let i=0; i < postCommNum; i++){
+			sleep(2000);
+			var commentInfo = new Array;
+			var commentInfo = commentArr.filter(word => word.length > 0);
+			console.log(commentInfo);
+			console.log(commentInfo[0]);
+		    	for(let i=0; i < parseInt(postCommNum); i++){
 			    index = (i * 3);
 			    console.log(commentArr);
 			    console.log(postCommNum);
