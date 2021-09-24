@@ -39,6 +39,7 @@ if ($verb === "POST"){
     }else{
 	$postNum = $_POST["parentPostId"];
 	$userName = $_POST["usrName"];
+    $commentData = $_POST["commentData"];
 	$prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?");
 	$prepper->execute([$postNum]);
 	$stmt = $prepper->fetch();
@@ -53,7 +54,7 @@ if ($verb === "POST"){
 	$qry = $dbhandle->prepare("INSERT INTO comments (postnum, comnum, comtext, comlikes, username) VALUES (?, ?, ?, 0, ?)");
         $qry->bindParam(1, $postName);
 	    $qry->bindParam(2, $commCount);
-        $qry->bindParam(3, $_POST["commentData"]);
+        $qry->bindParam(3, $commentData);
         $qry->bindParam(4, $userName);
         $qry->execute();
     }
