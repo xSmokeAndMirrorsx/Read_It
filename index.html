@@ -99,7 +99,8 @@
 	var usrName = "";
 	var postLikes = 0;
 	var postCommNum = 0;
-	var commentArr = [33];
+	const commentArr = [];
+	commentArr.length=33;
 	var index = 0;
 	//var postNumArr = [5,4,3,2,1];
 	    
@@ -181,10 +182,10 @@
 		data: {"commentedPost" : tmpVar},
                 success : function(data) {
 		    //commentArr = Array(data.length);
-		    //commentArr.splice(0,commentArr.length);
-		    commentArr=[];
+		    commentArr.splice(0,dataArr.length,);
+		    //commentArr=[];
 		    for(let i=0; i<data.length;i++){
-		        commentArr[i]=data[i];
+		        commentArr.splice(0,dataArr.length,);
 		    }
 		    //sleep(200);
 		    console.log(commentArr);
