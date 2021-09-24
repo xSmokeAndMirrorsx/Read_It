@@ -45,11 +45,11 @@
       <div class ="PostnFeedDiv" style = "display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height:100%;">
             <h2 class ="multicolorF">Feed: Posts & Comments</h2>
 	    <p class = "multicolorF">Welcome, <b id="UsrNme">--</b></p>
-	    <p class="multicolorF">Type what you want to post: <input type="text" id="post"></p>
-	    <button onclick = "printPost()">Post</button>
+	    <p class="multicolorF">Type what you want to post: <input type="text" id="post">
+	    <button onclick = "printPost()">Post</button></p>
 	    <p></p>
-	    <!-- <button onclick = "getPost()">Refresh Posts</button>
-	    <p></p> -->
+	    <button onclick = "getPost()">Refresh Posts</button>
+	    <p></p> 
 	    <div id="producttable">
 	    </div>
 	      
@@ -113,7 +113,7 @@
 	var likedPostNum4;
 	    
 	getPost();
-	sleep(1500);//
+	sleep(200);//
 	getPost();//for some reason doesnt load comments in on first call, but does on second call
         
 	var add_like = function(data){
@@ -127,7 +127,7 @@
 		    //outPost(data);
 		}
 	    })
-	    sleep(200);
+	    //sleep(200);
 	    getPost();
 	    //console.log("After PUT");
 	}
@@ -160,7 +160,7 @@
 		    //outPost(data);
 		}
 	    })
-	    sleep(500);
+	    //sleep(200);
 	    getPost();
 	    //console.log("After PUT");
 	}
@@ -186,11 +186,11 @@
 		    for(let i=0; i<data.length;i++){
 		        commentArr.push(data[i]);
 		    }
-		    sleep(1500);
+		    //sleep(200);
 		    console.log(commentArr);
 		}
 	    })
-	    sleep(10000);
+	    //sleep(200);
 	}
 	    
 	function getPost(){
