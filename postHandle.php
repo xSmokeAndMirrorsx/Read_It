@@ -42,7 +42,7 @@ if ($verb === "POST"){
 	$prepper = $dbhandle->prepare("SELECT * FROM posts WHERE number = ?");
 	$prepper->execute([$postNum]);
 	$stmt = $prepper->fetch();
-        $commCount = ($stmt['commentnum']);
+    $commCount = ($stmt['commentnum']);
 	    
 	$commCount = $commCount + 1;
 	$qry = $dbhandle->prepare("UPDATE posts SET commentnum = ? WHERE number = ?");
@@ -52,7 +52,7 @@ if ($verb === "POST"){
 		
 	$qry = $dbhandle->prepare("INSERT INTO comments (postnum, comnum, comtext, comlikes, username) VALUES (?, ?, ?, 0, ?)");
         $qry->bindParam(1, $postName);
-	$qry->bindParam(2, $commCount);
+	    $qry->bindParam(2, $commCount);
         $qry->bindParam(3, $_POST["commentData"]);
         $qry->bindParam(4, $userName);
         $qry->execute();

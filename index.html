@@ -155,9 +155,9 @@
 	    $.ajax({
                 method: "POST",
                 url: "postHandle.php",
-		data: {"parentPostId" : parentPost, "commentData": commData, "usrName": document.getElementById("UsrNme").innerText},
+		data: {"parentPostId" : parseInt(parentPost), "commentData": commData, "usrName": document.getElementById("UsrNme").innerText},
                 success : function(data) {
-		    //console.log(data);
+		    console.log(data);
 		    //outPost(data);
 		}
 	    })
@@ -258,8 +258,8 @@
 			    index = (i * 3);
 			    console.log(commentArr);
 			    console.log(postCommNum);
-			    var found = commentArr.find((element, index) => index >= 0);
-			    console.log(found);
+			    //var found = commentArr.find((element, index) => element >= );
+			    //console.log(found);
 			    var templateC = document.querySelector('#productComment');
 			    var commclone = templateC.content.cloneNode(true);
 			    var commName = commclone.querySelectorAll("h4");
@@ -267,13 +267,13 @@
 			    var commData = commclone.querySelectorAll("p");
 			    commName[0].textContent = commentArr[parseInt(index)];
 			    //console.log(index);
-			    console.log(commentArr[0]);
+			    //console.log(commentArr[0]);
 			    commLikes[0].textContent = commentArr[parseInt(index)+1];
 			    //console.log(index+1);
-			    console.log(commentArr[parseInt(index)+1]);
+			    //console.log(commentArr[parseInt(index)+1]);
 			    commData[0].textContent = commentArr[parseInt(index)+2];
 			    //console.log(index+2);
-			    console.log(commentArr[parseInt(index)+2]);
+			    //console.log(commentArr[parseInt(index)+2]);
 			    div[2].appendChild(commclone);
 			    
 			}
