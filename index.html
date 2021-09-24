@@ -189,6 +189,7 @@
 		    }
 		    //sleep(200);
 		    console.log(commentArr);
+			console.log(data.length);
 
 		}
 	    })
@@ -212,6 +213,7 @@
 	    
 	var outPost = function(data) {
 	    //sleep(400);
+		getComment(postCount);
 	    var tbody = document.querySelector('#producttable');
 	    var cTexts = tbody.querySelectorAll('.commText');
 	    console.log(cTexts);
@@ -248,7 +250,7 @@
 			
 		    if(postCommNum != 0){
 			//commentArr = [];
-			getComment(postCount);
+			//getComment(postCount);
 			//sleep(2000);
 			//var commentInfo = new Array;
 			//var commentInfo = commentArr.filter(word => word.length > 0);
