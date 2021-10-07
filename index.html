@@ -89,9 +89,11 @@
 			</template>-->
 
 			<template class="commentPost" id="productComment">
+				<hr>
 				<h4 style="text-align: left; padding-bottom: 1px"></h4>
 				<p style="text-align: center; padding-bottom: 1px; padding-top: 1px"></p>
 				<h5 style="text-align: right; padding-left: 20%; padding-top: 1px"></h5>
+				<hr>
 			</template>
 			<!--Templates-->
 
@@ -323,6 +325,7 @@
 
 				if(postDispNum==1){
 					let commbody = document.getElementById('commentSect1');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					//let index = 0;
 					for (let i = 0; i < data.length; i=i+3){
 						let templateC = document.querySelector('#productComment');
@@ -345,6 +348,7 @@
 				}
 				else if(postDispNum==2){
 					let commbody = document.getElementById('commentSect2');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					//let index = 0;
 					for (let i = 0; i < data.length; i=i+3){
 						let templateC = document.querySelector('#productComment');
@@ -367,6 +371,7 @@
 				}
 				else if(postDispNum==3){
 					let commbody = document.getElementById('commentSect3');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					//let index = 0;
 					for (let i = 0; i < data.length; i=i+3){
 						let templateC = document.querySelector('#productComment');
@@ -389,6 +394,7 @@
 				}
 				else if(postDispNum==4){
 					let commbody = document.getElementById('commentSect4');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					//let index = 0;
 					for (let i = 0; i < data.length; i=i+3){
 						let templateC = document.querySelector('#productComment');
@@ -411,6 +417,7 @@
 				}
 				else if(postDispNum==5){
 					let commbody = document.getElementById('commentSect5');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					//let index = 0;
 					for (let i = 0; i < data.length; i=i+3){
 						let templateC = document.querySelector('#productComment');
