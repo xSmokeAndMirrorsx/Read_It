@@ -514,11 +514,12 @@
 				postDispData[0].textContent = postData;
 
 				likedPostNum = postCount;
+				let commCount = postCommNum;
 				butt[0].onclick = function () { add_like(likedPostNum); }
 				if ((cText_1 != null) || (cText_1 != undefined)) {
 					cmts[0].value = cText_1.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum,0,postCommNum); }
+				butt[1].onclick = function () { add_comment(likedPostNum,0,commCount); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 1, postCommNum);
@@ -542,11 +543,12 @@
 				postDispData[0].textContent = postData;
 
 				likedPostNum1 = postCount;
+				let commCount1 = postCommNum;
 				butt[0].onclick = function () { add_like(likedPostNum1); }
 				if ((cText_2 != null) || (cText_2 != undefined)) {
 					cmts[0].value = cText_2.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum1,1,postCommNum); }
+				butt[1].onclick = function () { add_comment(likedPostNum1,1,commCount1); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 2, postCommNum);
@@ -569,11 +571,12 @@
 				postDispData[0].textContent = postData;
 
 				likedPostNum2 = postCount;
+				let commCount2 = postCommNum;
 				butt[0].onclick = function () { add_like(likedPostNum2); }
 				if ((cText_3 != null) || (cText_3 != undefined)) {
 					cmts[0].value = cText_3.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum2,2,postCommNum); }
+				butt[1].onclick = function () { add_comment(likedPostNum2,2,commCount2); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 3, postCommNum);
@@ -596,11 +599,13 @@
 				postDispData[0].textContent = postData;
 
 				likedPostNum3 = postCount;
+				let commCount3 = postCommNum;
+
 				butt[0].onclick = function () { add_like(likedPostNum3); }
 				if ((cText_4 != null) || (cText_4 != undefined)) {
 					cmts[0].value = cText_4.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum3,3,postCommNum); }
+				butt[1].onclick = function () { add_comment(likedPostNum3,3,commCount3); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 4, postCommNum);
@@ -623,11 +628,13 @@
 				postDispData[0].textContent = postData;
 
 				likedPostNum4 = postCount;
+				let commCount4 = postCommNum;
+
 				butt[0].onclick = function () { add_like(likedPostNum4); }
 				if ((cText_5 != null) || (cText_5 != undefined)) {
 					cmts[0].value = cText_5.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum4,4,postCommNum); }
+				butt[1].onclick = function () { add_comment(likedPostNum4,4,commCount4); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 5, postCommNum);
