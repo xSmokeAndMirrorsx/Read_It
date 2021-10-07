@@ -76,12 +76,19 @@ else if ($verb === "GET"){
 	echo json_encode($postResults);
     }else{
         $postResults=array();
+        $upperBound=$_GET["pageNum"];
+        $upperBound=$upperBound*5;
+        $lowerBound=$upperBound-5;
         //$postNumber=$_GET["postNum"];
         //$postNum = json_decode(file_get_contents('php://input'), true);
         //$prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5");
         //$prepper->execute([intval($postNumber)]);
         //$stmt = $prepper->fetchAll();
-        $stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT 0, 5")->fetchAll();
+        $prepper = $dbhandle->prepare("SELECT * FROM posts ORDER BY number DESC LIMIT ?, ?");
+        $prepper -> execute(array($lowerBound, $upperBound));
+        $stmt = $prepper->fetchAll();
+
+        //$stmt = $dbhandle->query("SELECT * FROM posts ORDER BY number DESC LIMIT ?, ?")->execute(array($lowerBound, $upperBound))->fetchAll();
         if($stmt == array()){}
         else{
 	    foreach ($stmt as $row){
