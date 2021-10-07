@@ -63,11 +63,11 @@
 			<button onclick="getPost()">Refresh Posts</button>
 			<p></p>
 
-			<div id="producttable">
-			</div>
+			<!--<div id="producttable">
+			</div>-->
 
 			<!--Templates-->
-			<template id="productrow">
+			<!--<template id="productrow">
 				<div class="postbox">
 
 					<div style="background-color: white">
@@ -86,7 +86,7 @@
 					</div>
 
 				</div>
-			</template>
+			</template>-->
 
 			<template class="commentPost" id="productComment">
 				<h4 style="text-align: left; padding-bottom: 1px"></h4>
@@ -223,9 +223,9 @@
 	var usrName = "";
 	var postLikes = 0;
 	var postCommNum = 0;
-	var commentArr = [];
-	commentArr.length = 33;
-	var index = 0;
+	//var commentArr = [];
+	//commentArr.length = 33;
+	//var index = 0;
 	//var postNumArr = [5,4,3,2,1];
 
 	var postNum = 0;
@@ -300,8 +300,9 @@
 	}
 
 
-	function getComment(tmpVar) {
+	function getComment(tmpVar, postDispNum) {
 		console.log(tmpVar);
+		console.log(postDispNum)
 		$.ajax({
 			method: "GET",
 			url: "postHandle.php",
@@ -309,11 +310,121 @@
 			success: function (data) {
 				//commentArr = Array(data.length);
 				//commentArr.splice(0,dataArr.length,);
-				//commentArr=[];
-				for (let i = 0; i < data.length; i++) {
-					commentArr[i] = data[i];
-				}
+				//let commentArr=[];
+				//for (let i = 0; i < data.length; i++) {
+					//commentArr[i] = data[i];
+				//}
 				//sleep(200);
+				if(postDispNum==1){
+					let commbody = document.getElementById('commentSect1');
+					//let index = 0;
+					for (let i = 0; i < data.length; i=i+3){
+						var templateC = document.querySelector('#productComment');
+						var commclone = templateC.content.cloneNode(true);
+						var commName = commclone.querySelectorAll("h4");
+						var commLikes = commclone.querySelectorAll("h5");
+						var commData = commclone.querySelectorAll("p");
+						commName[0].textContent = data[parseInt(i)];
+						//console.log(index);
+						//console.log(commentArr[0]);
+						commLikes[0].textContent = data[parseInt(i) + 1];
+						//console.log(index+1);
+						//console.log(commentArr[parseInt(index)+1]);
+						commData[0].textContent = data[parseInt(i) + 2];
+						//console.log(index+2);
+						//console.log(commentArr[parseInt(index)+2]);
+						commbody.appendChild(commclone);
+
+					}
+				}
+				else if(postDispNum==2){
+					let commbody = document.getElementById('commentSect2');
+					//let index = 0;
+					for (let i = 0; i < data.length; i=i+3){
+						var templateC = document.querySelector('#productComment');
+						var commclone = templateC.content.cloneNode(true);
+						var commName = commclone.querySelectorAll("h4");
+						var commLikes = commclone.querySelectorAll("h5");
+						var commData = commclone.querySelectorAll("p");
+						commName[0].textContent = data[parseInt(i)];
+						//console.log(index);
+						//console.log(commentArr[0]);
+						commLikes[0].textContent = data[parseInt(i) + 1];
+						//console.log(index+1);
+						//console.log(commentArr[parseInt(index)+1]);
+						commData[0].textContent = data[parseInt(i) + 2];
+						//console.log(index+2);
+						//console.log(commentArr[parseInt(index)+2]);
+						commbody.appendChild(commclone);
+
+					}
+				}
+				else if(postDispNum==3){
+					let commbody = document.getElementById('commentSect3');
+					//let index = 0;
+					for (let i = 0; i < data.length; i=i+3){
+						var templateC = document.querySelector('#productComment');
+						var commclone = templateC.content.cloneNode(true);
+						var commName = commclone.querySelectorAll("h4");
+						var commLikes = commclone.querySelectorAll("h5");
+						var commData = commclone.querySelectorAll("p");
+						commName[0].textContent = data[parseInt(i)];
+						//console.log(index);
+						//console.log(commentArr[0]);
+						commLikes[0].textContent = data[parseInt(i) + 1];
+						//console.log(index+1);
+						//console.log(commentArr[parseInt(index)+1]);
+						commData[0].textContent = data[parseInt(i) + 2];
+						//console.log(index+2);
+						//console.log(commentArr[parseInt(index)+2]);
+						commbody.appendChild(commclone);
+
+					}
+				}
+				else if(postDispNum==4){
+					let commbody = document.getElementById('commentSect4');
+					//let index = 0;
+					for (let i = 0; i < data.length; i=i+3){
+						var templateC = document.querySelector('#productComment');
+						var commclone = templateC.content.cloneNode(true);
+						var commName = commclone.querySelectorAll("h4");
+						var commLikes = commclone.querySelectorAll("h5");
+						var commData = commclone.querySelectorAll("p");
+						commName[0].textContent = data[parseInt(i)];
+						//console.log(index);
+						//console.log(commentArr[0]);
+						commLikes[0].textContent = data[parseInt(i) + 1];
+						//console.log(index+1);
+						//console.log(commentArr[parseInt(index)+1]);
+						commData[0].textContent = data[parseInt(i) + 2];
+						//console.log(index+2);
+						//console.log(commentArr[parseInt(index)+2]);
+						commbody.appendChild(commclone);
+
+					}
+				}
+				else if(postDispNum==5){
+					let commbody = document.getElementById('commentSect5');
+					//let index = 0;
+					for (let i = 0; i < data.length; i=i+3){
+						var templateC = document.querySelector('#productComment');
+						var commclone = templateC.content.cloneNode(true);
+						var commName = commclone.querySelectorAll("h4");
+						var commLikes = commclone.querySelectorAll("h5");
+						var commData = commclone.querySelectorAll("p");
+						commName[0].textContent = data[parseInt(i)];
+						//console.log(index);
+						//console.log(commentArr[0]);
+						commLikes[0].textContent = data[parseInt(i) + 1];
+						//console.log(index+1);
+						//console.log(commentArr[parseInt(index)+1]);
+						commData[0].textContent = data[parseInt(i) + 2];
+						//console.log(index+2);
+						//console.log(commentArr[parseInt(index)+2]);
+						commbody.appendChild(commclone);
+
+					}
+				}
 				console.log(commentArr);
 				console.log(data.length);
 
@@ -339,7 +450,7 @@
 
 	var outPost = function (data) {
 
-		var tbody = document.querySelector('#producttable');
+		//var tbody = document.querySelector('#producttable');
 		var cTexts = tbody.querySelectorAll('.commText');
 		//console.log(cTexts);
 		var cText_1 = cTexts[0];
@@ -380,13 +491,17 @@
 					cmts[0].value = cText_1.value;
 				} else { cmts[0].value = ""; }
 				butt[1].onclick = function () { add_comment(likedPostNum); }
+
+				if(postCommNum !=0){
+					getComment(postCount, 1);
+				}
 			}
 
-			if(postNum/5 == 1){
+			else if(postNum/5 == 1){
 				let postbody = document.getElementById('postbox2');
 				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("p");
-				let postDispData = postbody.querySelectorAll("h5");
+				let postDispLikes = postbody.querySelectorAll("h5");
+				let postDispData = postbody.querySelectorAll("p");
 				let butt = postbody.querySelectorAll("button");
 				let cmts = postbody.querySelectorAll('.commText');
 
@@ -400,13 +515,17 @@
 					cmts[0].value = cText_2.value;
 				} else { cmts[0].value = ""; }
 				butt[1].onclick = function () { add_comment(likedPostNum1); }
+
+				if(postCommNum !=0){
+					getComment(postCount, 2);
+				}
 			}
 
-			if(postNum/5 == 2){
+			else if(postNum/5 == 2){
 				let postbody = document.getElementById('postbox3');
 				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("p");
-				let postDispData = postbody.querySelectorAll("h5");
+				let postDispLikes = postbody.querySelectorAll("h5");
+				let postDispData = postbody.querySelectorAll("p");
 				let butt = postbody.querySelectorAll("button");
 				let cmts = postbody.querySelectorAll('.commText');
 
@@ -420,13 +539,17 @@
 					cmts[0].value = cText_3.value;
 				} else { cmts[0].value = ""; }
 				butt[1].onclick = function () { add_comment(likedPostNum2); }
+
+				if(postCommNum !=0){
+					getComment(postCount, 3);
+				}
 			}
 
-			if(postNum/5 == 3){
+			else if(postNum/5 == 3){
 				let postbody = document.getElementById('postbox4');
 				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("p");
-				let postDispData = postbody.querySelectorAll("h5");
+				let postDispLikes = postbody.querySelectorAll("h5");
+				let postDispData = postbody.querySelectorAll("p");
 				let butt = postbody.querySelectorAll("button");
 				let cmts = postbody.querySelectorAll('.commText');
 
@@ -440,13 +563,17 @@
 					cmts[0].value = cText_4.value;
 				} else { cmts[0].value = ""; }
 				butt[1].onclick = function () { add_comment(likedPostNum3); }
+
+				if(postCommNum !=0){
+					getComment(postCount, 4);
+				}
 			}
 
-			if(postNum/5 == 4){
+			else if(postNum/5 == 4){
 				let postbody = document.getElementById('postbox5');
 				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("p");
-				let postDispData = postbody.querySelectorAll("h5");
+				let postDispLikes = postbody.querySelectorAll("h5");
+				let postDispData = postbody.querySelectorAll("p");
 				let butt = postbody.querySelectorAll("button");
 				let cmts = postbody.querySelectorAll('.commText');
 
@@ -460,6 +587,10 @@
 					cmts[0].value = cText_5.value;
 				} else { cmts[0].value = ""; }
 				butt[1].onclick = function () { add_comment(likedPostNum4); }
+
+				if(postCommNum !=0){
+					getComment(postCount, 5);
+				}
 			}
 
 
