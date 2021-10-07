@@ -284,7 +284,7 @@
 			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": document.getElementById("UsrNme").innerText },
 			success: function (data) {
 				//console.log(data);
-				//outPost(data);
+				outPost(data);
 			}
 		})
 		//sleep(200);
@@ -302,7 +302,10 @@
 
 	function getComment(tmpVar, postDispNum) {
 		console.log(tmpVar);
-		console.log(postDispNum)
+		console.log(postDispNum);
+		console.log(parseInt(postDispNum));
+		//console.log(data.length);
+
 		$.ajax({
 			method: "GET",
 			url: "postHandle.php",
@@ -315,6 +318,9 @@
 					//commentArr[i] = data[i];
 				//}
 				//sleep(200);
+				console.log(data);
+				console.log(" ");
+
 				if(postDispNum==1){
 					let commbody = document.getElementById('commentSect1');
 					//let index = 0;
