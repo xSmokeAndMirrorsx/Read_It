@@ -244,7 +244,7 @@
 	getPost();//for some reason doesnt load comments in on first call, but does on second call
 
 	var add_like = function (data) {
-		console.log(data);
+		//console.log(data);
 		$.ajax({
 			method: "POST",
 			url: "postHandle.php",
@@ -283,7 +283,7 @@
 			url: "postHandle.php",
 			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": document.getElementById("UsrNme").innerText },
 			success: function (data) {
-				console.log(data);
+				//console.log(data);
 				//outPost(data);
 			}
 		})
@@ -425,8 +425,8 @@
 
 					}
 				}
-				console.log(commentArr);
-				console.log(data.length);
+				//console.log(commentArr);
+				//console.log(data.length);
 
 			}
 		})
@@ -440,7 +440,7 @@
 			url: "postHandle.php",
 			data: { "postNum": postNum, "pageNum": pageNumber },
 			success: function (data) {
-				console.log(data);
+				//console.log(data);
 				outPost(data);
 			}
 		})
@@ -450,7 +450,7 @@
 
 	var outPost = function (data) {
 
-		//var tbody = document.querySelector('#producttable');
+		var tbody = document.querySelector('.PostnFeedDiv');
 		var cTexts = tbody.querySelectorAll('.commText');
 		//console.log(cTexts);
 		var cText_1 = cTexts[0];
@@ -458,7 +458,7 @@
 		var cText_3 = cTexts[2];
 		var cText_4 = cTexts[3];
 		var cText_5 = cTexts[4];
-		tbody.innerHTML = '';
+		//tbody.innerHTML = '';
 		for (postNum = 0; postNum < 25; postNum += 5) {
 			//setName(data[postNum+1]);
 			usrName = data[postNum + 1];
@@ -663,7 +663,7 @@
 
 	//function used to change introduction based on user input name
 	var submitName = function () {
-		console.log("Changing Name");
+		//console.log("Changing Name");
 		document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 		document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
 		document.getElementById("UsrNme").innerText = document.getElementById("name").value;
@@ -686,8 +686,8 @@
 	var changeColorHandler = function (evt) {
 		let mycolor = evt.currentTarget.value
 		let wordColor = toColor((Number(Number(mycolor).toString(16)) + 0x777777) % 0xffffff);
-		console.log(wordColor);
-		console.log(parseInt(mycolor, 16));
+		//console.log(wordColor);
+		//console.log(parseInt(mycolor, 16));
 		var FeedBackgnd = document.getElementsByClassName("PostnFeedDiv");
 		FeedBackgnd[0].style.background = mycolor;
 		var elements = document.getElementsByClassName("multicolorF");
