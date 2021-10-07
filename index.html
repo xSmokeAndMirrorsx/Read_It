@@ -260,30 +260,32 @@
 		getPost();
 		//console.log("After PUT");
 	}
-	var add_comment = function (parentPost) {
+	var add_comment = function (parentPost, postSlot) {
 		var newCommTexts = document.querySelectorAll('.commText');
-		if (parentPost % 5 == 0) {
+		if (postSlot == 0) {
 			var commData = newCommTexts[0].value;
 			newCommTexts[0].value = "";
-		} else if (parentPost % 5 == 1) {
+		} else if (postSlot == 1) {
 			var commData = newCommTexts[1].value;
 			newCommTexts[1].value = "";
-		} else if (parentPost % 5 == 2) {
+		} else if (postSlot == 2) {
 			var commData = newCommTexts[2].value;
 			newCommTexts[2].value = "";
-		} else if (parentPost % 5 == 3) {
+		} else if (postSlot == 3) {
 			var commData = newCommTexts[3].value;
 			newCommTexts[3].value = "";
-		} else if (parentPost % 5 == 4) {
+		} else if (postSlot == 4) {
 			var commData = newCommTexts[4].value;
 			newCommTexts[4].value = "";
 		}
+		commData = "&&"+commData;
 		console.debug(parentPost);
 		console.debug(commData);
+		console.log(document.getElementById("UsrNme").innerText);
 		$.ajax({
 			method: "POST",
 			url: "postHandle.php",
-			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": document.getElementById("UsrNme").innerText },
+			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": ('&&' + document.getElementById("UsrNme").innerText) },
 			success: function (data) {
 				//console.log(data);
 				getPost(data);
@@ -305,7 +307,7 @@
 	function getComment(tmpVar, postDispNum, numComms) {
 		console.log(tmpVar);
 		console.log(postDispNum);
-		console.log(parseInt(postDispNum));
+		//console.log(parseInt(postDispNum));
 		//console.log(data.length);
 
 		$.ajax({
@@ -510,7 +512,7 @@
 				if ((cText_1 != null) || (cText_1 != undefined)) {
 					cmts[0].value = cText_1.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum); }
+				butt[1].onclick = function () { add_comment(likedPostNum,0); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 1, postCommNum);
@@ -535,7 +537,7 @@
 				if ((cText_2 != null) || (cText_2 != undefined)) {
 					cmts[0].value = cText_2.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum1); }
+				butt[1].onclick = function () { add_comment(likedPostNum1,1); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 2, postCommNum);
@@ -559,7 +561,7 @@
 				if ((cText_3 != null) || (cText_3 != undefined)) {
 					cmts[0].value = cText_3.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum2); }
+				butt[1].onclick = function () { add_comment(likedPostNum2,2); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 3, postCommNum);
@@ -583,7 +585,7 @@
 				if ((cText_4 != null) || (cText_4 != undefined)) {
 					cmts[0].value = cText_4.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum3); }
+				butt[1].onclick = function () { add_comment(likedPostNum3,3); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 4, postCommNum);
@@ -607,7 +609,7 @@
 				if ((cText_5 != null) || (cText_5 != undefined)) {
 					cmts[0].value = cText_5.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum4); }
+				butt[1].onclick = function () { add_comment(likedPostNum4,4); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 5, postCommNum);
