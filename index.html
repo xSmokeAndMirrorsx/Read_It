@@ -93,6 +93,7 @@
 				<h5 style="text-align: right; padding-left: 20%; padding-top: 1px"></h5>
 			</template>
 
+			<button id="previouspage" onclick="prevPage()">Previous Page</button><b id="PageNum">...</b><button id="nextpage" onclick="nextPage()">Next Page</button>
 		</div>
 
 		<!-- Profile Options Div -->
@@ -129,6 +130,8 @@
 
 	var postNum = 0;
 	var loadNum = 5;
+	var MaxPostNum = 0;
+	var pageNumber = 1;
 
 	var likedPostNum;
 	var likedPostNum1;
@@ -235,11 +238,10 @@
 
 
 	var outPost = function (data) {
-		//sleep(400);
-		//getComment(postCount);
+
 		var tbody = document.querySelector('#producttable');
 		var cTexts = tbody.querySelectorAll('.commText');
-		console.log(cTexts);
+		//console.log(cTexts);
 		var cText_1 = cTexts[0];
 		var cText_2 = cTexts[1];
 		var cText_3 = cTexts[2];
@@ -251,6 +253,9 @@
 			usrName = data[postNum + 1];
 			//setPostNum(data[postNum]);
 			postCount = data[postNum];
+			if (postCount > MaxPostNum){
+				MaxPostNum=postCount;
+			}
 			//setPostLikes(data[postNum+2]);
 			postLikes = data[postNum + 2];
 			//setData(data[postNum+3]);
@@ -353,6 +358,7 @@
 				// the HTML template element is not supported.
 			}
 		}
+		document.getElementById("PageNum").innerText = pageNumber;
 	}
 
 	//setInterval (getPost,25000);
@@ -395,6 +401,18 @@
 	var clearPosts = function () {
 		var tbody = document.querySelector("tbody");
 		tbody.innerHTML = '';
+	}
+
+	var prevPage = function(){
+		if(pageNumber>1){
+			pageNumber=pageNumber-1;
+		}
+	}
+
+	var nextPage = function(){
+		if(pageNumber<(MaxPostNum/5)+1){
+			pageNumber=pageNumber+1;
+		}
 	}
 
 	var printPost = function () {
