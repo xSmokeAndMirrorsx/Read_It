@@ -56,9 +56,10 @@
 			style="display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height:100%;">
 			<h2 class="multicolorF">Feed: Posts & Comments</h2>
 			<p class="multicolorF">Welcome, <b id="UsrNme">--</b></p>
-			<p class="multicolorF">Type what you want to post: <textarea rows="5" cols="50" id="post"></textarea>
+			<p class="multicolorF">Type what you want to post: 
 				<button onclick="printPost()">Post</button>
 			</p>
+			<p><textarea rows="5" cols="50" id="post"></textarea></p>
 			<p></p>
 			<button onclick="getPost()">Refresh Posts</button>
 			<p></p>
@@ -260,7 +261,7 @@
 		getPost();
 		//console.log("After PUT");
 	}
-	var add_comment = function (parentPost, postSlot) {
+	var add_comment = function (parentPost, postSlot, commentCount) {
 		var newCommTexts = document.querySelectorAll('.commText');
 		if (postSlot == 0) {
 			var commData = newCommTexts[0].value;
@@ -278,14 +279,18 @@
 			var commData = newCommTexts[4].value;
 			newCommTexts[4].value = "";
 		}
-		commData = "&&"+commData;
+		let commUserName = document.getElementById("UsrNme").innerText;
+		if(commentCount>0){
+			commData = "&&"+commData;
+			commUserName = "&&" + commUserName;
+		}
 		console.debug(parentPost);
 		console.debug(commData);
-		console.log(document.getElementById("UsrNme").innerText);
+		console.log(commUserName);
 		$.ajax({
 			method: "POST",
 			url: "postHandle.php",
-			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": ('&&' + document.getElementById("UsrNme").innerText) },
+			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": commUserName },
 			success: function (data) {
 				//console.log(data);
 				getPost(data);
@@ -512,10 +517,13 @@
 				if ((cText_1 != null) || (cText_1 != undefined)) {
 					cmts[0].value = cText_1.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum,0); }
+				butt[1].onclick = function () { add_comment(likedPostNum,0,postCommNum); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 1, postCommNum);
+				}else{
+					let commbody = document.getElementById('commentSect1');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
 			}
 
@@ -537,10 +545,13 @@
 				if ((cText_2 != null) || (cText_2 != undefined)) {
 					cmts[0].value = cText_2.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum1,1); }
+				butt[1].onclick = function () { add_comment(likedPostNum1,1,postCommNum); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 2, postCommNum);
+				}else{
+					let commbody = document.getElementById('commentSect2');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
 			}
 
@@ -561,10 +572,13 @@
 				if ((cText_3 != null) || (cText_3 != undefined)) {
 					cmts[0].value = cText_3.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum2,2); }
+				butt[1].onclick = function () { add_comment(likedPostNum2,2,postCommNum); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 3, postCommNum);
+				}else{
+					let commbody = document.getElementById('commentSect3');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
 			}
 
@@ -585,10 +599,13 @@
 				if ((cText_4 != null) || (cText_4 != undefined)) {
 					cmts[0].value = cText_4.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum3,3); }
+				butt[1].onclick = function () { add_comment(likedPostNum3,3,postCommNum); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 4, postCommNum);
+				}else{
+					let commbody = document.getElementById('commentSect4');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
 			}
 
@@ -609,10 +626,13 @@
 				if ((cText_5 != null) || (cText_5 != undefined)) {
 					cmts[0].value = cText_5.value;
 				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum4,4); }
+				butt[1].onclick = function () { add_comment(likedPostNum4,4,postCommNum); }
 
 				if(postCommNum !=0){
 					getComment(postCount, 5, postCommNum);
+				}else{
+					let commbody = document.getElementById('commentSect5');
+					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
 			}
 
