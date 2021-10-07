@@ -64,30 +64,7 @@
 			<button onclick="getPost()">Refresh Posts</button>
 			<p></p>
 
-			<!--<div id="producttable">
-			</div>-->
-
-			<!--Templates-->
-			<!--<template id="productrow">
-				<div class="postbox">
-
-					<div style="background-color: white">
-						<h3 style="text-align: left; padding-bottom: 5px"></h3>
-						<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
-						<h5 style="text-align: right; padding-top: 5px"></h5>
-						<div class="commentbox" id="commentSection" style="background-color: lightgrey">
-							<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
-						</div>
-					</div>
-
-					<div style="width:100%">
-						<button> Like </button> or <b>Comment:</b><input class="commText"
-							style="display: inline-block; *display: inline" type="text"><button
-							style="display: inline-block; *display: inline;">Submit Comment</button>
-					</div>
-
-				</div>
-			</template>-->
+			<!--Comment Template-->
 
 			<template class="commentPost" id="productComment">
 				<hr>
@@ -96,7 +73,7 @@
 				<h5 style="text-align: right; padding-left: 20%; padding-top: 1px"></h5>
 				<hr>
 			</template>
-			<!--Templates-->
+			<!--Template-->
 
 			<!--Post Divs-->
 			<!--PostDiv1-->
@@ -211,7 +188,7 @@
 			Name: <input type="text" id="name">
 			<button onclick="submitName()">Change Name</button>
 			<p></p>
-			Customize Word Color: <input type="color" id="wordColor">
+			Customize Feed Color: <input type="color" id="wordColor">
 			<p></p>
 		</div>
 
@@ -220,16 +197,10 @@
 <!-- Script containing functions relavant to UI -->
 <script>
 	var postCount = 0;
-	//var glblPostCount = 0;
-	//var postTime = 0.0;
 	var postData = "";
 	var usrName = "";
 	var postLikes = 0;
 	var postCommNum = 0;
-	//var commentArr = [];
-	//commentArr.length = 33;
-	//var index = 0;
-	//var postNumArr = [5,4,3,2,1];
 
 	var postNum = 0;
 	var loadNum = 5;
@@ -246,21 +217,21 @@
 	sleep(200);//
 	getPost();//for some reason doesnt load comments in on first call, but does on second call
 
+
+	//function for adding likes
 	var add_like = function (data) {
-		//console.log(data);
 		$.ajax({
 			method: "POST",
 			url: "postHandle.php",
 			data: { "postId": data },
 			success: function (data) {
-				//console.log(data);
-				//outPost(data);
 			}
 		})
-		//sleep(200);
 		getPost();
-		//console.log("After PUT");
 	}
+
+
+	//function for adding comments
 	var add_comment = function (parentPost, postSlot, commentCount) {
 		var newCommTexts = document.querySelectorAll('.commText');
 		if (postSlot == 0) {
@@ -293,14 +264,14 @@
 			url: "postHandle.php",
 			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": commUserName },
 			success: function (data) {
-				//console.log(data);
 				getPost(data);
 			}
 		})
-		//sleep(200);
 		getPost();
-		//console.log("After PUT");
 	}
+
+
+	// sleep function
 	function sleep(milliseconds) {
 		const date = Date.now();
 		let currentDate = null;
@@ -310,27 +281,21 @@
 	}
 
 
+	//function to get and load the comments
 	function getComment(tmpVar, postDispNum, numComms) {
 		console.log(tmpVar);
 		console.log(postDispNum);
-		//console.log(parseInt(postDispNum));
-		//console.log(data.length);
 
 		$.ajax({
 			method: "GET",
 			url: "postHandle.php",
 			data: { "commentedPost": tmpVar },
 			success: function (data) {
-				//commentArr = Array(data.length);
-				//commentArr.splice(0,dataArr.length,);
-				//let commentArr=[];
-				//for (let i = 0; i < data.length; i++) {
-					//commentArr[i] = data[i];
-				//}
-				//sleep(200);
+
 				console.log(data);
 				console.log(" ");
 
+				//Post Display Slot 1
 				if(postDispNum==1){
 					let commbody = document.getElementById('commentSect1');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
@@ -344,18 +309,13 @@
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
 						commName[0].textContent = commentnames[i];
-						//console.log(index);
-						//console.log(commentArr[0]);
 						commLikes[0].textContent = commentlikes[i];
-						//console.log(index+1);
-						//console.log(commentArr[parseInt(index)+1]);
 						commData[0].textContent = commenttext[i];
-						//console.log(index+2);
-						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
 
 					}
 				}
+				//Post Display Slot 2
 				else if(postDispNum==2){
 					let commbody = document.getElementById('commentSect2');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
@@ -369,17 +329,12 @@
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
 						commName[0].textContent = commentnames[i];
-						//console.log(index);
-						//console.log(commentArr[0]);
 						commLikes[0].textContent = commentlikes[i];
-						//console.log(index+1);
-						//console.log(commentArr[parseInt(index)+1]);
 						commData[0].textContent = commenttext[i];
-						//console.log(index+2);
-						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
 					}
 				}
+				//Post Display Slot 3
 				else if(postDispNum==3){
 					let commbody = document.getElementById('commentSect3');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
@@ -393,17 +348,12 @@
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
 						commName[0].textContent = commentnames[i];
-						//console.log(index);
-						//console.log(commentArr[0]);
 						commLikes[0].textContent = commentlikes[i];
-						//console.log(index+1);
-						//console.log(commentArr[parseInt(index)+1]);
 						commData[0].textContent = commenttext[i];
-						//console.log(index+2);
-						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
 					}
 				}
+				//Post Display Slot 4
 				else if(postDispNum==4){
 					let commbody = document.getElementById('commentSect4');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
@@ -417,17 +367,12 @@
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
 						commName[0].textContent = commentnames[i];
-						//console.log(index);
-						//console.log(commentArr[0]);
 						commLikes[0].textContent = commentlikes[i];
-						//console.log(index+1);
-						//console.log(commentArr[parseInt(index)+1]);
 						commData[0].textContent = commenttext[i];
-						//console.log(index+2);
-						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
 					}
 				}
+				//Post Display Slot 5
 				else if(postDispNum==5){
 					let commbody = document.getElementById('commentSect5');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
@@ -441,65 +386,49 @@
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
 						commName[0].textContent = commentnames[i];
-						//console.log(index);
-						//console.log(commentArr[0]);
 						commLikes[0].textContent = commentlikes[i];
-						//console.log(index+1);
-						//console.log(commentArr[parseInt(index)+1]);
 						commData[0].textContent = commenttext[i];
-						//console.log(index+2);
-						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
 					}
 				}
-				//console.log(commentArr);
-				//console.log(data.length);
-
 			}
 		})
-		//sleep(200);
 	}
 
+	//Function to getthe Posts
 	function getPost() {
-		//console.log("Before GET");
 		$.ajax({
 			method: "GET",
 			url: "postHandle.php",
 			data: { "postNum": postNum, "pageNum": pageNumber },
 			success: function (data) {
-				//console.log(data);
 				outPost(data);
 			}
 		})
-		//console.log("After GET");
 	}
 
 
+	//Function to load and display the posts
 	var outPost = function (data) {
 
 		var tbody = document.querySelector('.PostnFeedDiv');
 		var cTexts = tbody.querySelectorAll('.commText');
-		//console.log(cTexts);
 		var cText_1 = cTexts[0];
 		var cText_2 = cTexts[1];
 		var cText_3 = cTexts[2];
 		var cText_4 = cTexts[3];
 		var cText_5 = cTexts[4];
-		//tbody.innerHTML = '';
 		for (postNum = 0; postNum < 25; postNum += 5) {
-			//setName(data[postNum+1]);
 			usrName = data[postNum + 1];
-			//setPostNum(data[postNum]);
 			postCount = data[postNum];
 			if (postCount > MaxPostNum){
 				MaxPostNum=postCount;
 			}
-			//setPostLikes(data[postNum+2]);
 			postLikes = data[postNum + 2];
-			//setData(data[postNum+3]);
 			postData = data[postNum + 3];
 			postCommNum = data[postNum + 4];
 
+			//Post Display Slot 1
 			if(postNum/5 == 0){
 				console.log(postCommNum);
 				let postbody = document.getElementById('postbox1');
@@ -529,6 +458,7 @@
 				}
 			}
 
+			//Post Display Slot 2
 			else if(postNum/5 == 1){
 				console.log(postCommNum);
 				let postbody = document.getElementById('postbox2');
@@ -558,6 +488,7 @@
 				}
 			}
 
+			//Post Display Slot 3
 			else if(postNum/5 == 2){
 				let postbody = document.getElementById('postbox3');
 				let postDispName = postbody.querySelectorAll("h3");
@@ -586,6 +517,7 @@
 				}
 			}
 
+			//Post Display Slot 4
 			else if(postNum/5 == 3){
 				let postbody = document.getElementById('postbox4');
 				let postDispName = postbody.querySelectorAll("h3");
@@ -615,6 +547,7 @@
 				}
 			}
 
+			//Post Display Slot 5
 			else if(postNum/5 == 4){
 				let postbody = document.getElementById('postbox5');
 				let postDispName = postbody.querySelectorAll("h3");
@@ -643,69 +576,6 @@
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
 			}
-
-
-			/*if ('content' in document.createElement('template')) {
-				var tbody = document.querySelector('#producttable');
-				var templateP = document.querySelector('#productrow');
-
-				var clone = templateP.content.cloneNode(true);
-				var div = clone.querySelectorAll("div");
-				var commentDiv = clone.querySelectorAll('.commentbox');
-				//var commentDiv = divvy[0].querySelectorAll("div");
-				var postDispName = clone.querySelectorAll("h3");
-				var postDispData = clone.querySelectorAll("p");
-				var postDispLikes = clone.querySelectorAll("h5");
-				var butt = clone.querySelectorAll("button");
-				var cmts = clone.querySelectorAll('.commText');
-
-
-
-				if ((postNum / 5) == 0) {
-					likedPostNum = postCount;
-					butt[0].onclick = function () { add_like(likedPostNum); }
-					if ((cText_1 != null) || (cText_1 != undefined)) {
-						cmts[0].value = cText_1.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum); }
-				} else if ((postNum / 5) == 1) {
-					likedPostNum1 = postCount;
-					butt[0].onclick = function () { add_like(likedPostNum1); }
-					if ((cText_2 != null) || (cText_2 != undefined)) {
-						cmts[0].value = cText_2.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum1); }
-				} else if ((postNum / 5) == 2) {
-					likedPostNum2 = postCount;
-					butt[0].onclick = function () { add_like(likedPostNum2); }
-					if ((cText_3 != null) || (cText_3 != undefined)) {
-						cmts[0].value = cText_3.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum2); }
-				} else if ((postNum / 5) == 3) {
-					likedPostNum3 = postCount;
-					butt[0].onclick = function () { add_like(likedPostNum3); }
-					if ((cText_4 != null) || (cText_4 != undefined)) {
-						cmts[0].value = cText_4.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum3); }
-				} else if ((postNum / 5) == 4) {
-					likedPostNum4 = postCount;
-					butt[0].onclick = function () { add_like(likedPostNum4); }
-					if ((cText_5 != null) || (cText_5 != undefined)) {
-						cmts[0].value = cText_5.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum4); }
-				}
-				butt[0].textContent = ("Like!!");
-				butt[1].textContent = ("Comment!");
-				postDispName[0].textContent = "User: " + usrName;
-				postDispLikes[0].textContent = "Likes: " + postLikes;
-				postDispData[0].textContent = postData;
-
-				clone.className = "postbox";
-				tbody.appendChild(clone);*/
-
 		}
 		document.getElementById("PageNum").innerText = pageNumber;
 	}
@@ -714,7 +584,6 @@
 
 	//function used to change introduction based on user input name
 	var submitName = function () {
-		//console.log("Changing Name");
 		document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 		document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
 		document.getElementById("UsrNme").innerText = document.getElementById("name").value;
@@ -728,17 +597,18 @@
 		})
 	}
 
+
+	//Function to change the color
 	var toColor = function (d) {
 		var c = Number(d).toString(16);
 		return "#" + ("000000".substr(0, 6 - c.length) + c.toUpperCase());
 	}
 
+
 	//function used to change the color of the headers based on user input
 	var changeColorHandler = function (evt) {
 		let mycolor = evt.currentTarget.value
 		let wordColor = toColor((Number(Number(mycolor).toString(16)) + 0x777777) % 0xffffff);
-		//console.log(wordColor);
-		//console.log(parseInt(mycolor, 16));
 		var FeedBackgnd = document.getElementsByClassName("PostnFeedDiv");
 		FeedBackgnd[0].style.background = mycolor;
 		var elements = document.getElementsByClassName("multicolorF");
@@ -747,11 +617,15 @@
 		}
 	}
 
+
+	//function to clear the posts (depricated)
 	var clearPosts = function () {
 		var tbody = document.querySelector("tbody");
 		tbody.innerHTML = '';
 	}
 
+
+	//previous page function for page navigation
 	var prevPage = function(){
 		if(pageNumber>1){
 			pageNumber=pageNumber-1;
@@ -759,6 +633,8 @@
 		getPost();
 	}
 
+
+	//next page function for page navigation
 	var nextPage = function(){
 		if(pageNumber<(MaxPostNum/5)+1){
 			pageNumber=pageNumber+1;
@@ -766,6 +642,7 @@
 		getPost();
 	}
 
+	//function to display the posts (depricated)
 	var printPost = function () {
 		$.ajax({
 			method: "POST",
@@ -780,6 +657,8 @@
 		getPost();
 	}
 
+
+	//Actually changes the color if the Words / Feed Background
 	document.querySelector("#wordColor").addEventListener(
 		"change",
 		changeColorHandler
