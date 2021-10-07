@@ -227,7 +227,7 @@
 		$.ajax({
 			method: "GET",
 			url: "postHandle.php",
-			data: { "postNum": postNum },
+			data: { "postNum": postNum, "pageNum": pageNumber },
 			success: function (data) {
 				console.log(data);
 				outPost(data);
@@ -407,12 +407,14 @@
 		if(pageNumber>1){
 			pageNumber=pageNumber-1;
 		}
+		getPost();
 	}
 
 	var nextPage = function(){
 		if(pageNumber<(MaxPostNum/5)+1){
 			pageNumber=pageNumber+1;
 		}
+		etPost();
 	}
 
 	var printPost = function () {
