@@ -286,7 +286,7 @@
 			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": document.getElementById("UsrNme").innerText },
 			success: function (data) {
 				//console.log(data);
-				outPost(data);
+				getPost(data);
 			}
 		})
 		//sleep(200);
