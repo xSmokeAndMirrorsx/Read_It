@@ -302,7 +302,7 @@
 	}
 
 
-	function getComment(tmpVar, postDispNum) {
+	function getComment(tmpVar, postDispNum, numComms) {
 		console.log(tmpVar);
 		console.log(postDispNum);
 		console.log(parseInt(postDispNum));
@@ -326,20 +326,22 @@
 				if(postDispNum==1){
 					let commbody = document.getElementById('commentSect1');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					//let index = 0;
-					for (let i = 0; i < data.length; i=i+3){
+					let commentnames = data[0].split('&&');
+					let commentlikes = data[1].split('&&');
+					let commenttext = data[2].split('&&');
+					for (let i = 0; i < numComms; i++){
 						let templateC = document.querySelector('#productComment');
 						let commclone = templateC.content.cloneNode(true);
 						let commName = commclone.querySelectorAll("h4");
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = data[parseInt(i)];
+						commName[0].textContent = commentnames[i];
 						//console.log(index);
 						//console.log(commentArr[0]);
-						commLikes[0].textContent = data[parseInt(i) + 1];
+						commLikes[0].textContent = commentlikes[i];
 						//console.log(index+1);
 						//console.log(commentArr[parseInt(index)+1]);
-						commData[0].textContent = data[parseInt(i) + 2];
+						commData[0].textContent = commenttext[i];
 						//console.log(index+2);
 						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
@@ -349,93 +351,97 @@
 				else if(postDispNum==2){
 					let commbody = document.getElementById('commentSect2');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					//let index = 0;
-					for (let i = 0; i < data.length; i=i+3){
+					let commentnames = data[0].split('&&');
+					let commentlikes = data[1].split('&&');
+					let commenttext = data[2].split('&&');
+					for (let i = 0; i < numComms; i++){
 						let templateC = document.querySelector('#productComment');
 						let commclone = templateC.content.cloneNode(true);
 						let commName = commclone.querySelectorAll("h4");
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = data[parseInt(i)];
+						commName[0].textContent = commentnames[i];
 						//console.log(index);
 						//console.log(commentArr[0]);
-						commLikes[0].textContent = data[parseInt(i) + 1];
+						commLikes[0].textContent = commentlikes[i];
 						//console.log(index+1);
 						//console.log(commentArr[parseInt(index)+1]);
-						commData[0].textContent = data[parseInt(i) + 2];
+						commData[0].textContent = commenttext[i];
 						//console.log(index+2);
 						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
-
 					}
 				}
 				else if(postDispNum==3){
 					let commbody = document.getElementById('commentSect3');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					//let index = 0;
-					for (let i = 0; i < data.length; i=i+3){
+					let commentnames = data[0].split('&&');
+					let commentlikes = data[1].split('&&');
+					let commenttext = data[2].split('&&');
+					for (let i = 0; i < numComms; i++){
 						let templateC = document.querySelector('#productComment');
 						let commclone = templateC.content.cloneNode(true);
 						let commName = commclone.querySelectorAll("h4");
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = data[parseInt(i)];
+						commName[0].textContent = commentnames[i];
 						//console.log(index);
 						//console.log(commentArr[0]);
-						commLikes[0].textContent = data[parseInt(i) + 1];
+						commLikes[0].textContent = commentlikes[i];
 						//console.log(index+1);
 						//console.log(commentArr[parseInt(index)+1]);
-						commData[0].textContent = data[parseInt(i) + 2];
+						commData[0].textContent = commenttext[i];
 						//console.log(index+2);
 						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
-
 					}
 				}
 				else if(postDispNum==4){
 					let commbody = document.getElementById('commentSect4');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					//let index = 0;
-					for (let i = 0; i < data.length; i=i+3){
+					let commentnames = data[0].split('&&');
+					let commentlikes = data[1].split('&&');
+					let commenttext = data[2].split('&&');
+					for (let i = 0; i < numComms; i++){
 						let templateC = document.querySelector('#productComment');
 						let commclone = templateC.content.cloneNode(true);
 						let commName = commclone.querySelectorAll("h4");
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = data[parseInt(i)];
+						commName[0].textContent = commentnames[i];
 						//console.log(index);
 						//console.log(commentArr[0]);
-						commLikes[0].textContent = data[parseInt(i) + 1];
+						commLikes[0].textContent = commentlikes[i];
 						//console.log(index+1);
 						//console.log(commentArr[parseInt(index)+1]);
-						commData[0].textContent = data[parseInt(i) + 2];
+						commData[0].textContent = commenttext[i];
 						//console.log(index+2);
 						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
-
 					}
 				}
 				else if(postDispNum==5){
 					let commbody = document.getElementById('commentSect5');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					//let index = 0;
-					for (let i = 0; i < data.length; i=i+3){
+					let commentnames = data[0].split('&&');
+					let commentlikes = data[1].split('&&');
+					let commenttext = data[2].split('&&');
+					for (let i = 0; i < numComms; i++){
 						let templateC = document.querySelector('#productComment');
 						let commclone = templateC.content.cloneNode(true);
 						let commName = commclone.querySelectorAll("h4");
 						let commLikes = commclone.querySelectorAll("h5");
 						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = data[parseInt(i)];
+						commName[0].textContent = commentnames[i];
 						//console.log(index);
 						//console.log(commentArr[0]);
-						commLikes[0].textContent = data[parseInt(i) + 1];
+						commLikes[0].textContent = commentlikes[i];
 						//console.log(index+1);
 						//console.log(commentArr[parseInt(index)+1]);
-						commData[0].textContent = data[parseInt(i) + 2];
+						commData[0].textContent = commenttext[i];
 						//console.log(index+2);
 						//console.log(commentArr[parseInt(index)+2]);
 						commbody.appendChild(commclone);
-
 					}
 				}
 				//console.log(commentArr);
@@ -506,7 +512,7 @@
 				butt[1].onclick = function () { add_comment(likedPostNum); }
 
 				if(postCommNum !=0){
-					getComment(postCount, 1);
+					getComment(postCount, 1, postCommNum);
 				}
 			}
 
@@ -530,7 +536,7 @@
 				butt[1].onclick = function () { add_comment(likedPostNum1); }
 
 				if(postCommNum !=0){
-					getComment(postCount, 2);
+					getComment(postCount, 2, postCommNum);
 				}
 			}
 
@@ -554,7 +560,7 @@
 				butt[1].onclick = function () { add_comment(likedPostNum2); }
 
 				if(postCommNum !=0){
-					getComment(postCount, 3);
+					getComment(postCount, 3, postCommNum);
 				}
 			}
 
@@ -578,7 +584,7 @@
 				butt[1].onclick = function () { add_comment(likedPostNum3); }
 
 				if(postCommNum !=0){
-					getComment(postCount, 4);
+					getComment(postCount, 4, postCommNum);
 				}
 			}
 
@@ -602,7 +608,7 @@
 				butt[1].onclick = function () { add_comment(likedPostNum4); }
 
 				if(postCommNum !=0){
-					getComment(postCount, 5);
+					getComment(postCount, 5, postCommNum);
 				}
 			}
 
