@@ -56,7 +56,7 @@
 			style="display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height:100%;">
 			<h2 class="multicolorF">Feed: Posts & Comments</h2>
 			<p class="multicolorF">Welcome, <b id="UsrNme">--</b></p>
-			<p class="multicolorF">Type what you want to post: 
+			<p class="multicolorF">Type what you want to post:
 				<button onclick="printPost()">Post</button>
 			</p>
 			<p><textarea rows="5" cols="50" id="post"></textarea></p>
@@ -173,7 +173,8 @@
 			</div>
 			<!--End Post Divs-->
 
-			<button id="previouspage" onclick="prevPage()">Previous Page</button><b id="PageNum">...</b><button id="nextpage" onclick="nextPage()">Next Page</button>
+			<button id="previouspage" onclick="prevPage()">Previous Page</button><b id="PageNum">...</b><button
+				id="nextpage" onclick="nextPage()">Next Page</button>
 		</div>
 
 		<!-- Profile Options Div -->
@@ -194,498 +195,502 @@
 
 	</div>
 
-<!-- Script containing functions relavant to UI -->
-<script>
-	var postCount = 0;
-	var postData = "";
-	var usrName = "";
-	var postLikes = 0;
-	var postCommNum = 0;
+	<!-- Script containing functions relavant to UI -->
+	<script>
+		var postCount = 0;
+		var postData = "";
+		var usrName = "";
+		var postLikes = 0;
+		var postCommNum = 0;
 
-	var postNum = 0;
-	var loadNum = 5;
-	var MaxPostNum = 0;
-	var pageNumber = 1;
+		var postNum = 0;
+		var loadNum = 5;
+		var MaxPostNum = 0;
+		var pageNumber = 1;
 
-	var likedPostNum;
-	var likedPostNum1;
-	var likedPostNum2;
-	var likedPostNum3;
-	var likedPostNum4;
+		var likedPostNum;
+		var likedPostNum1;
+		var likedPostNum2;
+		var likedPostNum3;
+		var likedPostNum4;
 
-	getPost();
-	sleep(200);//
-	getPost();//for some reason doesnt load comments in on first call, but does on second call
-
-
-	//function for adding likes
-	var add_like = function (data) {
-		$.ajax({
-			method: "POST",
-			url: "postHandle.php",
-			data: { "postId": data },
-			success: function (data) {
-			}
-		})
 		getPost();
-	}
+		sleep(200);//
+		getPost();//for some reason doesnt load comments in on first call, but does on second call
 
 
-	//function for adding comments
-	var add_comment = function (parentPost, postSlot, commentCount) {
-		var newCommTexts = document.querySelectorAll('.commText');
-		if (postSlot == 0) {
-			var commData = newCommTexts[0].value;
-			newCommTexts[0].value = "";
-		} else if (postSlot == 1) {
-			var commData = newCommTexts[1].value;
-			newCommTexts[1].value = "";
-		} else if (postSlot == 2) {
-			var commData = newCommTexts[2].value;
-			newCommTexts[2].value = "";
-		} else if (postSlot == 3) {
-			var commData = newCommTexts[3].value;
-			newCommTexts[3].value = "";
-		} else if (postSlot == 4) {
-			var commData = newCommTexts[4].value;
-			newCommTexts[4].value = "";
+		//function for adding likes
+		var add_like = function (data) {
+			$.ajax({
+				method: "POST",
+				url: "postHandle.php",
+				data: { "postId": data },
+				success: function (data) {
+				}
+			})
+			getPost();
 		}
-		let commUserName = document.getElementById("UsrNme").innerText;
-		if(commentCount != 0){
-			commData = "&&"+commData;
-			commUserName = "&&" + commUserName;
-		}
-		console.debug(parentPost);
-		console.debug(commData);
-		console.log(commUserName);
-		console.log(commentCount);
-		$.ajax({
-			method: "POST",
-			url: "postHandle.php",
-			data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": commUserName },
-			success: function (data) {
-				getPost(data);
+
+
+		//function for adding comments
+		var add_comment = function (parentPost, postSlot, commentCount) {
+			var newCommTexts = document.querySelectorAll('.commText');
+			if (postSlot == 0) {
+				var commData = newCommTexts[0].value;
+				newCommTexts[0].value = "";
+			} else if (postSlot == 1) {
+				var commData = newCommTexts[1].value;
+				newCommTexts[1].value = "";
+			} else if (postSlot == 2) {
+				var commData = newCommTexts[2].value;
+				newCommTexts[2].value = "";
+			} else if (postSlot == 3) {
+				var commData = newCommTexts[3].value;
+				newCommTexts[3].value = "";
+			} else if (postSlot == 4) {
+				var commData = newCommTexts[4].value;
+				newCommTexts[4].value = "";
 			}
-		})
-		getPost();
-	}
+			let commUserName = document.getElementById("UsrNme").innerText;
+			if (commentCount != 0) {
+				commData = "&&" + commData;
+				commUserName = "&&" + commUserName;
+			}
+			console.debug(parentPost);
+			console.debug(commData);
+			console.log(commUserName);
+			console.log(commentCount);
+			$.ajax({
+				method: "POST",
+				url: "postHandle.php",
+				data: { "parentPostId": parseInt(parentPost), "commentData": commData, "usrName": commUserName },
+				success: function (data) {
+					getPost(data);
+				}
+			})
+			getPost();
+		}
 
 
-	// sleep function
-	function sleep(milliseconds) {
-		const date = Date.now();
-		let currentDate = null;
-		do {
-			currentDate = Date.now();
-		} while (currentDate - date < milliseconds);
-	}
+		// sleep function
+		function sleep(milliseconds) {
+			const date = Date.now();
+			let currentDate = null;
+			do {
+				currentDate = Date.now();
+			} while (currentDate - date < milliseconds);
+		}
 
 
-	//function to get and load the comments
-	function getComment(tmpVar, postDispNum, numComms) {
-		console.log(tmpVar);
-		console.log(postDispNum);
+		//function to get and load the comments
+		function getComment(tmpVar, postDispNum, numComms) {
+			console.log(tmpVar);
+			console.log(postDispNum);
 
-		$.ajax({
-			method: "GET",
-			url: "postHandle.php",
-			data: { "commentedPost": tmpVar },
-			success: function (data) {
+			$.ajax({
+				method: "GET",
+				url: "postHandle.php",
+				data: { "commentedPost": tmpVar },
+				success: function (data) {
 
-				console.log(data);
-				console.log(" ");
+					console.log(data);
+					console.log(" ");
+
+					//Post Display Slot 1
+					if (postDispNum == 1) {
+						let commbody = document.getElementById('commentSect1');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						let commentnames = data[0].split('&&');
+						let commentlikes = data[1].split('&&');
+						let commenttext = data[2].split('&&');
+						for (let i = 0; i < numComms; i++) {
+							let templateC = document.querySelector('#productComment');
+							let commclone = templateC.content.cloneNode(true);
+							let commName = commclone.querySelectorAll("h4");
+							let commLikes = commclone.querySelectorAll("h5");
+							let commData = commclone.querySelectorAll("p");
+							commName[0].textContent = commentnames[i];
+							commLikes[0].textContent = commentlikes[i];
+							commData[0].textContent = commenttext[i];
+							commbody.appendChild(commclone);
+
+						}
+					}
+					//Post Display Slot 2
+					else if (postDispNum == 2) {
+						let commbody = document.getElementById('commentSect2');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (data[0].split('&&') == undefined) {
+							document.getElementById('postbox2').style.visibility = "hidden";
+						} else {
+							document.getElementById('postbox2').style.visibility = "visible";
+
+							let commentnames = data[0].split('&&');
+							let commentlikes = data[1].split('&&');
+							let commenttext = data[2].split('&&');
+							for (let i = 0; i < numComms; i++) {
+								let templateC = document.querySelector('#productComment');
+								let commclone = templateC.content.cloneNode(true);
+								let commName = commclone.querySelectorAll("h4");
+								let commLikes = commclone.querySelectorAll("h5");
+								let commData = commclone.querySelectorAll("p");
+								commName[0].textContent = commentnames[i];
+								commLikes[0].textContent = commentlikes[i];
+								commData[0].textContent = commenttext[i];
+								commbody.appendChild(commclone);
+							}
+						}
+					}
+					//Post Display Slot 3
+					else if (postDispNum == 3) {
+						let commbody = document.getElementById('commentSect3');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (data[0].split('&&') == undefined) {
+							document.getElementById('postbox3').style.visibility = "hidden";
+						} else {
+							document.getElementById('postbox3').style.visibility = "visible";
+
+							let commentnames = data[0].split('&&');
+							let commentlikes = data[1].split('&&');
+							let commenttext = data[2].split('&&');
+							for (let i = 0; i < numComms; i++) {
+								let templateC = document.querySelector('#productComment');
+								let commclone = templateC.content.cloneNode(true);
+								let commName = commclone.querySelectorAll("h4");
+								let commLikes = commclone.querySelectorAll("h5");
+								let commData = commclone.querySelectorAll("p");
+								commName[0].textContent = commentnames[i];
+								commLikes[0].textContent = commentlikes[i];
+								commData[0].textContent = commenttext[i];
+								commbody.appendChild(commclone);
+							}
+						}
+					}
+					//Post Display Slot 4
+					else if (postDispNum == 4) {
+						let commbody = document.getElementById('commentSect4');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (data[0].split('&&') == undefined) {
+							document.getElementById('postbox4').style.visibility = "hidden";
+						} else {
+							document.getElementById('postbox4').style.visibility = "visible";
+
+							let commentnames = data[0].split('&&');
+							let commentlikes = data[1].split('&&');
+							let commenttext = data[2].split('&&');
+							for (let i = 0; i < numComms; i++) {
+								let templateC = document.querySelector('#productComment');
+								let commclone = templateC.content.cloneNode(true);
+								let commName = commclone.querySelectorAll("h4");
+								let commLikes = commclone.querySelectorAll("h5");
+								let commData = commclone.querySelectorAll("p");
+								commName[0].textContent = commentnames[i];
+								commLikes[0].textContent = commentlikes[i];
+								commData[0].textContent = commenttext[i];
+								commbody.appendChild(commclone);
+							}
+						}
+					}
+					//Post Display Slot 5
+					else if (postDispNum == 5) {
+						let commbody = document.getElementById('commentSect5');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (data[0].split('&&') == undefined) {
+							document.getElementById('postbox5').style.visibility = "hidden";
+						} else {
+							document.getElementById('postbox5').style.visibility = "visible";
+
+							let commentnames = data[0].split('&&');
+							let commentlikes = data[1].split('&&');
+							let commenttext = data[2].split('&&');
+							for (let i = 0; i < numComms; i++) {
+								let templateC = document.querySelector('#productComment');
+								let commclone = templateC.content.cloneNode(true);
+								let commName = commclone.querySelectorAll("h4");
+								let commLikes = commclone.querySelectorAll("h5");
+								let commData = commclone.querySelectorAll("p");
+								commName[0].textContent = commentnames[i];
+								commLikes[0].textContent = commentlikes[i];
+								commData[0].textContent = commenttext[i];
+								commbody.appendChild(commclone);
+							}
+						}
+					}
+				}
+			})
+		}
+
+		//Function to getthe Posts
+		function getPost() {
+			$.ajax({
+				method: "GET",
+				url: "postHandle.php",
+				data: { "postNum": postNum, "pageNum": pageNumber },
+				success: function (data) {
+					outPost(data);
+				}
+			})
+		}
+
+
+		//Function to load and display the posts
+		var outPost = function (data) {
+
+			var tbody = document.querySelector('.PostnFeedDiv');
+			var cTexts = tbody.querySelectorAll('.commText');
+			var cText_1 = cTexts[0];
+			var cText_2 = cTexts[1];
+			var cText_3 = cTexts[2];
+			var cText_4 = cTexts[3];
+			var cText_5 = cTexts[4];
+			for (postNum = 0; postNum < 25; postNum += 5) {
+				usrName = data[postNum + 1];
+				postCount = data[postNum];
+				if (postCount > MaxPostNum) {
+					MaxPostNum = postCount;
+				}
+				postLikes = data[postNum + 2];
+				postData = data[postNum + 3];
+				postCommNum = data[postNum + 4];
 
 				//Post Display Slot 1
-				if(postDispNum==1){
-					let commbody = document.getElementById('commentSect1');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					let commentnames = data[0].split('&&');
-					let commentlikes = data[1].split('&&');
-					let commenttext = data[2].split('&&');
-					for (let i = 0; i < numComms; i++){
-						let templateC = document.querySelector('#productComment');
-						let commclone = templateC.content.cloneNode(true);
-						let commName = commclone.querySelectorAll("h4");
-						let commLikes = commclone.querySelectorAll("h5");
-						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = commentnames[i];
-						commLikes[0].textContent = commentlikes[i];
-						commData[0].textContent = commenttext[i];
-						commbody.appendChild(commclone);
+				if (postNum / 5 == 0) {
+					console.log(postCommNum);
+					let postbody = document.getElementById('postbox1');
+					let postDispName = postbody.querySelectorAll("h3");
+					let postDispLikes = postbody.querySelectorAll("h5");
+					let postDispData = postbody.querySelectorAll("p");
+					let butt = postbody.querySelectorAll("button");
+					let cmts = postbody.querySelectorAll('.commText');
 
+					postDispName[0].textContent = "User: " + usrName;
+					postDispLikes[0].textContent = "Likes: " + postLikes;
+					postDispData[0].textContent = postData;
+
+					likedPostNum = postCount;
+					let commCount = postCommNum;
+					butt[0].onclick = function () { add_like(likedPostNum); }
+					if ((cText_1 != null) || (cText_1 != undefined)) {
+						cmts[0].value = cText_1.value;
+					} else { cmts[0].value = ""; }
+					butt[1].onclick = function () { add_comment(likedPostNum, 0, commCount); }
+
+					if (postCommNum != 0) {
+						getComment(postCount, 1, postCommNum);
+					} else {
+						let commbody = document.getElementById('commentSect1');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					}
 				}
+
 				//Post Display Slot 2
-				else if(postDispNum==2){
-					let commbody = document.getElementById('commentSect2');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					if(data[0]==undefined){
-						document.getElementById('postbox2').style.visibility="hidden";
-					}else{
-						document.getElementById('postbox2').style.visibility="visible";
-					}
-					let commentnames = data[0].split('&&');
-					let commentlikes = data[1].split('&&');
-					let commenttext = data[2].split('&&');
-					for (let i = 0; i < numComms; i++){
-						let templateC = document.querySelector('#productComment');
-						let commclone = templateC.content.cloneNode(true);
-						let commName = commclone.querySelectorAll("h4");
-						let commLikes = commclone.querySelectorAll("h5");
-						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = commentnames[i];
-						commLikes[0].textContent = commentlikes[i];
-						commData[0].textContent = commenttext[i];
-						commbody.appendChild(commclone);
+				else if (postNum / 5 == 1) {
+					console.log(postCommNum);
+					let postbody = document.getElementById('postbox2');
+					let postDispName = postbody.querySelectorAll("h3");
+					let postDispLikes = postbody.querySelectorAll("h5");
+					let postDispData = postbody.querySelectorAll("p");
+					let butt = postbody.querySelectorAll("button");
+					let cmts = postbody.querySelectorAll('.commText');
+
+					postDispName[0].textContent = "User: " + usrName;
+					postDispLikes[0].textContent = "Likes: " + postLikes;
+					postDispData[0].textContent = postData;
+
+					likedPostNum1 = postCount;
+					let commCount1 = postCommNum;
+					butt[0].onclick = function () { add_like(likedPostNum1); }
+					if ((cText_2 != null) || (cText_2 != undefined)) {
+						cmts[0].value = cText_2.value;
+					} else { cmts[0].value = ""; }
+					butt[1].onclick = function () { add_comment(likedPostNum1, 1, commCount1); }
+
+					if (postCommNum != 0) {
+						getComment(postCount, 2, postCommNum);
+					} else {
+						let commbody = document.getElementById('commentSect2');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					}
 				}
+
 				//Post Display Slot 3
-				else if(postDispNum==3){
-					let commbody = document.getElementById('commentSect3');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					if(data[0]==undefined){
-						document.getElementById('postbox3').style.visibility="hidden";
-					}else{
-						document.getElementById('postbox3').style.visibility="visible";
-					}
-					let commentnames = data[0].split('&&');
-					let commentlikes = data[1].split('&&');
-					let commenttext = data[2].split('&&');
-					for (let i = 0; i < numComms; i++){
-						let templateC = document.querySelector('#productComment');
-						let commclone = templateC.content.cloneNode(true);
-						let commName = commclone.querySelectorAll("h4");
-						let commLikes = commclone.querySelectorAll("h5");
-						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = commentnames[i];
-						commLikes[0].textContent = commentlikes[i];
-						commData[0].textContent = commenttext[i];
-						commbody.appendChild(commclone);
+				else if (postNum / 5 == 2) {
+					let postbody = document.getElementById('postbox3');
+					let postDispName = postbody.querySelectorAll("h3");
+					let postDispLikes = postbody.querySelectorAll("h5");
+					let postDispData = postbody.querySelectorAll("p");
+					let butt = postbody.querySelectorAll("button");
+					let cmts = postbody.querySelectorAll('.commText');
+
+					postDispName[0].textContent = "User: " + usrName;
+					postDispLikes[0].textContent = "Likes: " + postLikes;
+					postDispData[0].textContent = postData;
+
+					likedPostNum2 = postCount;
+					let commCount2 = postCommNum;
+					butt[0].onclick = function () { add_like(likedPostNum2); }
+					if ((cText_3 != null) || (cText_3 != undefined)) {
+						cmts[0].value = cText_3.value;
+					} else { cmts[0].value = ""; }
+					butt[1].onclick = function () { add_comment(likedPostNum2, 2, commCount2); }
+
+					if (postCommNum != 0) {
+						getComment(postCount, 3, postCommNum);
+					} else {
+						let commbody = document.getElementById('commentSect3');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					}
 				}
+
 				//Post Display Slot 4
-				else if(postDispNum==4){
-					let commbody = document.getElementById('commentSect4');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					if(data[0]==undefined){
-						document.getElementById('postbox4').style.visibility="hidden";
-					}else{
-						document.getElementById('postbox4').style.visibility="visible";
-					}
-					let commentnames = data[0].split('&&');
-					let commentlikes = data[1].split('&&');
-					let commenttext = data[2].split('&&');
-					for (let i = 0; i < numComms; i++){
-						let templateC = document.querySelector('#productComment');
-						let commclone = templateC.content.cloneNode(true);
-						let commName = commclone.querySelectorAll("h4");
-						let commLikes = commclone.querySelectorAll("h5");
-						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = commentnames[i];
-						commLikes[0].textContent = commentlikes[i];
-						commData[0].textContent = commenttext[i];
-						commbody.appendChild(commclone);
+				else if (postNum / 5 == 3) {
+					let postbody = document.getElementById('postbox4');
+					let postDispName = postbody.querySelectorAll("h3");
+					let postDispLikes = postbody.querySelectorAll("h5");
+					let postDispData = postbody.querySelectorAll("p");
+					let butt = postbody.querySelectorAll("button");
+					let cmts = postbody.querySelectorAll('.commText');
+
+					postDispName[0].textContent = "User: " + usrName;
+					postDispLikes[0].textContent = "Likes: " + postLikes;
+					postDispData[0].textContent = postData;
+
+					likedPostNum3 = postCount;
+					let commCount3 = postCommNum;
+
+					butt[0].onclick = function () { add_like(likedPostNum3); }
+					if ((cText_4 != null) || (cText_4 != undefined)) {
+						cmts[0].value = cText_4.value;
+					} else { cmts[0].value = ""; }
+					butt[1].onclick = function () { add_comment(likedPostNum3, 3, commCount3); }
+
+					if (postCommNum != 0) {
+						getComment(postCount, 4, postCommNum);
+					} else {
+						let commbody = document.getElementById('commentSect4');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					}
 				}
+
 				//Post Display Slot 5
-				else if(postDispNum==5){
-					let commbody = document.getElementById('commentSect5');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-					if(data[0]==undefined){
-						document.getElementById('postbox5').style.visibility="hidden";
-					}else{
-						document.getElementById('postbox5').style.visibility="visible";
+				else if (postNum / 5 == 4) {
+					let postbody = document.getElementById('postbox5');
+					let postDispName = postbody.querySelectorAll("h3");
+					let postDispLikes = postbody.querySelectorAll("h5");
+					let postDispData = postbody.querySelectorAll("p");
+					let butt = postbody.querySelectorAll("button");
+					let cmts = postbody.querySelectorAll('.commText');
+
+					postDispName[0].textContent = "User: " + usrName;
+					postDispLikes[0].textContent = "Likes: " + postLikes;
+					postDispData[0].textContent = postData;
+
+					likedPostNum4 = postCount;
+					let commCount4 = postCommNum;
+
+					butt[0].onclick = function () { add_like(likedPostNum4); }
+					if ((cText_5 != null) || (cText_5 != undefined)) {
+						cmts[0].value = cText_5.value;
+					} else { cmts[0].value = ""; }
+					butt[1].onclick = function () { add_comment(likedPostNum4, 4, commCount4); }
+
+					if (postCommNum != 0) {
+						getComment(postCount, 5, postCommNum);
+					} else {
+						let commbody = document.getElementById('commentSect5');
+						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 					}
-					let commentnames = data[0].split('&&');
-					let commentlikes = data[1].split('&&');
-					let commenttext = data[2].split('&&');
-					for (let i = 0; i < numComms; i++){
-						let templateC = document.querySelector('#productComment');
-						let commclone = templateC.content.cloneNode(true);
-						let commName = commclone.querySelectorAll("h4");
-						let commLikes = commclone.querySelectorAll("h5");
-						let commData = commclone.querySelectorAll("p");
-						commName[0].textContent = commentnames[i];
-						commLikes[0].textContent = commentlikes[i];
-						commData[0].textContent = commenttext[i];
-						commbody.appendChild(commclone);
-					}
 				}
 			}
-		})
-	}
+			document.getElementById("PageNum").innerText = pageNumber;
+		}
 
-	//Function to getthe Posts
-	function getPost() {
-		$.ajax({
-			method: "GET",
-			url: "postHandle.php",
-			data: { "postNum": postNum, "pageNum": pageNumber },
-			success: function (data) {
-				outPost(data);
-			}
-		})
-	}
+		//setInterval (getPost,25000);
 
+		//function used to change introduction based on user input name
+		var submitName = function () {
+			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
+			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
+			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
+			$.ajax({
+				method: "POST",
+				url: "cheatsheet.php",
+				data: { "receiver_name": document.getElementById("name").value },
+				success: function (data) {
 
-	//Function to load and display the posts
-	var outPost = function (data) {
-
-		var tbody = document.querySelector('.PostnFeedDiv');
-		var cTexts = tbody.querySelectorAll('.commText');
-		var cText_1 = cTexts[0];
-		var cText_2 = cTexts[1];
-		var cText_3 = cTexts[2];
-		var cText_4 = cTexts[3];
-		var cText_5 = cTexts[4];
-		for (postNum = 0; postNum < 25; postNum += 5) {
-			usrName = data[postNum + 1];
-			postCount = data[postNum];
-			if (postCount > MaxPostNum){
-				MaxPostNum=postCount;
-			}
-			postLikes = data[postNum + 2];
-			postData = data[postNum + 3];
-			postCommNum = data[postNum + 4];
-
-			//Post Display Slot 1
-			if(postNum/5 == 0){
-				console.log(postCommNum);
-				let postbody = document.getElementById('postbox1');
-				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("h5");
-				let postDispData = postbody.querySelectorAll("p");
-				let butt = postbody.querySelectorAll("button");
-				let cmts = postbody.querySelectorAll('.commText');
-
-				postDispName[0].textContent = "User: " + usrName;
-				postDispLikes[0].textContent = "Likes: " + postLikes;
-				postDispData[0].textContent = postData;
-
-				likedPostNum = postCount;
-				let commCount = postCommNum;
-				butt[0].onclick = function () { add_like(likedPostNum); }
-				if ((cText_1 != null) || (cText_1 != undefined)) {
-					cmts[0].value = cText_1.value;
-				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum,0,commCount); }
-
-				if(postCommNum !=0){
-					getComment(postCount, 1, postCommNum);
-				}else{
-					let commbody = document.getElementById('commentSect1');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
 				}
-			}
+			})
+		}
 
-			//Post Display Slot 2
-			else if(postNum/5 == 1){
-				console.log(postCommNum);
-				let postbody = document.getElementById('postbox2');
-				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("h5");
-				let postDispData = postbody.querySelectorAll("p");
-				let butt = postbody.querySelectorAll("button");
-				let cmts = postbody.querySelectorAll('.commText');
 
-				postDispName[0].textContent = "User: " + usrName;
-				postDispLikes[0].textContent = "Likes: " + postLikes;
-				postDispData[0].textContent = postData;
+		//Function to change the color
+		var toColor = function (d) {
+			var c = Number(d).toString(16);
+			return "#" + ("000000".substr(0, 6 - c.length) + c.toUpperCase());
+		}
 
-				likedPostNum1 = postCount;
-				let commCount1 = postCommNum;
-				butt[0].onclick = function () { add_like(likedPostNum1); }
-				if ((cText_2 != null) || (cText_2 != undefined)) {
-					cmts[0].value = cText_2.value;
-				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum1,1,commCount1); }
 
-				if(postCommNum !=0){
-					getComment(postCount, 2, postCommNum);
-				}else{
-					let commbody = document.getElementById('commentSect2');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-				}
-			}
-
-			//Post Display Slot 3
-			else if(postNum/5 == 2){
-				let postbody = document.getElementById('postbox3');
-				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("h5");
-				let postDispData = postbody.querySelectorAll("p");
-				let butt = postbody.querySelectorAll("button");
-				let cmts = postbody.querySelectorAll('.commText');
-
-				postDispName[0].textContent = "User: " + usrName;
-				postDispLikes[0].textContent = "Likes: " + postLikes;
-				postDispData[0].textContent = postData;
-
-				likedPostNum2 = postCount;
-				let commCount2 = postCommNum;
-				butt[0].onclick = function () { add_like(likedPostNum2); }
-				if ((cText_3 != null) || (cText_3 != undefined)) {
-					cmts[0].value = cText_3.value;
-				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum2,2,commCount2); }
-
-				if(postCommNum !=0){
-					getComment(postCount, 3, postCommNum);
-				}else{
-					let commbody = document.getElementById('commentSect3');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-				}
-			}
-
-			//Post Display Slot 4
-			else if(postNum/5 == 3){
-				let postbody = document.getElementById('postbox4');
-				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("h5");
-				let postDispData = postbody.querySelectorAll("p");
-				let butt = postbody.querySelectorAll("button");
-				let cmts = postbody.querySelectorAll('.commText');
-
-				postDispName[0].textContent = "User: " + usrName;
-				postDispLikes[0].textContent = "Likes: " + postLikes;
-				postDispData[0].textContent = postData;
-
-				likedPostNum3 = postCount;
-				let commCount3 = postCommNum;
-
-				butt[0].onclick = function () { add_like(likedPostNum3); }
-				if ((cText_4 != null) || (cText_4 != undefined)) {
-					cmts[0].value = cText_4.value;
-				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum3,3,commCount3); }
-
-				if(postCommNum !=0){
-					getComment(postCount, 4, postCommNum);
-				}else{
-					let commbody = document.getElementById('commentSect4');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-				}
-			}
-
-			//Post Display Slot 5
-			else if(postNum/5 == 4){
-				let postbody = document.getElementById('postbox5');
-				let postDispName = postbody.querySelectorAll("h3");
-				let postDispLikes = postbody.querySelectorAll("h5");
-				let postDispData = postbody.querySelectorAll("p");
-				let butt = postbody.querySelectorAll("button");
-				let cmts = postbody.querySelectorAll('.commText');
-
-				postDispName[0].textContent = "User: " + usrName;
-				postDispLikes[0].textContent = "Likes: " + postLikes;
-				postDispData[0].textContent = postData;
-
-				likedPostNum4 = postCount;
-				let commCount4 = postCommNum;
-
-				butt[0].onclick = function () { add_like(likedPostNum4); }
-				if ((cText_5 != null) || (cText_5 != undefined)) {
-					cmts[0].value = cText_5.value;
-				} else { cmts[0].value = ""; }
-				butt[1].onclick = function () { add_comment(likedPostNum4,4,commCount4); }
-
-				if(postCommNum !=0){
-					getComment(postCount, 5, postCommNum);
-				}else{
-					let commbody = document.getElementById('commentSect5');
-					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-				}
+		//function used to change the color of the headers based on user input
+		var changeColorHandler = function (evt) {
+			let mycolor = evt.currentTarget.value
+			let wordColor = toColor((Number(Number(mycolor).toString(16)) + 0x777777) % 0xffffff);
+			var FeedBackgnd = document.getElementsByClassName("PostnFeedDiv");
+			FeedBackgnd[0].style.background = mycolor;
+			var elements = document.getElementsByClassName("multicolorF");
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].style.color = wordColor;
 			}
 		}
-		document.getElementById("PageNum").innerText = pageNumber;
-	}
 
-	//setInterval (getPost,25000);
 
-	//function used to change introduction based on user input name
-	var submitName = function () {
-		document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
-		document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
-		document.getElementById("UsrNme").innerText = document.getElementById("name").value;
-		$.ajax({
-			method: "POST",
-			url: "cheatsheet.php",
-			data: { "receiver_name": document.getElementById("name").value },
-			success: function (data) {
+		//function to clear the posts (depricated)
+		var clearPosts = function () {
+			var tbody = document.querySelector("tbody");
+			tbody.innerHTML = '';
+		}
 
+
+		//previous page function for page navigation
+		var prevPage = function () {
+			if (pageNumber > 1) {
+				pageNumber = pageNumber - 1;
 			}
-		})
-	}
-
-
-	//Function to change the color
-	var toColor = function (d) {
-		var c = Number(d).toString(16);
-		return "#" + ("000000".substr(0, 6 - c.length) + c.toUpperCase());
-	}
-
-
-	//function used to change the color of the headers based on user input
-	var changeColorHandler = function (evt) {
-		let mycolor = evt.currentTarget.value
-		let wordColor = toColor((Number(Number(mycolor).toString(16)) + 0x777777) % 0xffffff);
-		var FeedBackgnd = document.getElementsByClassName("PostnFeedDiv");
-		FeedBackgnd[0].style.background = mycolor;
-		var elements = document.getElementsByClassName("multicolorF");
-		for (var i = 0; i < elements.length; i++) {
-			elements[i].style.color = wordColor;
+			getPost();
 		}
-	}
 
 
-	//function to clear the posts (depricated)
-	var clearPosts = function () {
-		var tbody = document.querySelector("tbody");
-		tbody.innerHTML = '';
-	}
-
-
-	//previous page function for page navigation
-	var prevPage = function(){
-		if(pageNumber>1){
-			pageNumber=pageNumber-1;
-		}
-		getPost();
-	}
-
-
-	//next page function for page navigation
-	var nextPage = function(){
-		if(pageNumber<(MaxPostNum/5)+1){
-			pageNumber=pageNumber+1;
-		}
-		getPost();
-	}
-
-	//function to display the posts (depricated)
-	var printPost = function () {
-		$.ajax({
-			method: "POST",
-			url: "postHandle.php",
-			data: { "postName": document.getElementById("UsrNme").innerText, "postText": document.getElementById("post").value },
-			success: function (data) {
-
+		//next page function for page navigation
+		var nextPage = function () {
+			if (pageNumber < (MaxPostNum / 5) + 1) {
+				pageNumber = pageNumber + 1;
 			}
-		})
-		document.getElementById("post").value = "";
-		sleep(250);
-		getPost();
-	}
+			getPost();
+		}
+
+		//function to display the posts (depricated)
+		var printPost = function () {
+			$.ajax({
+				method: "POST",
+				url: "postHandle.php",
+				data: { "postName": document.getElementById("UsrNme").innerText, "postText": document.getElementById("post").value },
+				success: function (data) {
+
+				}
+			})
+			document.getElementById("post").value = "";
+			sleep(250);
+			getPost();
+		}
 
 
-	//Actually changes the color if the Words / Feed Background
-	document.querySelector("#wordColor").addEventListener(
-		"change",
-		changeColorHandler
-	)
+		//Actually changes the color if the Words / Feed Background
+		document.querySelector("#wordColor").addEventListener(
+			"change",
+			changeColorHandler
+		)
 
 
-</script>
+	</script>
 </body>
 
 </html>
