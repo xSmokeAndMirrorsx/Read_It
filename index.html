@@ -319,6 +319,11 @@
 				else if(postDispNum==2){
 					let commbody = document.getElementById('commentSect2');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+					if(data[0]==undefined){
+						document.getElementById('postbox2').style.visibility="hidden";
+					}else{
+						document.getElementById('postbox2').style.visibility="visible";
+					}
 					let commentnames = data[0].split('&&');
 					let commentlikes = data[1].split('&&');
 					let commenttext = data[2].split('&&');
@@ -338,6 +343,11 @@
 				else if(postDispNum==3){
 					let commbody = document.getElementById('commentSect3');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+					if(data[0]==undefined){
+						document.getElementById('postbox3').style.visibility="hidden";
+					}else{
+						document.getElementById('postbox3').style.visibility="visible";
+					}
 					let commentnames = data[0].split('&&');
 					let commentlikes = data[1].split('&&');
 					let commenttext = data[2].split('&&');
@@ -357,6 +367,11 @@
 				else if(postDispNum==4){
 					let commbody = document.getElementById('commentSect4');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+					if(data[0]==undefined){
+						document.getElementById('postbox4').style.visibility="hidden";
+					}else{
+						document.getElementById('postbox4').style.visibility="visible";
+					}
 					let commentnames = data[0].split('&&');
 					let commentlikes = data[1].split('&&');
 					let commenttext = data[2].split('&&');
@@ -376,6 +391,11 @@
 				else if(postDispNum==5){
 					let commbody = document.getElementById('commentSect5');
 					commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+					if(data[0]==undefined){
+						document.getElementById('postbox5').style.visibility="hidden";
+					}else{
+						document.getElementById('postbox5').style.visibility="visible";
+					}
 					let commentnames = data[0].split('&&');
 					let commentlikes = data[1].split('&&');
 					let commenttext = data[2].split('&&');
