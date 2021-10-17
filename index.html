@@ -320,100 +320,76 @@
 					else if (postDispNum == 2) {
 						let commbody = document.getElementById('commentSect2');
 						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-						if (data[0] == undefined) {
-							document.getElementById('postbox2').style.visibility = "hidden";
-						} else {
-							document.getElementById('postbox2').style.visibility = "visible";
-
-							let commentnames = data[0].split('&&');
-							let commentlikes = data[1].split('&&');
-							let commenttext = data[2].split('&&');
-							for (let i = 0; i < numComms; i++) {
-								let templateC = document.querySelector('#productComment');
-								let commclone = templateC.content.cloneNode(true);
-								let commName = commclone.querySelectorAll("h4");
-								let commLikes = commclone.querySelectorAll("h5");
-								let commData = commclone.querySelectorAll("p");
-								commName[0].textContent = commentnames[i];
-								commLikes[0].textContent = commentlikes[i];
-								commData[0].textContent = commenttext[i];
-								commbody.appendChild(commclone);
-							}
+						let commentnames = data[0].split('&&');
+						let commentlikes = data[1].split('&&');
+						let commenttext = data[2].split('&&');
+						for (let i = 0; i < numComms; i++) {
+							let templateC = document.querySelector('#productComment');
+							let commclone = templateC.content.cloneNode(true);
+							let commName = commclone.querySelectorAll("h4");
+							let commLikes = commclone.querySelectorAll("h5");
+							let commData = commclone.querySelectorAll("p");
+							commName[0].textContent = commentnames[i];
+							commLikes[0].textContent = commentlikes[i];
+							commData[0].textContent = commenttext[i];
+							commbody.appendChild(commclone);
 						}
 					}
 					//Post Display Slot 3
 					else if (postDispNum == 3) {
 						let commbody = document.getElementById('commentSect3');
 						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-						if (data[0] == undefined) {
-							document.getElementById('postbox3').style.visibility = "hidden";
-						} else {
-							document.getElementById('postbox3').style.visibility = "visible";
-
-							let commentnames = data[0].split('&&');
-							let commentlikes = data[1].split('&&');
-							let commenttext = data[2].split('&&');
-							for (let i = 0; i < numComms; i++) {
-								let templateC = document.querySelector('#productComment');
-								let commclone = templateC.content.cloneNode(true);
-								let commName = commclone.querySelectorAll("h4");
-								let commLikes = commclone.querySelectorAll("h5");
-								let commData = commclone.querySelectorAll("p");
-								commName[0].textContent = commentnames[i];
-								commLikes[0].textContent = commentlikes[i];
-								commData[0].textContent = commenttext[i];
-								commbody.appendChild(commclone);
-							}
+						let commentnames = data[0].split('&&');
+						let commentlikes = data[1].split('&&');
+						let commenttext = data[2].split('&&');
+						for (let i = 0; i < numComms; i++) {
+							let templateC = document.querySelector('#productComment');
+							let commclone = templateC.content.cloneNode(true);
+							let commName = commclone.querySelectorAll("h4");
+							let commLikes = commclone.querySelectorAll("h5");
+							let commData = commclone.querySelectorAll("p");
+							commName[0].textContent = commentnames[i];
+							commLikes[0].textContent = commentlikes[i];
+							commData[0].textContent = commenttext[i];
+							commbody.appendChild(commclone);
 						}
 					}
 					//Post Display Slot 4
 					else if (postDispNum == 4) {
 						let commbody = document.getElementById('commentSect4');
 						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-						if (data[0] == undefined) {
-							document.getElementById('postbox4').style.visibility = "hidden";
-						} else {
-							document.getElementById('postbox4').style.visibility = "visible";
-
-							let commentnames = data[0].split('&&');
-							let commentlikes = data[1].split('&&');
-							let commenttext = data[2].split('&&');
-							for (let i = 0; i < numComms; i++) {
-								let templateC = document.querySelector('#productComment');
-								let commclone = templateC.content.cloneNode(true);
-								let commName = commclone.querySelectorAll("h4");
-								let commLikes = commclone.querySelectorAll("h5");
-								let commData = commclone.querySelectorAll("p");
-								commName[0].textContent = commentnames[i];
-								commLikes[0].textContent = commentlikes[i];
-								commData[0].textContent = commenttext[i];
-								commbody.appendChild(commclone);
-							}
+						let commentnames = data[0].split('&&');
+						let commentlikes = data[1].split('&&');
+						let commenttext = data[2].split('&&');
+						for (let i = 0; i < numComms; i++) {
+							let templateC = document.querySelector('#productComment');
+							let commclone = templateC.content.cloneNode(true);
+							let commName = commclone.querySelectorAll("h4");
+							let commLikes = commclone.querySelectorAll("h5");
+							let commData = commclone.querySelectorAll("p");
+							commName[0].textContent = commentnames[i];
+							commLikes[0].textContent = commentlikes[i];
+							commData[0].textContent = commenttext[i];
+							commbody.appendChild(commclone);
 						}
 					}
 					//Post Display Slot 5
 					else if (postDispNum == 5) {
 						let commbody = document.getElementById('commentSect5');
 						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
-						if (data[0] == undefined) {
-							document.getElementById('postbox5').style.visibility = "hidden";
-						} else {
-							document.getElementById('postbox5').style.visibility = "visible";
-
-							let commentnames = data[0].split('&&');
-							let commentlikes = data[1].split('&&');
-							let commenttext = data[2].split('&&');
-							for (let i = 0; i < numComms; i++) {
-								let templateC = document.querySelector('#productComment');
-								let commclone = templateC.content.cloneNode(true);
-								let commName = commclone.querySelectorAll("h4");
-								let commLikes = commclone.querySelectorAll("h5");
-								let commData = commclone.querySelectorAll("p");
-								commName[0].textContent = commentnames[i];
-								commLikes[0].textContent = commentlikes[i];
-								commData[0].textContent = commenttext[i];
-								commbody.appendChild(commclone);
-							}
+						let commentnames = data[0].split('&&');
+						let commentlikes = data[1].split('&&');
+						let commenttext = data[2].split('&&');
+						for (let i = 0; i < numComms; i++) {
+							let templateC = document.querySelector('#productComment');
+							let commclone = templateC.content.cloneNode(true);
+							let commName = commclone.querySelectorAll("h4");
+							let commLikes = commclone.querySelectorAll("h5");
+							let commData = commclone.querySelectorAll("p");
+							commName[0].textContent = commentnames[i];
+							commLikes[0].textContent = commentlikes[i];
+							commData[0].textContent = commenttext[i];
+							commbody.appendChild(commclone);
 						}
 					}
 				}
@@ -485,120 +461,144 @@
 
 				//Post Display Slot 2
 				else if (postNum / 5 == 1) {
-					console.log(postCommNum);
-					let postbody = document.getElementById('postbox2');
-					let postDispName = postbody.querySelectorAll("h3");
-					let postDispLikes = postbody.querySelectorAll("h5");
-					let postDispData = postbody.querySelectorAll("p");
-					let butt = postbody.querySelectorAll("button");
-					let cmts = postbody.querySelectorAll('.commText');
+					if (data[postNum + 3] == undefined) {
+						document.getElementById("postbox2").style.visibility = "hidden";
+					}
+					else {
+						document.getElementById("postbox2").style.visibility = "visible";
+						console.log(postCommNum);
+						let postbody = document.getElementById('postbox2');
+						let postDispName = postbody.querySelectorAll("h3");
+						let postDispLikes = postbody.querySelectorAll("h5");
+						let postDispData = postbody.querySelectorAll("p");
+						let butt = postbody.querySelectorAll("button");
+						let cmts = postbody.querySelectorAll('.commText');
 
-					postDispName[0].textContent = "User: " + usrName;
-					postDispLikes[0].textContent = "Likes: " + postLikes;
-					postDispData[0].textContent = postData;
+						postDispName[0].textContent = "User: " + usrName;
+						postDispLikes[0].textContent = "Likes: " + postLikes;
+						postDispData[0].textContent = postData;
 
-					likedPostNum1 = postCount;
-					let commCount1 = postCommNum;
-					butt[0].onclick = function () { add_like(likedPostNum1); }
-					if ((cText_2 != null) || (cText_2 != undefined)) {
-						cmts[0].value = cText_2.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum1, 1, commCount1); }
+						likedPostNum1 = postCount;
+						let commCount1 = postCommNum;
+						butt[0].onclick = function () { add_like(likedPostNum1); }
+						if ((cText_2 != null) || (cText_2 != undefined)) {
+							cmts[0].value = cText_2.value;
+						} else { cmts[0].value = ""; }
+						butt[1].onclick = function () { add_comment(likedPostNum1, 1, commCount1); }
 
-					if (postCommNum != 0) {
-						getComment(postCount, 2, postCommNum);
-					} else {
-						let commbody = document.getElementById('commentSect2');
-						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (postCommNum != 0) {
+							getComment(postCount, 2, postCommNum);
+						} else {
+							let commbody = document.getElementById('commentSect2');
+							commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						}
 					}
 				}
 
 				//Post Display Slot 3
 				else if (postNum / 5 == 2) {
-					let postbody = document.getElementById('postbox3');
-					let postDispName = postbody.querySelectorAll("h3");
-					let postDispLikes = postbody.querySelectorAll("h5");
-					let postDispData = postbody.querySelectorAll("p");
-					let butt = postbody.querySelectorAll("button");
-					let cmts = postbody.querySelectorAll('.commText');
+					if (data[postNum + 3] == undefined) {
+						document.getElementById("postbox3").style.visibility = "hidden";
+					}
+					else {
+						document.getElementById("postbox3").style.visibility = "visible";
+						let postbody = document.getElementById('postbox3');
+						let postDispName = postbody.querySelectorAll("h3");
+						let postDispLikes = postbody.querySelectorAll("h5");
+						let postDispData = postbody.querySelectorAll("p");
+						let butt = postbody.querySelectorAll("button");
+						let cmts = postbody.querySelectorAll('.commText');
 
-					postDispName[0].textContent = "User: " + usrName;
-					postDispLikes[0].textContent = "Likes: " + postLikes;
-					postDispData[0].textContent = postData;
+						postDispName[0].textContent = "User: " + usrName;
+						postDispLikes[0].textContent = "Likes: " + postLikes;
+						postDispData[0].textContent = postData;
 
-					likedPostNum2 = postCount;
-					let commCount2 = postCommNum;
-					butt[0].onclick = function () { add_like(likedPostNum2); }
-					if ((cText_3 != null) || (cText_3 != undefined)) {
-						cmts[0].value = cText_3.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum2, 2, commCount2); }
+						likedPostNum2 = postCount;
+						let commCount2 = postCommNum;
+						butt[0].onclick = function () { add_like(likedPostNum2); }
+						if ((cText_3 != null) || (cText_3 != undefined)) {
+							cmts[0].value = cText_3.value;
+						} else { cmts[0].value = ""; }
+						butt[1].onclick = function () { add_comment(likedPostNum2, 2, commCount2); }
 
-					if (postCommNum != 0) {
-						getComment(postCount, 3, postCommNum);
-					} else {
-						let commbody = document.getElementById('commentSect3');
-						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (postCommNum != 0) {
+							getComment(postCount, 3, postCommNum);
+						} else {
+							let commbody = document.getElementById('commentSect3');
+							commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						}
 					}
 				}
 
 				//Post Display Slot 4
 				else if (postNum / 5 == 3) {
-					let postbody = document.getElementById('postbox4');
-					let postDispName = postbody.querySelectorAll("h3");
-					let postDispLikes = postbody.querySelectorAll("h5");
-					let postDispData = postbody.querySelectorAll("p");
-					let butt = postbody.querySelectorAll("button");
-					let cmts = postbody.querySelectorAll('.commText');
+					if (data[postNum + 3] == undefined) {
+						document.getElementById("postbox4").style.visibility = "hidden";
+					}
+					else {
+						document.getElementById("postbox4").style.visibility = "visible";
+						let postbody = document.getElementById('postbox4');
+						let postDispName = postbody.querySelectorAll("h3");
+						let postDispLikes = postbody.querySelectorAll("h5");
+						let postDispData = postbody.querySelectorAll("p");
+						let butt = postbody.querySelectorAll("button");
+						let cmts = postbody.querySelectorAll('.commText');
 
-					postDispName[0].textContent = "User: " + usrName;
-					postDispLikes[0].textContent = "Likes: " + postLikes;
-					postDispData[0].textContent = postData;
+						postDispName[0].textContent = "User: " + usrName;
+						postDispLikes[0].textContent = "Likes: " + postLikes;
+						postDispData[0].textContent = postData;
 
-					likedPostNum3 = postCount;
-					let commCount3 = postCommNum;
+						likedPostNum3 = postCount;
+						let commCount3 = postCommNum;
 
-					butt[0].onclick = function () { add_like(likedPostNum3); }
-					if ((cText_4 != null) || (cText_4 != undefined)) {
-						cmts[0].value = cText_4.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum3, 3, commCount3); }
+						butt[0].onclick = function () { add_like(likedPostNum3); }
+						if ((cText_4 != null) || (cText_4 != undefined)) {
+							cmts[0].value = cText_4.value;
+						} else { cmts[0].value = ""; }
+						butt[1].onclick = function () { add_comment(likedPostNum3, 3, commCount3); }
 
-					if (postCommNum != 0) {
-						getComment(postCount, 4, postCommNum);
-					} else {
-						let commbody = document.getElementById('commentSect4');
-						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (postCommNum != 0) {
+							getComment(postCount, 4, postCommNum);
+						} else {
+							let commbody = document.getElementById('commentSect4');
+							commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						}
 					}
 				}
 
 				//Post Display Slot 5
 				else if (postNum / 5 == 4) {
-					let postbody = document.getElementById('postbox5');
-					let postDispName = postbody.querySelectorAll("h3");
-					let postDispLikes = postbody.querySelectorAll("h5");
-					let postDispData = postbody.querySelectorAll("p");
-					let butt = postbody.querySelectorAll("button");
-					let cmts = postbody.querySelectorAll('.commText');
+					if (data[postNum + 3] == undefined) {
+						document.getElementById("postbox5").style.visibility = "hidden";
+					}
+					else {
+						document.getElementById("postbox5").style.visibility = "visible";
+						let postbody = document.getElementById('postbox5');
+						let postDispName = postbody.querySelectorAll("h3");
+						let postDispLikes = postbody.querySelectorAll("h5");
+						let postDispData = postbody.querySelectorAll("p");
+						let butt = postbody.querySelectorAll("button");
+						let cmts = postbody.querySelectorAll('.commText');
 
-					postDispName[0].textContent = "User: " + usrName;
-					postDispLikes[0].textContent = "Likes: " + postLikes;
-					postDispData[0].textContent = postData;
+						postDispName[0].textContent = "User: " + usrName;
+						postDispLikes[0].textContent = "Likes: " + postLikes;
+						postDispData[0].textContent = postData;
 
-					likedPostNum4 = postCount;
-					let commCount4 = postCommNum;
+						likedPostNum4 = postCount;
+						let commCount4 = postCommNum;
 
-					butt[0].onclick = function () { add_like(likedPostNum4); }
-					if ((cText_5 != null) || (cText_5 != undefined)) {
-						cmts[0].value = cText_5.value;
-					} else { cmts[0].value = ""; }
-					butt[1].onclick = function () { add_comment(likedPostNum4, 4, commCount4); }
+						butt[0].onclick = function () { add_like(likedPostNum4); }
+						if ((cText_5 != null) || (cText_5 != undefined)) {
+							cmts[0].value = cText_5.value;
+						} else { cmts[0].value = ""; }
+						butt[1].onclick = function () { add_comment(likedPostNum4, 4, commCount4); }
 
-					if (postCommNum != 0) {
-						getComment(postCount, 5, postCommNum);
-					} else {
-						let commbody = document.getElementById('commentSect5');
-						commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						if (postCommNum != 0) {
+							getComment(postCount, 5, postCommNum);
+						} else {
+							let commbody = document.getElementById('commentSect5');
+							commbody.innerHTML = "<h4 style='text-align: left; padding-left: 2px'>Comments:</h4>";
+						}
 					}
 				}
 			}
