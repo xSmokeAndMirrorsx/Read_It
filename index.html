@@ -34,7 +34,7 @@
 		<p></p>
 	</div>
 
-	<div id="login">
+	<div style="color:white;" id="login">
 		<input type="text" id="regemail" placeholder="Register Email"/>
 		<input type="password" id="regpass1" placeholder="Register Password"/>
 		<input type="password" id="regpass2" placeholder="Confirm Password"/>
@@ -45,16 +45,16 @@
 		<button type="button" id="login">Click Here To Login</button>
 	  </div>
 	  <hr>
-	  <div id="app">
+	  <div style="color:white;" id="app">
 		<h2>Login to enjoy the app</h2>
 	  </div>
 	  <hr>
 	  <h1>My Security Rules Are Cool</h1>
-	  <div id="rules">
+	  <div style="color:white;" id="rules">
 	  </div>
 
 	<!-- Div containing 3 vertical divs -->
-	<div style="background-color:dimgrey; min-height:100%">
+	<div hidden id="appContainer" style="background-color:dimgrey; min-height:100%">
 
 
 		<!-- Social Div -->
@@ -254,6 +254,7 @@
 			if (!!user) {
 				$("#login").hide();
 				$("#app").show();
+				$("#appContainer").show();
 				renderUser(user);
 				let flagRef = rtdb.ref(db, "/flag");
 				console.log("here");
@@ -263,6 +264,7 @@
 			} else {
 				$("#login").show();
 				$("#app").html("");
+				$("#appContainer").hide();
 			}
 		});
 
