@@ -35,21 +35,21 @@
 	</div>
 
 	<div style="color:white;" id="login">
-		<input type="text" id="regemail" placeholder="Register Email"/>
-		<input type="password" id="regpass1" placeholder="Register Password"/>
-		<input type="password" id="regpass2" placeholder="Confirm Password"/>
+		<input type="text" id="regemail" placeholder="Register Email" />
+		<input type="password" id="regpass1" placeholder="Register Password" />
+		<input type="password" id="regpass2" placeholder="Confirm Password" />
 		<button type="button" id="register">Click Here To Register</button>
 		<hr>
-		<input type="text" id="logemail" placeholder="Login with Email"/>
-		<input type="password" id="logpass" placeholder="Login Password"/>
+		<input type="text" id="logemail" placeholder="Login with Email" />
+		<input type="password" id="logpass" placeholder="Login Password" />
 		<button type="button" id="login">Click Here To Login</button>
-	  </div>
-	  <hr>
-	  <div style="color:white;" id="app">
+	</div>
+	<hr>
+	<div style="color:white;" id="app">
 		<h2>Login to enjoy the app</h2>
-	  </div>
-	  <hr>
-	  <!--<h1>My Security Rules Are Cool</h1>
+	</div>
+	<hr>
+	<!--<h1>My Security Rules Are Cool</h1>
 	  <div style="color:white;" id="rules">
 	  </div>-->
 
@@ -205,7 +205,7 @@
 
 			<h3 id="profName"></h3>
 			Name: <input type="text" id="name">
-			<button onclick="submitName()">Change Name</button>
+			<button id="nameChanger" onclick="submitName()">Change Name</button>
 			<p></p>
 			Customize Feed Color: <input type="color" id="wordColor">
 			<p></p>
@@ -268,6 +268,23 @@
 			}
 		});
 
+
+		$("#nameChanger").on("click", () => {
+			fbauth.currentUser.updateProfile({
+				displayName: document.getElementById("name").value,
+			}).then(function () { /* Update successful.*/ }).catch(function (error) {  /* An error happened.*/ });
+			document.getElementById("uName").innerText = "What's on your mind, " + fbauth.currentUser.displayName + "? Read / Write about it?";
+			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
+			document.getElementById("UsrNme").innerText = fbauth.currentUser.displayName;
+			$.ajax({
+				method: "POST",
+				url: "cheatsheet.php",
+				data: { "receiver_name": document.getElementById("name").value },
+				success: function (data) {
+
+				}
+			})
+		});
 
 		/*let rulesRef = rtdb.ref(db, "/rules");
 		rtdb.onValue(rulesRef, ss => {
@@ -730,7 +747,7 @@
 		//setInterval (getPost,25000);
 
 		//function used to change introduction based on user input name
-		var submitName = function () {
+		/*var submitName = function () {
 			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
 			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
@@ -739,10 +756,10 @@
 				url: "cheatsheet.php",
 				data: { "receiver_name": document.getElementById("name").value },
 				success: function (data) {
-
+	
 				}
 			})
-		}
+		}*/
 
 
 		//Function to change the color
