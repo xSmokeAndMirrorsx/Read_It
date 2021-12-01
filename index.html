@@ -49,9 +49,9 @@
 		<h2>Login to enjoy the app</h2>
 	  </div>
 	  <hr>
-	  <h1>My Security Rules Are Cool</h1>
+	  <!--<h1>My Security Rules Are Cool</h1>
 	  <div style="color:white;" id="rules">
-	  </div>
+	  </div>-->
 
 	<!-- Div containing 3 vertical divs -->
 	<div hidden id="appContainer" style="background-color:dimgrey; min-height:100%">
@@ -269,13 +269,13 @@
 		});
 
 
-		let rulesRef = rtdb.ref(db, "/rules");
+		/*let rulesRef = rtdb.ref(db, "/rules");
 		rtdb.onValue(rulesRef, ss => {
 			let rules = ss.val();
 			if (!!rules) {
 				$("#rules").html(rules);
 			}
-		})
+		})*/
 
 
 		$("#register").on("click", () => {
@@ -314,11 +314,9 @@
 					console.log(errorMessage);
 				});
 		});
-	</script>
 
 
-	<!-- Script containing functions relavant to UI -->
-	<script>
+	//<!-- Script containing functions relavant to UI -->
 		var postCount = 0;
 		var postData = "";
 		var usrName = "";
