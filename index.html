@@ -255,8 +255,8 @@
 				document.getElementById("profName").innerText = userObj.email + "'s Preferences:";
 			}
 			
-			$("#app").html(JSON.stringify(userObj));
-			$("#app").append(`<button type="button" id="logout">Logout</button>`);
+			$("#app").html("");
+			$("#app").append(`<div style="text-align: center"><span style="padding-left: 30px; padding-right: 40px;">Signed in as: `+ userObj.email + ` </span><button type="button" id="logout">Logout</button></div>`);
 			$("#logout").on("click", () => {
 				fbauth.signOut(auth);
 			})
@@ -275,7 +275,7 @@
 				})
 			} else {
 				$("#login").show();
-				$("#app").html("");
+				$("#app").html("<h2>Login to enjoy the app</h2>");
 				$("#appContainer").hide();
 			}
 		});
