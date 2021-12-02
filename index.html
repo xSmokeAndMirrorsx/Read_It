@@ -14,9 +14,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 </head>
 
-<!-- Start of Main Body-->
+<!----------------------------------------Start of Main Body---------------------------------------->
 
-<body id="MainBod" style="background-color:black; min-height:100%">
+<body id="MainBod" style="background-color:rgb(0, 119, 158); min-height:100%">
 	<style>
 		div.a {
 			text-align: center;
@@ -27,54 +27,92 @@
 		}
 	</style>
 
-	<!-- Title and Intro Div -->
-	<div class="a" style="background-color:dimgrey ">
-		<h1 class="multicolor" style="color:white;">WROTiTT</h1>
-		<h2 class="multicolor" id="uName"></h2>
-		<p></p>
-	</div>
+	<!---------------------Header--------------------->
 
-	<div style="color:white;" id="login">
-		<input type="text" id="regemail" placeholder="Register Email" />
-		<input type="password" id="regpass1" placeholder="Register Password" />
-		<input type="password" id="regpass2" placeholder="Confirm Password" />
-		<input type="text" id="userNameInput" placeholder="Type Desired User Name" />
-		<button type="button" id="register">Click Here To Register</button>
+
+	<div id="header"
+		style="margin:0px; padding:0px; background-color:whitesmoke; width: 100%; height: fit-content; border:3px groove deepskyblue">
+		<img id="headerLogo"
+			style="float: left; align-self :center; width:52px; height: 60px; margin-left:20px; margin-top:30px; margin-bottom:5px; margin-right:5%;"
+			src="WrottitLogo.png">
+		<div id="headerText" class="a" style="text-align: center; display: inline">
+			<h1 id="appName" class="multicolor"
+				style="text-shadow: 3px 0px 6px lightskyblue; margin-left: 5%; padding-top:15px; padding-bottom:5px; margin-right:8%;  color:deepskyblue;">
+				WROTiTT
+			</h1>
+			<h2 class="multicolor" id="uName"
+				style="color: deepskyblue; text-shadow: 2px 0px 4px skyblue; padding-bottom: 5px">
+			</h2>
+			<button hidden style="float:right; margin-right:60px; margin-top:-45px; margin-bottom:5px;" type="button" id="logout">Logout</button>
+		</div>
+	</div>
+	<hr>
+
+	<!---------------------Login and Register Section--------------------->
+	<div id="loginContainer" style="background-color: white">
+
+		<div style="text-align: center; color:rgb(0, 152, 202); height: fit-content" id="app">
+			<h3><b>WROTiTT:</b> <i>Write to be heard on a global scale</i></h3>
+			<p>WROTiTT gives you a way to share your ideas to the world, with user posts reaching everyone on the
+				platform!</p>
+			<p>Post your thoughts if you have an orginial idea, or give feedback on someone elses idea by liking or
+				commenting!</p>
+			<p><i>~~Please be respectful and conciencious when sharing~~</i></p>
+		</div>
+
 		<hr>
-		<input type="text" id="logemail" placeholder="Login with Email" />
-		<input type="password" id="logpass" placeholder="Login Password" />
-		<button type="button" id="login">Click Here To Login</button>
+
+		<div style="color:rgb(0, 152, 202);" id="login">
+			<h2 style="padding:10px; padding-bottom:0px; padding-top:0px;"><b>Log In -- Exisiting Users</b></h2>
+			<p style="padding-left:15px;"><b>Enter Your Email and Password to Login</b></p>
+			<input style="margin-left:15px;" type="text" id="logemail" placeholder="Login with Email" />
+			<input type="password" id="logpass" placeholder="Login Password" />
+			<button type="button" id="login">Click Here To Login</button>
+
+			<hr style="margin-top:20px; color:rgb(0, 119, 158)">
+
+			<h2 style="padding:0px 10px 0px 10px; "><b>REGISTER -- New Users</b></h2>
+			<p style="padding-left:15px;">
+				<b>
+					Enter Login Email :<input style="margin-right:25px;" type="text" id="regemail"
+						placeholder="Register Email" />
+					Enter Display Name :<input type="text" id="userNameInput" placeholder="Type Desired User Name" />
+				</b>
+			</p>
+			<p style="padding-left:15px;">
+				<b>
+					Enter New Password :<input style="margin-right:10px;" type="password" id="regpass1"
+						placeholder="Register Password" />
+					Confirm New Password:<input type="password" id="regpass2" placeholder="Confirm Password" />
+				</b>
+			</p>
+			<button style="margin-left:15px;" type="button" id="register">Click Here To Register</button>
+		</div>
+		<hr>
 	</div>
-	<hr>
-	<div style="color:white;" id="app">
-		<h2>Login to enjoy the app</h2>
-	</div>
-	<hr>
-	<!--<h1>My Security Rules Are Cool</h1>
-	  <div style="color:white;" id="rules">
-	  </div>-->
-
-	<!-- Div containing 3 vertical divs -->
-	<div hidden id="appContainer" style="background-color:dimgrey; min-height:100%">
 
 
-		<!-- Social Div -->
-		<div class="a"
-			style="display: inline-block; *display: inline; width: 19%; background-color: slategrey; vertical-align: top; min-height:100%;">
+	<!---------------------Div Containing Main App--------------------->
 
-			<div class="a" style="background-color: grey;">
-				<h2 class="multicolor">Social: Friends & Events</h2>
-			</div>
+	<div hidden id="appContainer" style="margin:0px; padding:0px; text-align:center; background-color:rgb(73, 161, 216); width: 100%; height: fit-content; border:5px groove deepskyblue; min-height:100%">
 
-			<h3 id="correct_count">Correct Guesses</h3>
-			<h2 id="correct"></h2>
-			<!-- <ul id = "correct-answers"></ul> -->
+		<!-- Profile Div -->
+
+		<div id="profileDiv" class="a"
+			style="color: whitesmoke; margin:0px; padding:0px; display: inline-block;  width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; height:inherit;"><!--rgb(159, 213, 235);-->
+			<h2 class="multicolor"><u>Profile:</u> </h2>
+
+			<h3 id="profName"></h3>
+			Name: <input type="text" id="name">
+			<button id="nameChanger">Change Name</button>
+			<p></p>
 		</div>
 
 		<!-- Posting and Feed div -->
-		<div class="PostnFeedDiv"
-			style="display: inline-block; *display: inline; width: 60%; background-color: silver; vertical-align: top; height:100%;">
-			<h2 class="multicolorF">Feed: Posts & Comments</h2>
+
+		<div id="postAndFeedDiv" class="PostnFeedDiv"
+			style="color: rgb(0, 98, 131);margin:0px; padding:0px; display: inline-block; *display: inline; width: 60%; background-color: lightskyblue; border: 5px solid rgb(0, 142, 189); vertical-align: top; height:100%;">
+			<h2 class="multicolorF"><u>Feed: Posts & Comments</u></h2>
 			<p class="multicolorF">Welcome, <b id="UsrNme">--</b></p>
 			<p class="multicolorF">Type what you want to post:
 				<button onclick="printPost()">Post</button>
@@ -85,7 +123,6 @@
 			<p></p>
 
 			<!--Comment Template-->
-
 			<template class="commentPost" id="productComment">
 				<hr>
 				<h4 style="text-align: left; padding-bottom: 1px"></h4>
@@ -93,17 +130,17 @@
 				<h5 style="text-align: right; padding-left: 20%; padding-top: 1px"></h5>
 				<hr>
 			</template>
-			<!--Template-->
 
-			<!--Post Divs-->
+			<!-------Post Divs------->
+
 			<!--PostDiv1-->
 			<div id="postbox1" class="postbox">
 
-				<div id="post1" style="background-color: white">
+				<div id="post1" style="background-color: rgb(242, 254, 255)">
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect1" style="background-color: lightgrey">
+					<div class="commentbox" id="commentSect1" >
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -118,11 +155,11 @@
 			<!--PostDiv2-->
 			<div id="postbox2" class="postbox">
 
-				<div id="post2" style="background-color: white">
+				<div id="post2" style="background-color: rgb(242, 254, 255)">
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect2" style="background-color: lightgrey">
+					<div class="commentbox" id="commentSect2" >
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -137,11 +174,11 @@
 			<!--PostDiv3-->
 			<div id="postbox3" class="postbox">
 
-				<div id="post3" style="background-color: white">
+				<div id="post3" style="background-color: rgb(242, 254, 255)">
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect3" style="background-color: lightgrey">
+					<div class="commentbox" id="commentSect3" >
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -156,11 +193,11 @@
 			<!--PostDiv4-->
 			<div id="postbox4" class="postbox">
 
-				<div id="post4" style="background-color: white">
+				<div id="post4" style="background-color: rgb(242, 254, 255)">
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect4" style="background-color: lightgrey">
+					<div class="commentbox" id="commentSect4" >
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -175,11 +212,11 @@
 			<!--PostDiv5-->
 			<div id="postbox5" class="postbox">
 
-				<div id="post5" style="background-color: white">
+				<div id="post5" style="background-color: rgb(242, 254, 255)">
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect5" style="background-color: lightgrey">
+					<div class="commentbox" id="commentSect5" >
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -198,15 +235,10 @@
 		</div>
 
 		<!-- Profile Options Div -->
-		<div class="a"
-			style="display: inline-block; *display: inline; width: 19%; background-color: slategrey; vertical-align: top; height: 100%;">
-			<div class="a" style="background-color: grey;">
-				<h2 class="multicolor">User: Profile and Options</h2>
-			</div>
-
-			<h3 id="profName"></h3>
-			Name: <input type="text" id="name">
-			<button id="nameChanger">Change Name</button>
+		<div id="settingsDiv" class="a"
+			style="color: whitesmoke; padding:0px; margin:0px; display: inline-block; *display: inline; width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; height: 100%;">
+			<h2 style="padding:0px; margin:0px;" class="multicolor"><u>Settings:</u></h2>
+			<h3 style="padding:0px; margin:0px;" class="multicolor">Color and Customization</h3>
 			<p></p>
 			Customize Feed Color: <input type="color" id="wordColor">
 			<p></p>
@@ -245,18 +277,19 @@
 
 		let renderUser = function (userObj) {
 			fbauth.reload(userObj);
-			if(userObj.displayName!=null){
-				document.getElementById("uName").innerText = "What's on your mind, " + userObj.displayName + "? Read / Write about it?";
+			if (userObj.displayName != null) {
+				document.getElementById("uName").innerText = "Logged in as:" + userObj.email + "!";
 				document.getElementById("UsrNme").innerText = userObj.displayName;
 				document.getElementById("profName").innerText = userObj.displayName + "'s Preferences:";
-			}else{
-				document.getElementById("UsrNme").innerText = "User"+userObj.uid;
-				document.getElementById("uName").innerText = "What's on your mind, " + userObj.email + "? Read / Write about it?";
+			} else {
+				document.getElementById("UsrNme").innerText = "User" + userObj.uid;
+				document.getElementById("uName").innerText = "Logged in as:" + userObj.email + "!";
 				document.getElementById("profName").innerText = userObj.email + "'s Preferences:";
 			}
-			
+
 			$("#app").html("");
-			$("#app").append(`<div style="text-align: center"><span style="padding-left: 30px; padding-right: 40px;">Signed in as: `+ userObj.email + ` </span><button type="button" id="logout">Logout</button></div>`);
+			$("#app").hide();
+			$("#logout").show();
 			$("#logout").on("click", () => {
 				fbauth.signOut(auth);
 			})
@@ -265,7 +298,7 @@
 		fbauth.onAuthStateChanged(auth, user => {
 			if (!!user) {
 				$("#login").hide();
-				$("#app").show();
+				$("#loginContainer").hide();
 				$("#appContainer").show();
 				renderUser(user);
 				let flagRef = rtdb.ref(db, "/flag");
@@ -274,24 +307,23 @@
 					alert(ss.val());
 				})
 			} else {
+				$("#loginContainer").show();
 				$("#login").show();
-				$("#app").html("<h2>Login to enjoy the app</h2>");
+				$("#logout").hide();
+				$("#uName").innerText = "Login or Create an Account to Enjoy the App!"
+				$("#app").html("<h3><b>WROTiTT:</b> <i>Write to be heard on a global scale</i></h3><p>WROTiTT gives you a way to share your ideas to the world, with user posts reaching everyone on the platform!</p><p>Post your thoughts if you have an orginial idea, or give feedback on someone elses idea by liking or commenting!</p><p><i>~~Please be respectful and conciencious when sharing~~</i></p>");
 				$("#appContainer").hide();
 			}
 		});
 
-		$("#nameChanger").on("click",() =>{
-
+		$("#nameChanger").on("click", () => {
 			fbauth.updateProfile(auth.currentUser, { displayName: document.getElementById("name").value, photoURL: null }).catch(function (error) {
-					console.log(error);
+				console.log(error);
 			});
-
 			fbauth.reload(auth.currentUser);
-
 			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
 			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
-
 			$.ajax({
 				method: "POST",
 				url: "cheatsheet.php",
