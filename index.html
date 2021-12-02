@@ -38,6 +38,7 @@
 		<input type="text" id="regemail" placeholder="Register Email" />
 		<input type="password" id="regpass1" placeholder="Register Password" />
 		<input type="password" id="regpass2" placeholder="Confirm Password" />
+		<input type="text" id="userNameInput" placeholder="Type Desired User Name" />
 		<button type="button" id="register">Click Here To Register</button>
 		<hr>
 		<input type="text" id="logemail" placeholder="Login with Email" />
@@ -205,7 +206,7 @@
 
 			<h3 id="profName"></h3>
 			Name: <input type="text" id="name">
-			<button id="nameChanger" onclick="submitName()">Change Name</button>
+			<button id="nameChanger">Change Name</button>
 			<p></p>
 			Customize Feed Color: <input type="color" id="wordColor">
 			<p></p>
@@ -243,6 +244,17 @@
 		let auth = fbauth.getAuth(app);
 
 		let renderUser = function (userObj) {
+			fbauth.reload(userObj);
+			if(userObj.displayName!=null){
+				document.getElementById("uName").innerText = "What's on your mind, " + userObj.displayName + "? Read / Write about it?";
+				document.getElementById("UsrNme").innerText = userObj.displayName;
+				document.getElementById("profName").innerText = userObj.displayName + "'s Preferences:";
+			}else{
+				document.getElementById("UsrNme").innerText = "User"+userObj.uid;
+				document.getElementById("uName").innerText = "What's on your mind, " + userObj.email + "? Read / Write about it?";
+				document.getElementById("profName").innerText = userObj.email + "'s Preferences:";
+			}
+			
 			$("#app").html(JSON.stringify(userObj));
 			$("#app").append(`<button type="button" id="logout">Logout</button>`);
 			$("#logout").on("click", () => {
@@ -268,14 +280,18 @@
 			}
 		});
 
+		$("#nameChanger").on("click",() =>{
 
-		$("#nameChanger").on("click", () => {
-			fbauth.currentUser.updateProfile({
-				displayName: document.getElementById("name").value,
-			}).then(function () { /* Update successful.*/ }).catch(function (error) {  /* An error happened.*/ });
-			document.getElementById("uName").innerText = "What's on your mind, " + fbauth.currentUser.displayName + "? Read / Write about it?";
+			fbauth.updateProfile(auth.currentUser, { displayName: document.getElementById("name").value, photoURL: null }).catch(function (error) {
+					console.log(error);
+			});
+
+			fbauth.reload(auth.currentUser);
+
+			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
-			document.getElementById("UsrNme").innerText = fbauth.currentUser.displayName;
+			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
+
 			$.ajax({
 				method: "POST",
 				url: "cheatsheet.php",
@@ -286,25 +302,24 @@
 			})
 		});
 
-		/*let rulesRef = rtdb.ref(db, "/rules");
-		rtdb.onValue(rulesRef, ss => {
-			let rules = ss.val();
-			if (!!rules) {
-				$("#rules").html(rules);
-			}
-		})*/
-
-
 		$("#register").on("click", () => {
 			let email = $("#regemail").val();
 			let p1 = $("#regpass1").val();
 			let p2 = $("#regpass2").val();
+			let dispName = $("#userNameInput").val();
 			if (p1 != p2) {
 				alert("Passwords don't match");
 				return;
 			}
-			fbauth.createUserWithEmailAndPassword(auth, email, p1).then(somedata => {
+			if (dispName == "" || dispName == " ") {
+				alert("Invalid Username");
+				return;
+			}
+			fbauth.createUserWithEmailAndPassword(auth, email, p1).then(somedata => {//userNameInput
 				let uid = somedata.user.uid;
+				fbauth.updateProfile(somedata.user, { displayName: dispName, photoURL: null }).catch(function (error) {
+					console.log(error);
+				});
 				let userRoleRef = rtdb.ref(db, `/users/${uid}/roles/user`);
 				rtdb.set(userRoleRef, true);
 			}).catch(function (error) {
@@ -747,7 +762,8 @@
 		//setInterval (getPost,25000);
 
 		//function used to change introduction based on user input name
-		/*var submitName = function () {
+		/*$("#nameChanger").on("click",() =>{
+		//var submitName = function () {
 			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
 			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
@@ -756,10 +772,10 @@
 				url: "cheatsheet.php",
 				data: { "receiver_name": document.getElementById("name").value },
 				success: function (data) {
-	
+
 				}
 			})
-		}*/
+		};*/
 
 
 		//Function to change the color
