@@ -94,12 +94,12 @@
 
 	<!---------------------Div Containing Main App--------------------->
 
-	<div hidden id="appContainer" style="margin:0px; padding:0px; text-align:center; background-color:rgb(73, 161, 216); width: 100%; height: fit-content; border:5px groove deepskyblue; min-height:100%">
+	<div hidden id="appContainer" style="position:relative; margin:0px; padding:0px; text-align:center; background-color:rgb(73, 161, 216); width: 100%; height: fit-content; border:5px groove deepskyblue; min-height:100%">
 
 		<!-- Profile Div -->
 
 		<div id="profileDiv" class="a"
-			style="color: whitesmoke; margin:0px; padding:0px; display: inline-block;  width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; height:inherit;"><!--rgb(159, 213, 235);-->
+			style="color: whitesmoke; margin:0px; padding:0px; display: inline-block;  width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; position:absolute; top:0; bottom:0; left:0;">
 			<h2 class="multicolor"><u>Profile:</u> </h2>
 
 			<h3 id="profName"></h3>
@@ -111,7 +111,7 @@
 		<!-- Posting and Feed div -->
 
 		<div id="postAndFeedDiv" class="PostnFeedDiv"
-			style="color: rgb(0, 98, 131);margin:0px; padding:0px; display: inline-block; *display: inline; width: 60%; background-color: lightskyblue; border: 5px solid rgb(0, 142, 189); vertical-align: top; height:100%;">
+			style="color: rgb(0, 98, 131);margin:0px; margin-left:0; padding:0px; display: inline-block; *display: inline; width: 60%; background-color: lightskyblue; border: 5px solid rgb(0, 142, 189); vertical-align: top; height:100%;">
 			<h2 class="multicolorF"><u>Feed: Posts & Comments</u></h2>
 			<p class="multicolorF">Welcome, <b id="UsrNme">--</b></p>
 			<p class="multicolorF">Type what you want to post:
@@ -236,7 +236,7 @@
 
 		<!-- Profile Options Div -->
 		<div id="settingsDiv" class="a"
-			style="color: whitesmoke; padding:0px; margin:0px; display: inline-block; *display: inline; width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; height: 100%;">
+			style="color: whitesmoke; padding:0px; margin:0px; display: inline-block; *display: inline; width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; height:100%; position:absolute; top:0; bottom:0; left:81%;">
 			<h2 style="padding:0px; margin:0px;" class="multicolor"><u>Settings:</u></h2>
 			<h3 style="padding:0px; margin:0px;" class="multicolor">Color and Customization</h3>
 			<p></p>
@@ -321,7 +321,6 @@
 				console.log(error);
 			});
 			fbauth.reload(auth.currentUser);
-			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
 			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
 			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
 			$.ajax({
@@ -789,25 +788,11 @@
 				}
 			}
 			document.getElementById("PageNum").innerText = pageNumber;
+			$("#profileDiv").style.height=$("#postAndFeedDiv").style.height;
+			$("#settingsDiv").style.height=$("#postAndFeedDiv").style.height;
 		}
 
 		//setInterval (getPost,25000);
-
-		//function used to change introduction based on user input name
-		/*$("#nameChanger").on("click",() =>{
-		//var submitName = function () {
-			document.getElementById("uName").innerText = "What's on your mind, " + document.getElementById("name").value + "? Read / Write about it?";
-			document.getElementById("profName").innerText = document.getElementById("name").value + "'s Preferences:";
-			document.getElementById("UsrNme").innerText = document.getElementById("name").value;
-			$.ajax({
-				method: "POST",
-				url: "cheatsheet.php",
-				data: { "receiver_name": document.getElementById("name").value },
-				success: function (data) {
-
-				}
-			})
-		};*/
 
 
 		//Function to change the color
