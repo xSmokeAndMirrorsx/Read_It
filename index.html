@@ -16,7 +16,8 @@
 
 <!----------------------------------------Start of Main Body---------------------------------------->
 
-<body id="MainBod" style="background-color:rgb(0, 119, 158); min-height:100%">
+
+<body id="MainBod" style="margin-left:0px; background-color:rgb(0, 119, 158); min-height:100%">
 	<style>
 		div.a {
 			text-align: center;
@@ -28,7 +29,6 @@
 	</style>
 
 	<!---------------------Header--------------------->
-
 
 	<div id="header"
 		style="margin:0px; padding:0px; background-color:whitesmoke; width: 100%; height: fit-content; border:3px groove deepskyblue">
@@ -43,13 +43,17 @@
 			<h2 class="multicolor" id="uName"
 				style="color: deepskyblue; text-shadow: 2px 0px 4px skyblue; padding-bottom: 5px">
 			</h2>
-			<button hidden style="float:right; margin-right:60px; margin-top:-45px; margin-bottom:5px;" type="button" id="logout">Logout</button>
+			<button hidden style="float:right; margin-right:60px; margin-top:-45px; margin-bottom:5px;" type="button"
+				id="logout">Logout</button>
 		</div>
 	</div>
 	<hr>
 
 	<!---------------------Login and Register Section--------------------->
+
 	<div id="loginContainer" style="background-color: white">
+
+		<!-- App Description Div -->
 
 		<div style="text-align: center; color:rgb(0, 152, 202); height: fit-content" id="app">
 			<h3><b>WROTiTT:</b> <i>Write to be heard on a global scale</i></h3>
@@ -60,33 +64,42 @@
 			<p><i>~~Please be respectful and conciencious when sharing~~</i></p>
 		</div>
 
-		<hr>
+		<hr> <!-- Login and Register Div -->
 
 		<div style="color:rgb(0, 152, 202);" id="login">
-			<h2 style="padding:10px; padding-bottom:0px; padding-top:0px;"><b>Log In -- Exisiting Users</b></h2>
-			<p style="padding-left:15px;"><b>Enter Your Email and Password to Login</b></p>
-			<input style="margin-left:15px;" type="text" id="logemail" placeholder="Login with Email" />
-			<input type="password" id="logpass" placeholder="Login Password" />
-			<button type="button" id="login">Click Here To Login</button>
+
+			<div>
+				<!-- Login -->
+				<h2 style="padding:10px; padding-bottom:0px; padding-top:0px;"><b>Log In -- Exisiting Users</b></h2>
+				<p style="padding-left:15px;"> <b>Enter Your Email and Password to Login</b> </p>
+				<input style="margin-left:15px;" type="text" id="logemail" placeholder="Login with Email" />
+				<input type="password" id="logpass" placeholder="Login Password" />
+				<button type="button" id="login">Click Here To Login</button>
+			</div>
 
 			<hr style="margin-top:20px; color:rgb(0, 119, 158)">
 
-			<h2 style="padding:0px 10px 0px 10px; "><b>REGISTER -- New Users</b></h2>
-			<p style="padding-left:15px;">
-				<b>
-					Enter Login Email :<input style="margin-right:25px;" type="text" id="regemail"
-						placeholder="Register Email" />
-					Enter Display Name :<input type="text" id="userNameInput" placeholder="Type Desired User Name" />
-				</b>
-			</p>
-			<p style="padding-left:15px;">
-				<b>
-					Enter New Password :<input style="margin-right:10px;" type="password" id="regpass1"
-						placeholder="Register Password" />
-					Confirm New Password:<input type="password" id="regpass2" placeholder="Confirm Password" />
-				</b>
-			</p>
-			<button style="margin-left:15px;" type="button" id="register">Click Here To Register</button>
+			<div>
+				<!-- Register -->
+				<h2 style="padding:0px 10px 0px 10px; "><b>REGISTER -- New Users</b></h2>
+				<p style="padding-left:15px;">
+					<b>
+						Enter Login Email :<input style="margin-right:25px;" type="text" id="regemail"
+							placeholder="Register Email" />
+						Enter Display Name :<input type="text" id="userNameInput"
+							placeholder="Type Desired User Name" />
+					</b>
+				</p>
+				<p style="padding-left:15px;">
+					<b>
+						Enter New Password :<input style="margin-right:10px;" type="password" id="regpass1"
+							placeholder="Register Password" />
+						Confirm New Password:<input type="password" id="regpass2" placeholder="Confirm Password" />
+					</b>
+				</p>
+				<button style="margin-left:15px;" type="button" id="register">Click Here To Register</button>
+			</div>
+
 		</div>
 		<hr>
 	</div>
@@ -94,26 +107,29 @@
 
 	<!---------------------Div Containing Main App--------------------->
 
-	<div hidden id="appContainer" style="position:relative; margin:0px; padding:0px; text-align:center; background-color:rgb(73, 161, 216); width: 100%; height: fit-content; border:5px groove deepskyblue; min-height:100%">
 
-		<!-- Profile Div -->
+	<div hidden id="appContainer"
+		style="position:relative; margin:0px; padding:0px; text-align:center; background-color:rgb(73, 161, 216); width: 100%; height: fit-content; border:5px groove deepskyblue; min-height:100%; border-right:0px">
+
+		<!-------Profile Div------->
 
 		<div id="profileDiv" class="a"
 			style="color: whitesmoke; margin:0px; padding:0px; display: inline-block;  width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; position:absolute; top:0; bottom:0; left:0;">
+			
 			<h2 class="multicolor"><u>Profile:</u> </h2>
-
 			<h3 id="profName"></h3>
 			Name: <input type="text" id="name">
 			<button id="nameChanger">Change Name</button>
-			<p></p>
 		</div>
 
-		<!-- Posting and Feed div -->
+		<!-------Posting and Feed Div------->
 
 		<div id="postAndFeedDiv" class="PostnFeedDiv"
 			style="color: rgb(0, 98, 131);margin:0px; margin-left:0; padding:0px; display: inline-block; *display: inline; width: 60%; background-color: lightskyblue; border: 5px solid rgb(0, 142, 189); vertical-align: top; height:100%;">
 			<h2 class="multicolorF"><u>Feed: Posts & Comments</u></h2>
 			<p class="multicolorF">Welcome, <b id="UsrNme">--</b></p>
+
+			<!-- Post Section-->
 			<p class="multicolorF">Type what you want to post:
 				<button onclick="printPost()">Post</button>
 			</p>
@@ -131,7 +147,7 @@
 				<hr>
 			</template>
 
-			<!-------Post Divs------->
+			<!------- Feed: Live(Most Recent) Posts------->
 
 			<!--PostDiv1-->
 			<div id="postbox1" class="postbox">
@@ -140,7 +156,7 @@
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect1" >
+					<div class="commentbox" id="commentSect1">
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -152,6 +168,7 @@
 				</div>
 
 			</div>
+			
 			<!--PostDiv2-->
 			<div id="postbox2" class="postbox">
 
@@ -159,7 +176,7 @@
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect2" >
+					<div class="commentbox" id="commentSect2">
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -171,6 +188,7 @@
 				</div>
 
 			</div>
+			
 			<!--PostDiv3-->
 			<div id="postbox3" class="postbox">
 
@@ -178,7 +196,7 @@
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect3" >
+					<div class="commentbox" id="commentSect3">
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -190,6 +208,7 @@
 				</div>
 
 			</div>
+
 			<!--PostDiv4-->
 			<div id="postbox4" class="postbox">
 
@@ -197,7 +216,7 @@
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect4" >
+					<div class="commentbox" id="commentSect4">
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -209,6 +228,7 @@
 				</div>
 
 			</div>
+
 			<!--PostDiv5-->
 			<div id="postbox5" class="postbox">
 
@@ -216,7 +236,7 @@
 					<h3 style="text-align: left; padding-bottom: 5px"></h3>
 					<p style="text-align: center; padding-bottom: 5px; padding-top: 5px"></p>
 					<h5 style="text-align: right; padding-top: 5px"></h5>
-					<div class="commentbox" id="commentSect5" >
+					<div class="commentbox" id="commentSect5">
 						<h4 style="text-align: left; padding-left: 2px">Comments:</h4>
 					</div>
 				</div>
@@ -230,11 +250,13 @@
 			</div>
 			<!--End Post Divs-->
 
-			<button id="previouspage" onclick="prevPage()">Previous Page</button><b id="PageNum">...</b><button
-				id="nextpage" onclick="nextPage()">Next Page</button>
+			<button id="previouspage" onclick="prevPage()">Previous Page</button>
+			<b id="PageNum">...</b>
+			<button id="nextpage" onclick="nextPage()">Next Page</button>
+
 		</div>
 
-		<!-- Profile Options Div -->
+		<!-------Profile Options Div------->
 		<div id="settingsDiv" class="a"
 			style="color: whitesmoke; padding:0px; margin:0px; display: inline-block; *display: inline; width: 19%; background-color: rgb(0, 142, 189); vertical-align: top; height:100%; position:absolute; top:0; bottom:0; left:81%;">
 			<h2 style="padding:0px; margin:0px;" class="multicolor"><u>Settings:</u></h2>
@@ -246,18 +268,21 @@
 
 	</div>
 
+	<!--------------------- Scripts --------------------->
+
+
+	<!--Script for FireBase-->
 	<script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+
+
+	<!--Contains Functions Involving FireBase User-->
 	<script type="module">
-		// Import the functions you need from the SDKs you need
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
 		import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
 		import * as rtdb from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
 		import * as fbauth from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
-		// TODO: Add SDKs for Firebase products that you want to use
-		// https://firebase.google.com/docs/web/setup#available-libraries
 
-		// Your web app's Firebase configuration
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		// Web app's Firebase configuration
 		const firebaseConfig = {
 			apiKey: "AIzaSyDZL_f4w_BPe5lECZbi8X8RRwGDvBQ6fqQ",
 			authDomain: "wrotitt.firebaseapp.com",
@@ -272,9 +297,13 @@
 		const app = initializeApp(firebaseConfig);
 		const analytics = getAnalytics(app);
 
+		// FireBase DataBase object
 		let db = rtdb.getDatabase(app);
+		// FireBase Auth object
 		let auth = fbauth.getAuth(app);
 
+
+		// Function called to render user info and show logout button
 		let renderUser = function (userObj) {
 			fbauth.reload(userObj);
 			if (userObj.displayName != null) {
@@ -294,7 +323,10 @@
 			})
 		}
 
+
+		// Function that runs everytime current user state changes
 		fbauth.onAuthStateChanged(auth, user => {
+			// if user exists --> show app, hide login
 			if (!!user) {
 				$("#login").hide();
 				$("#loginContainer").hide();
@@ -305,6 +337,7 @@
 				rtdb.onValue(flagRef, ss => {
 					alert(ss.val());
 				})
+			// if user doesnt exist --> hide app, show login
 			} else {
 				$("#loginContainer").show();
 				$("#login").show();
@@ -315,6 +348,8 @@
 			}
 		});
 
+
+		// Function used to change the Display name of the current user
 		$("#nameChanger").on("click", () => {
 			fbauth.updateProfile(auth.currentUser, { displayName: document.getElementById("name").value, photoURL: null }).catch(function (error) {
 				console.log(error);
@@ -332,6 +367,8 @@
 			})
 		});
 
+
+		// Function used to register a new user
 		$("#register").on("click", () => {
 			let email = $("#regemail").val();
 			let p1 = $("#regpass1").val();
@@ -362,6 +399,7 @@
 		});
 
 
+		// Function to log in as an existing user
 		$("#login").on("click", () => {
 			let email = $("#logemail").val();
 			let pwd = $("#logpass").val();
@@ -379,7 +417,7 @@
 	</script>
 
 
-	<!-- Script containing functions relavant to UI -->
+	<!-- Script containing functions for rendering the Feed, Posting, Commenting, and Liking -->
 	<script>
 		var postCount = 0;
 		var postData = "";
@@ -399,11 +437,11 @@
 		var likedPostNum4;
 
 		getPost();
-		sleep(200);//
-		getPost();//for some reason doesnt load comments in on first call, but does on second call
+		//sleep(200);
+		//getPost();
 
 
-		//function for adding likes
+		// ----------------------------Function for adding likes----------------------------
 		var add_like = function (data) {
 			$.ajax({
 				method: "POST",
@@ -416,7 +454,7 @@
 		}
 
 
-		//function for adding comments
+		// ----------------------------Function for adding new comments----------------------------
 		var add_comment = function (parentPost, postSlot, commentCount) {
 			var newCommTexts = document.querySelectorAll('.commText');
 			if (postSlot == 0) {
@@ -456,17 +494,7 @@
 		}
 
 
-		// sleep function
-		function sleep(milliseconds) {
-			const date = Date.now();
-			let currentDate = null;
-			do {
-				currentDate = Date.now();
-			} while (currentDate - date < milliseconds);
-		}
-
-
-		//function to get and load the comments
+		//----------------------------Function to get and load the comments for current posts in Feed----------------------------
 		function getComment(tmpVar, postDispNum, numComms) {
 			console.log(tmpVar);
 			console.log(postDispNum);
@@ -500,6 +528,7 @@
 
 						}
 					}
+
 					//Post Display Slot 2
 					else if (postDispNum == 2) {
 						let commbody = document.getElementById('commentSect2');
@@ -519,6 +548,7 @@
 							commbody.appendChild(commclone);
 						}
 					}
+
 					//Post Display Slot 3
 					else if (postDispNum == 3) {
 						let commbody = document.getElementById('commentSect3');
@@ -538,6 +568,7 @@
 							commbody.appendChild(commclone);
 						}
 					}
+
 					//Post Display Slot 4
 					else if (postDispNum == 4) {
 						let commbody = document.getElementById('commentSect4');
@@ -557,6 +588,7 @@
 							commbody.appendChild(commclone);
 						}
 					}
+
 					//Post Display Slot 5
 					else if (postDispNum == 5) {
 						let commbody = document.getElementById('commentSect5');
@@ -580,7 +612,24 @@
 			})
 		}
 
-		//Function to getthe Posts
+
+		//----------------------------Function to Add New Post to Feed----------------------------
+		var printPost = function () {
+			$.ajax({
+				method: "POST",
+				url: "postHandle.php",
+				data: { "postName": document.getElementById("UsrNme").innerText, "postText": document.getElementById("post").value },
+				success: function (data) {
+
+				}
+			})
+			document.getElementById("post").value = "";
+			sleep(250);
+			getPost();
+		}
+
+
+		//----------------------------Function to get the posts for Feed----------------------------
 		function getPost() {
 			$.ajax({
 				method: "GET",
@@ -593,7 +642,7 @@
 		}
 
 
-		//Function to load and display the posts
+		//----------------------------Function to load and display the posts in Feed----------------------------
 		var outPost = function (data) {
 
 			var tbody = document.querySelector('.PostnFeedDiv');
@@ -787,21 +836,40 @@
 				}
 			}
 			document.getElementById("PageNum").innerText = pageNumber;
-			$("#profileDiv").style.height=$("#postAndFeedDiv").style.height;
-			$("#settingsDiv").style.height=$("#postAndFeedDiv").style.height;
+			$("#profileDiv").style.height = $("#postAndFeedDiv").style.height;
+			$("#settingsDiv").style.height = $("#postAndFeedDiv").style.height;
 		}
 
 		//setInterval (getPost,25000);
 
 
-		//Function to change the color
+
+		//----------------------------Function to move to Previous Page on Feed----------------------------
+		var prevPage = function () {
+			if (pageNumber > 1) {
+				pageNumber = pageNumber - 1;
+			}
+			getPost();
+		}
+
+
+		//----------------------------Function to move to Next Page on Feed----------------------------
+		var nextPage = function () {
+			if (pageNumber < ((MaxPostNum - 1) / 5) + 1) {
+				pageNumber = pageNumber + 1;
+			}
+			getPost();
+		}
+
+
+		//----------------------------Function to get color from a number----------------------------
 		var toColor = function (d) {
 			var c = Number(d).toString(16);
 			return "#" + ("000000".substr(0, 6 - c.length) + c.toUpperCase());
 		}
 
 
-		//function used to change the color of the headers based on user input
+		//----------------------------Function to change the color of the Feed----------------------------
 		var changeColorHandler = function (evt) {
 			let mycolor = evt.currentTarget.value
 			let wordColor = toColor((Number(Number(mycolor).toString(16)) + 0x777777) % 0xffffff);
@@ -814,53 +882,22 @@
 		}
 
 
-		//function to clear the posts (depricated)
-		var clearPosts = function () {
-			var tbody = document.querySelector("tbody");
-			tbody.innerHTML = '';
-		}
-
-
-		//previous page function for page navigation
-		var prevPage = function () {
-			if (pageNumber > 1) {
-				pageNumber = pageNumber - 1;
-			}
-			getPost();
-		}
-
-
-		//next page function for page navigation
-		var nextPage = function () {
-			if (pageNumber < ((MaxPostNum - 1) / 5) + 1) {
-				pageNumber = pageNumber + 1;
-			}
-			getPost();
-		}
-
-		//function to display the posts (depricated)
-		var printPost = function () {
-			$.ajax({
-				method: "POST",
-				url: "postHandle.php",
-				data: { "postName": document.getElementById("UsrNme").innerText, "postText": document.getElementById("post").value },
-				success: function (data) {
-
-				}
-			})
-			document.getElementById("post").value = "";
-			sleep(250);
-			getPost();
-		}
-
-
-		//Actually changes the color if the Words / Feed Background
+		//----------------------------Function that runs everytime selected Feed color changes----------------------------
 		document.querySelector("#wordColor").addEventListener(
 			"change",
 			changeColorHandler
 		)
 
 
+		// ----------------------------sleep function----------------------------
+		function sleep(milliseconds) {
+			const date = Date.now();
+			let currentDate = null;
+			do {
+				currentDate = Date.now();
+			} while (currentDate - date < milliseconds);
+		}
+		
 	</script>
 </body>
 
