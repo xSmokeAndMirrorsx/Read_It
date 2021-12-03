@@ -309,6 +309,7 @@
 
 		// Function called to render user info and show logout button
 		let renderUser = function (userObj) {
+			fbauth.reload(auth.currentUser);
 			if (userObj.displayName != null) {
 				document.getElementById("uName").innerText = "Logged in as:" + userObj.email + "!";
 				document.getElementById("UsrNme").innerText = userObj.displayName;
