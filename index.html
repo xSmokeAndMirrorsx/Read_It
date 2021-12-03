@@ -268,7 +268,11 @@
 
 	</div>
 
-	<!--------------------- Scripts --------------------->
+
+
+
+	<!----------------------------------------- Scripts --------------------------------------------->
+
 
 
 	<!--Script for FireBase-->
@@ -320,6 +324,7 @@
 			$("#logout").show();
 			$("#logout").on("click", () => {
 				fbauth.signOut(auth);
+				$("#uName").hide();
 			})
 		}
 
@@ -330,6 +335,7 @@
 			if (!!user) {
 				$("#login").hide();
 				$("#loginContainer").hide();
+				$("#uName").show();
 				$("#appContainer").show();
 				renderUser(user);
 				let flagRef = rtdb.ref(db, "/flag");
@@ -897,7 +903,7 @@
 				currentDate = Date.now();
 			} while (currentDate - date < milliseconds);
 		}
-		
+
 	</script>
 </body>
 
